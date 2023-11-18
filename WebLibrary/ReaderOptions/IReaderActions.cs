@@ -1,15 +1,17 @@
-﻿using WebLibrary.ModelRequest;
-using WebLibrary.ModelsResponses.ReaderResponses;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebLibrary.ModelRequest;
 
 namespace WebLibrary.ReaderOptions;
 
 public interface IReaderActions
 {
-    CreateReaderResponse Create(ReaderRequest request);
+    IActionResult Create(ReaderRequest request);
 
-    GetReaderResponse Get(Guid id);
+    IActionResult Get(Guid id);
 
-    UpdateReaderResponse Update(Guid id, ReaderRequest request);
+    IActionResult Get();
 
-    DeleteReaderResponse Delete(Guid id);
+    IActionResult Update(Guid id, ReaderRequest request);
+
+    IActionResult Delete(Guid id);
 }

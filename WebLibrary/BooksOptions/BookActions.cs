@@ -1,9 +1,9 @@
 ﻿using DbModels;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
 using WebLibrary.Mappers;
 using WebLibrary.ModelRequest;
-using WebLibrary.ModelsResponses.BookResponses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.BooksOptions;
@@ -28,15 +28,15 @@ public class BookActions : IBookActions
         _mapper = mapper;
     }
 
-    public CreateBookResponse Create(BookRequest request)
+    public IActionResult Create(BookRequest request)
     {
-        CreateBookResponse createResponse = new();
-
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            createResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+            return new BadRequestObjectResult(errors);
         }
         else
         {
@@ -44,37 +44,43 @@ public class BookActions : IBookActions
 
             _bookRepository.Add(book);
 
-            createResponse.Id = book.Id;
+            return new OkObjectResult(book.Id);
         }
-
-        return createResponse;
     }
 
-    public GetBookResponse Get(Guid id)
+    public IActionResult Get()
     {
-        GetBookResponse getResponse = new();
+        List<DbBook> dbBooks = _bookRepository.Get().ToList();
 
+        List<BookRequest> bookRequests = new();
+
+        foreach (DbBook book in dbBooks)
+        {
+            bookRequests.Add(_mapper.Map(book));
+        }
+
+        return new OkObjectResult(bookRequests);
+    }
+
+    public IActionResult Get(Guid id)
+    {
         DbBook? book = _bookRepository.Get(id);
 
         if (book is null)
         {
-            getResponse.Error = NOT_FOUND;
+            return new NotFoundObjectResult(NOT_FOUND);
         }
         else
         {
-            getResponse.BookRequest = _mapper.Map(book);
+            return new OkObjectResult(_mapper.Map(book));
         }
-
-        return getResponse;
     }
 
-    public UpdateBookResponse Update(Guid id, BookRequest request)
+    public IActionResult Update(Guid id, BookRequest request)
     {
-        UpdateBookResponse updateResponse = new();
-
         if (_bookRepository.Get(id) is null)
         {
-            updateResponse.Errors = new() { NOT_FOUND };
+            return new NotFoundObjectResult(NOT_FOUND);
         }
         else
         {
@@ -82,7 +88,9 @@ public class BookActions : IBookActions
 
             if (!result.IsValid)
             {
-                updateResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+                List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+                return new BadRequestObjectResult(errors);
             }
             else
             {
@@ -91,29 +99,24 @@ public class BookActions : IBookActions
 
                 _bookRepository.Update(book);
 
-                updateResponse.Result = true;
+                return new OkResult();
             }
         }
-
-        return updateResponse;
     }
 
-    public DeleteBookResponse Delete(Guid id)
+    public IActionResult Delete(Guid id)
     {
-        DeleteBookResponse deleteResponse = new();
-
         DbBook? book = _bookRepository.Get(id);
 
         if (book is not null)
         {
             _bookRepository.Delete(book);
-            deleteResponse.Result = DELETE;
+
+            return new OkObjectResult(DELETE);
         }
         else
         {
-            deleteResponse.Result = NOT_FOUND;
+            return new NotFoundObjectResult(NOT_FOUND);
         }
-
-        return deleteResponse;
     }
 }

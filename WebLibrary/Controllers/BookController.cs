@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebLibrary.BooksOptions;
 using WebLibrary.ModelRequest;
-using WebLibrary.ModelsResponses.BookResponses;
 
 namespace WebLibrary.Controllers;
 
@@ -10,23 +9,30 @@ namespace WebLibrary.Controllers;
 public class BookController : ControllerBase
 {
     [HttpPost]
-    public CreateBookResponse Create(
+    public IActionResult Create(
     [FromServices] IBookActions action,
     [FromBody] BookRequest request)
     {
         return action.Create(request);
     }
 
-    [HttpGet]
-    public GetBookResponse Get(
+    [HttpGet("id")]
+    public IActionResult Get(
     [FromServices] IBookActions action,
     [FromQuery] Guid id)
     {
         return action.Get(id);
     }
 
+    [HttpGet]
+    public IActionResult Get(
+    [FromServices] IBookActions action)
+    {
+        return action.Get();
+    }
+
     [HttpPut]
-    public UpdateBookResponse Update(
+    public IActionResult Update(
     [FromServices] IBookActions action,
     [FromQuery] Guid id,
     [FromBody] BookRequest request)
@@ -35,7 +41,7 @@ public class BookController : ControllerBase
     }
 
     [HttpDelete]
-    public DeleteBookResponse Delete(
+    public IActionResult Delete(
     [FromServices] IBookActions action,
     [FromQuery] Guid id)
     {
