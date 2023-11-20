@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Provider;
 
@@ -11,9 +12,11 @@ using Provider;
 namespace Provider.Migrations
 {
     [DbContext(typeof(OfficeDbContext))]
-    partial class OfficeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231120141020_DeleteIssueBooks")]
+    partial class DeleteIssueBooks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,9 +94,6 @@ namespace Provider.Migrations
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
-
-                    b.Property<bool>("CanTakeBooks")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Fullname")
                         .IsRequired()

@@ -12,7 +12,7 @@ public class DbIssue
     public DateTime DateIssue { get; set; }
     public int Period { get; set; }
 
-    public IList<DbIssueBooks> IssueBooks { get; set; } = new List<DbIssueBooks>();
+    public IList<DbBook> Books { get; set; } = new List<DbBook>();
     public DbReader Reader { get; set; }
 }
 

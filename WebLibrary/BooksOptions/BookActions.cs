@@ -3,7 +3,9 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
 using WebLibrary.Mappers;
+using WebLibrary.Mappers.Book;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 using WebLibrary.Validators;
 
 namespace WebLibrary.BooksOptions;
@@ -52,14 +54,9 @@ public class BookActions : IBookActions
     {
         List<DbBook> dbBooks = _bookRepository.Get().ToList();
 
-        List<BookRequest> bookRequests = new();
+        List<BookResponse> bookResponse = dbBooks.Select(u => _mapper.Map(u)).ToList();
 
-        foreach (DbBook book in dbBooks)
-        {
-            bookRequests.Add(_mapper.Map(book));
-        }
-
-        return new OkObjectResult(bookRequests);
+        return new OkObjectResult(bookResponse);
     }
 
     public IActionResult Get(Guid id)
