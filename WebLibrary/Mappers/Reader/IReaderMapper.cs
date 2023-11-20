@@ -1,11 +1,12 @@
 ﻿using DbModels;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 
-namespace WebLibrary.Mappers;
+namespace WebLibrary.Mappers.Reader;
 
 public interface IReaderMapper
 {
     DbReader Map(ReaderRequest readerRequest);
 
-    ReaderRequest Map(DbReader dbReader);
+    ReaderResponse Map(DbReader dbReader);
 }

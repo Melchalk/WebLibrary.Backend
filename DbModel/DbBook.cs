@@ -18,8 +18,9 @@ public class DbBook
     [MaxLength(50)]
     public string? CityPublishing { get; set; }
     public int? HallNo { get; set; }
+    public Guid? IssueId { get; set; }
 
-    public IList<DbIssueBooks> IssueBooks { get; set; } = new List<DbIssueBooks>();
+    public DbIssue? Issue { get; set; }
 }
 
 public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
@@ -29,5 +30,11 @@ public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
         builder.ToTable(DbBook.TableName);
 
         builder.HasKey(o => o.Id);
+
+        builder
+            .HasOne(u => u.Issue)
+            .WithMany(o => o.Books)
+            .HasForeignKey(u => u.IssueId)
+            .HasPrincipalKey(o => o.Id);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using DbModels;
 using WebLibrary.ModelRequest;
+using WebLibrary.ModelResponse;
 
-namespace WebLibrary.Mappers;
+namespace WebLibrary.Mappers.Book;
 
 public interface IBookMapper
 {
     DbBook Map(BookRequest bookRequest);
 
-    BookRequest Map(DbBook dbBook);
+    BookResponse Map(DbBook dbBook);
 }
