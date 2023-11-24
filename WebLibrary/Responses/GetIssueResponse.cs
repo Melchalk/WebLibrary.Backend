@@ -1,4 +1,4 @@
-﻿namespace WebLibrary.ModelResponse;
+﻿namespace WebLibrary.Responses;
 
 public class GetIssueResponse
 {
@@ -8,5 +8,4 @@ public class GetIssueResponse
     public int Period { get; set; }
 
     public List<GetBookResponse> Books { get; set; }
-    //public ReaderResponse Reader { get; set; }
 }

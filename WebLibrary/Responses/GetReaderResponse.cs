@@ -1,4 +1,4 @@
-﻿namespace WebLibrary.ModelResponse;
+﻿namespace WebLibrary.Responses;
 
 public class GetReaderResponse
 {

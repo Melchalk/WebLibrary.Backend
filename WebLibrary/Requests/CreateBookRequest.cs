@@ -7,7 +7,6 @@ public class CreateBookRequest
     [MaxLength(50, ErrorMessage = "Title of book is too long")]
     public string Title { get; set; }
 
-
     [MaxLength(50, ErrorMessage = "Author's name is too long")]
     public string? Author { get; set; }
 

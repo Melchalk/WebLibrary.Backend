@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using WebLibrary.ModelRequest;
+using WebLibrary.Requests;
 
 namespace WebLibrary.Validators;
 

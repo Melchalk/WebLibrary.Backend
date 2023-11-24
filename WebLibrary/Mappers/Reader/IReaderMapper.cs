@@ -1,5 +1,5 @@
 ﻿using DbModels;
-using WebLibrary.ModelResponse;
+using WebLibrary.Responses;
 using WebLibrary.Requests;
 
 namespace WebLibrary.Mappers.Reader;

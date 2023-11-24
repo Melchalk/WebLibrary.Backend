@@ -1,6 +1,6 @@
 ﻿using DbModels;
 using WebLibrary.Mappers.Issue;
-using WebLibrary.ModelResponse;
+using WebLibrary.Responses;
 using WebLibrary.Requests;
 
 namespace WebLibrary.Mappers.Reader;

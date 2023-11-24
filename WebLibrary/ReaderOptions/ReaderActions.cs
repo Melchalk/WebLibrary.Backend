@@ -1,9 +1,10 @@
 ﻿using DbModels;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
-using WebLibrary.Mappers;
-using WebLibrary.ModelRequest;
-using WebLibrary.ModelsResponses.ReaderResponses;
+using WebLibrary.Mappers.Reader;
+using WebLibrary.Requests;
+using WebLibrary.Responses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.ReaderOptions;
@@ -28,92 +29,80 @@ public class ReaderActions : IReaderActions
         _mapper = mapper;
     }
 
-    public CreateReaderResponse Create(CreateReaderRequest request)
+    public IActionResult Create(CreateReaderRequest request)
     {
-        CreateReaderResponse createResponse = new();
+        ValidationResult result = _validator.Validate(request);
+
+        if (!result.IsValid)
+        {
+            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+            return new BadRequestObjectResult(errors);
+        }
+
+        DbReader reader = _mapper.Map(request);
+
+        _readerRepository.Add(reader);
+
+        return new CreatedResult("Library.Readers", reader.Id);
+    }
+
+    public IActionResult Get()
+    {
+        List<DbReader> dbReaders = _readerRepository.Get().ToList();
+
+        List<GetReaderResponse> readerResponse = dbReaders.Select(u => _mapper.Map(u)).ToList();
+
+        return new OkObjectResult(readerResponse);
+    }
+
+    public IActionResult Get(Guid id)
+    {
+        DbReader? reader = _readerRepository.Get(id);
+
+        if (reader is null)
+        {
+            return new NotFoundObjectResult(NOT_FOUND);
+        }
+
+        return new OkObjectResult(_mapper.Map(reader));
+    }
+
+    public IActionResult Update(Guid id, CreateReaderRequest request)
+    {
+        if (_readerRepository.Get(id) is null)
+        {
+            return new NotFoundObjectResult(NOT_FOUND);
+        }
 
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            createResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-        }
-        else
-        {
-            DbReader reader = _mapper.Map(request);
+            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            _readerRepository.Add(reader);
-
-            createResponse.Id = reader.Id;
+            return new BadRequestObjectResult(errors);
         }
 
-        return createResponse;
+        DbReader reader = _mapper.Map(request);
+        reader.Id = id;
+
+        _readerRepository.Update(reader);
+
+        return new OkResult();
     }
 
-    public GetReaderResponse Get(Guid id)
+    public IActionResult Delete(Guid id)
     {
-        GetReaderResponse getResponse = new();
-
         DbReader? reader = _readerRepository.Get(id);
 
         if (reader is null)
         {
-            getResponse.Error = NOT_FOUND;
-        }
-        else
-        {
-            getResponse.ReaderRequest = _mapper.Map(reader);
+            return new NotFoundObjectResult(NOT_FOUND);
         }
 
-        return getResponse;
-    }
+        _readerRepository.Delete(reader);
 
-    public UpdateReaderResponse Update(Guid id, CreateReaderRequest request)
-    {
-        UpdateReaderResponse updateResponse = new();
-
-        if (_readerRepository.Get(id) is null)
-        {
-            updateResponse.Errors = new() { NOT_FOUND };
-        }
-        else
-        {
-            ValidationResult result = _validator.Validate(request);
-
-            if (!result.IsValid)
-            {
-                updateResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-            }
-            else
-            {
-                DbReader reader = _mapper.Map(request);
-                reader.Id = id;
-
-                _readerRepository.Update(reader);
-
-                updateResponse.Result = true;
-            }
-        }
-
-        return updateResponse;
-    }
-
-    public DeleteReaderResponse Delete(Guid id)
-    {
-        DeleteReaderResponse deleteResponse = new();
-
-        DbReader? reader = _readerRepository.Get(id);
-
-        if (reader is not null)
-        {
-            _readerRepository.Delete(reader);
-            deleteResponse.Result = DELETE;
-        }
-        else
-        {
-            deleteResponse.Result = NOT_FOUND;
-        }
-
-        return deleteResponse;
+        return new OkObjectResult(DELETE);
     }
 }
