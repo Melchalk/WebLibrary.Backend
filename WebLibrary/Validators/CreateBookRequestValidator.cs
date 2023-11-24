@@ -3,9 +3,8 @@ using WebLibrary.ModelRequest;
 
 namespace WebLibrary.Validators;
 
-public class CreateBookRequestValidator : AbstractValidator<BookRequest>, ICreateBookRequestValidator
+public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>, ICreateBookRequestValidator
 {
-    //проверка на цифры
     public CreateBookRequestValidator()
     {
         RuleFor(request => request.Title)

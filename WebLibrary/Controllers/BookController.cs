@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebLibrary.BooksOptions;
 using WebLibrary.ModelRequest;
+using WebLibrary.Requests;
 
 namespace WebLibrary.Controllers;
 
@@ -11,7 +12,7 @@ public class BookController : ControllerBase
     [HttpPost]
     public IActionResult Create(
     [FromServices] IBookActions action,
-    [FromBody] BookRequest request)
+    [FromBody] CreateBookRequest request)
     {
         return action.Create(request);
     }
@@ -35,7 +36,7 @@ public class BookController : ControllerBase
     public IActionResult Update(
     [FromServices] IBookActions action,
     [FromQuery] Guid id,
-    [FromBody] BookRequest request)
+    [FromBody] CreateBookRequest request)
     {
         return action.Update(id, request);
     }

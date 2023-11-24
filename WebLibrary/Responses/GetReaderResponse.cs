@@ -1,6 +1,6 @@
 ﻿namespace WebLibrary.ModelResponse;
 
-public class ReaderResponse
+public class GetReaderResponse
 {
     public string Fullname { get; set; }
     public string Telephone { get; set; }
@@ -8,5 +8,5 @@ public class ReaderResponse
     public int Age { get; set; }
     public bool CanTakeBooks { get; set; }
 
-    public IssueResponse? Issue { get; set; }
+    public GetIssueResponse? Issue { get; set; }
 }

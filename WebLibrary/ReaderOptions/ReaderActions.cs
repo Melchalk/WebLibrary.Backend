@@ -1,10 +1,9 @@
 ﻿using DbModels;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
-using WebLibrary.Mappers.Reader;
+using WebLibrary.Mappers;
 using WebLibrary.ModelRequest;
-using WebLibrary.ModelResponse;
+using WebLibrary.ModelsResponses.ReaderResponses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.ReaderOptions;
@@ -29,15 +28,15 @@ public class ReaderActions : IReaderActions
         _mapper = mapper;
     }
 
-    public IActionResult Create(ReaderRequest request)
+    public CreateReaderResponse Create(CreateReaderRequest request)
     {
+        CreateReaderResponse createResponse = new();
+
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-
-            return new BadRequestObjectResult(errors);
+            createResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
         }
         else
         {
@@ -45,38 +44,37 @@ public class ReaderActions : IReaderActions
 
             _readerRepository.Add(reader);
 
-            return new OkObjectResult(reader.Id);
+            createResponse.Id = reader.Id;
         }
+
+        return createResponse;
     }
 
-    public IActionResult Get()
+    public GetReaderResponse Get(Guid id)
     {
-        List<DbReader> dbReaders = _readerRepository.Get().ToList();
+        GetReaderResponse getResponse = new();
 
-        List<ReaderResponse> readerResponse = dbReaders.Select(u => _mapper.Map(u)).ToList();
-
-        return new OkObjectResult(readerResponse);
-    }
-
-    public IActionResult Get(Guid id)
-    {
         DbReader? reader = _readerRepository.Get(id);
 
         if (reader is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            getResponse.Error = NOT_FOUND;
         }
         else
         {
-            return new OkObjectResult(_mapper.Map(reader));
+            getResponse.ReaderRequest = _mapper.Map(reader);
         }
+
+        return getResponse;
     }
 
-    public IActionResult Update(Guid id, ReaderRequest request)
+    public UpdateReaderResponse Update(Guid id, CreateReaderRequest request)
     {
+        UpdateReaderResponse updateResponse = new();
+
         if (_readerRepository.Get(id) is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            updateResponse.Errors = new() { NOT_FOUND };
         }
         else
         {
@@ -84,9 +82,7 @@ public class ReaderActions : IReaderActions
 
             if (!result.IsValid)
             {
-                List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-
-                return new BadRequestObjectResult(errors);
+                updateResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
             }
             else
             {
@@ -95,24 +91,29 @@ public class ReaderActions : IReaderActions
 
                 _readerRepository.Update(reader);
 
-                return new OkResult();
+                updateResponse.Result = true;
             }
         }
+
+        return updateResponse;
     }
 
-    public IActionResult Delete(Guid id)
+    public DeleteReaderResponse Delete(Guid id)
     {
+        DeleteReaderResponse deleteResponse = new();
+
         DbReader? reader = _readerRepository.Get(id);
 
         if (reader is not null)
         {
             _readerRepository.Delete(reader);
-
-            return new OkObjectResult(DELETE);
+            deleteResponse.Result = DELETE;
         }
         else
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            deleteResponse.Result = NOT_FOUND;
         }
+
+        return deleteResponse;
     }
 }

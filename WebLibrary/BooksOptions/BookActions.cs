@@ -2,10 +2,11 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories;
-using WebLibrary.Mappers;
 using WebLibrary.Mappers.Book;
 using WebLibrary.ModelRequest;
 using WebLibrary.ModelResponse;
+using WebLibrary.Requests;
+using WebLibrary.Responses;
 using WebLibrary.Validators;
 
 namespace WebLibrary.BooksOptions;
@@ -30,7 +31,7 @@ public class BookActions : IBookActions
         _mapper = mapper;
     }
 
-    public IActionResult Create(BookRequest request)
+    public IActionResult Create(CreateBookRequest request)
     {
         ValidationResult result = _validator.Validate(request);
 
@@ -40,21 +41,19 @@ public class BookActions : IBookActions
 
             return new BadRequestObjectResult(errors);
         }
-        else
-        {
-            DbBook book = _mapper.Map(request);
 
-            _bookRepository.Add(book);
+        DbBook book = _mapper.Map(request);
 
-            return new OkObjectResult(book.Id);
-        }
+        _bookRepository.Add(book);
+
+        return new CreatedResult("Library.Books", book.Id);
     }
 
     public IActionResult Get()
     {
         List<DbBook> dbBooks = _bookRepository.Get().ToList();
 
-        List<BookResponse> bookResponse = dbBooks.Select(u => _mapper.Map(u)).ToList();
+        List<GetBookResponse> bookResponse = dbBooks.Select(u => _mapper.Map(u)).ToList();
 
         return new OkObjectResult(bookResponse);
     }
@@ -67,53 +66,45 @@ public class BookActions : IBookActions
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
-        else
-        {
-            return new OkObjectResult(_mapper.Map(book));
-        }
+
+        return new OkObjectResult(_mapper.Map(book));
     }
 
-    public IActionResult Update(Guid id, BookRequest request)
+    public IActionResult Update(Guid id, CreateBookRequest request)
     {
         if (_bookRepository.Get(id) is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
-        else
+
+        ValidationResult result = _validator.Validate(request);
+
+        if (!result.IsValid)
         {
-            ValidationResult result = _validator.Validate(request);
+            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            if (!result.IsValid)
-            {
-                List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-
-                return new BadRequestObjectResult(errors);
-            }
-            else
-            {
-                DbBook book = _mapper.Map(request);
-                book.Id = id;
-
-                _bookRepository.Update(book);
-
-                return new OkResult();
-            }
+            return new BadRequestObjectResult(errors);
         }
+
+        DbBook book = _mapper.Map(request);
+        book.Id = id;
+
+        _bookRepository.Update(book);
+
+        return new OkResult();
     }
 
     public IActionResult Delete(Guid id)
     {
         DbBook? book = _bookRepository.Get(id);
 
-        if (book is not null)
-        {
-            _bookRepository.Delete(book);
-
-            return new OkObjectResult(DELETE);
-        }
-        else
+        if (book is null)
         {
             return new NotFoundObjectResult(NOT_FOUND);
         }
+
+        _bookRepository.Delete(book);
+
+        return new OkObjectResult(DELETE);
     }
 }

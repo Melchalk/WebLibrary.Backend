@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using WebLibrary.Mappers.Issue;
-using WebLibrary.ModelRequest;
 using WebLibrary.ModelResponse;
+using WebLibrary.Requests;
 
 namespace WebLibrary.Mappers.Reader;
 
@@ -14,7 +14,7 @@ public class ReaderMapper : IReaderMapper
         _issueMapper = issueMapper;
     }
 
-    public DbReader Map(ReaderRequest readerRequest)
+    public DbReader Map(CreateReaderRequest readerRequest)
     {
         DbReader reader = new()
         {
@@ -29,9 +29,9 @@ public class ReaderMapper : IReaderMapper
         return reader;
     }
 
-    public ReaderResponse Map(DbReader reader)
+    public GetReaderResponse Map(DbReader reader)
     {
-        ReaderResponse readerResponse = new()
+        GetReaderResponse readerResponse = new()
         {
             Fullname = reader.Fullname,
             Telephone = reader.Telephone,
