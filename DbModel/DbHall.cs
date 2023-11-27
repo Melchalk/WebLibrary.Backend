@@ -8,6 +8,7 @@ public class DbHall
 {
     public const string TableName = "Halls";
 
+    public Guid Id { get; set; }
     public int No { get; set; }
 
     [MaxLength(50)]
@@ -27,7 +28,7 @@ public class DbHallConfiguration : IEntityTypeConfiguration<DbHall>
     {
         builder.ToTable(DbHall.TableName);
 
-        builder.HasKey(o => o.No);
+        builder.HasKey(o => o.Id);
 
         builder
             .HasOne(u => u.Library)
