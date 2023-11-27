@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using Provider.Repositories;
+using Provider.Repositories.Reader;
 using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Requests;

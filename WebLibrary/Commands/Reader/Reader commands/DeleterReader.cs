@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Provider.Repositories;
+using Provider.Repositories.Reader;
 using WebLibrary.Commands.Book.Book_commands;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Commands.Reader.Interfaces;

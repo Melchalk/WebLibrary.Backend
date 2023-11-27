@@ -1,4 +1,5 @@
-using Provider.Repositories;
+using Provider.Repositories.Book;
+using Provider.Repositories.Reader;
 using WebLibrary.Commands.Book.Book_commands;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Commands.Reader.Interfaces;

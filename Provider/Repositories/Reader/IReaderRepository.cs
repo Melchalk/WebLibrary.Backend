@@ -1,6 +1,6 @@
 ﻿using DbModels;
 
-namespace Provider.Repositories;
+namespace Provider.Repositories.Reader;
 
 public interface IReaderRepository : IRepository<DbReader>
 {

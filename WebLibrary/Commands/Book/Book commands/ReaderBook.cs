@@ -1,6 +1,6 @@
 ﻿using DbModels;
 using Microsoft.AspNetCore.Mvc;
-using Provider.Repositories;
+using Provider.Repositories.Book;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Responses;

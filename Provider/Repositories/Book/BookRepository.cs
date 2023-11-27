@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Provider.Repositories;
+namespace Provider.Repositories.Book;
 
 public class BookRepository : IBookRepository
 {

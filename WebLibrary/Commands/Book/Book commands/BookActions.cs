@@ -1,4 +1,4 @@
-﻿using Provider.Repositories;
+﻿using Provider.Repositories.Book;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
 

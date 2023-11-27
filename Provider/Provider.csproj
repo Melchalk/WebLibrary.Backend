@@ -21,4 +21,11 @@
     <ProjectReference Include="..\DbModel\DbModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Hall\" />
+    <Folder Include="Repositories\Librarian\" />
+    <Folder Include="Repositories\Library\" />
+    <Folder Include="Repositories\Issue\" />
+  </ItemGroup>
+
 </Project>
