@@ -8,16 +8,16 @@ public class BookRepository : IBookRepository
 {
     private readonly OfficeDbContext _context = new();
 
-    public void Add(DbBook book)
+    public async Task AddAsync(DbBook book)
     {
         _context.Books.Add(book);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public DbBook? Get(Guid bookId)
+    public async Task<DbBook?> GetAsync(Guid bookId)
     {
-        return _context.Books.Where(u => u.Id == bookId).FirstOrDefault();
+        return await _context.Books.FirstOrDefaultAsync(u => u.Id == bookId);
     }
 
     public DbSet<DbBook> Get()
@@ -25,7 +25,7 @@ public class BookRepository : IBookRepository
         return _context.Books;
     }
 
-    public void Update(DbBook book, PropertyInfo property, string newValue)
+    public async Task UpdateAsync(DbBook book, PropertyInfo property, string newValue)
     {
         if (int.TryParse(newValue, out var value))
         {
@@ -36,27 +36,32 @@ public class BookRepository : IBookRepository
             property?.SetValue(book, newValue);
         }
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public DbBook Update(DbBook? book)
+    public async Task<DbBook?> UpdateAsync(DbBook? book)
     {
-        DbBook oldBook = Get(book.Id);
+        DbBook? oldBook = GetAsync(book.Id).Result;
+
+        if (oldBook is null)
+        {
+            return null;
+        }
 
         foreach (PropertyInfo property in typeof(DbBook).GetProperties())
         {
             property?.SetValue(oldBook, property.GetValue(book));
         }
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
-        return Get(book.Id);
+        return GetAsync(book.Id).Result;
     }
 
-    public void Delete(DbBook book)
+    public async Task DeleteAsync(DbBook book)
     {
         _context.Books.Remove(book);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }

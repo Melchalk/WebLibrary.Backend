@@ -4,13 +4,13 @@ namespace Provider.Repositories;
 
 public interface IRepository<T> where T : class
 {
-    void Add(T entity);
+    Task AddAsync(T entity);
 
-    T? Get(Guid id);
+    Task<T?> GetAsync(Guid id);
 
     DbSet<T> Get();
 
-    T Update(T entity);
+    Task<T> UpdateAsync(T entity);
 
-    void Delete(T entity);
+    Task DeleteAsync(T entity);
 }

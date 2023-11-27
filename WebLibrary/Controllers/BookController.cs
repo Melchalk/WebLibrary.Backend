@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebLibrary.BooksOptions;
+using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Requests;
 
 namespace WebLibrary.Controllers;
@@ -9,42 +9,42 @@ namespace WebLibrary.Controllers;
 public class BookController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Create(
-    [FromServices] IBookActions action,
+    public async Task<IActionResult> CreateAsync(
+    [FromServices] ICreaterBook action,
     [FromBody] CreateBookRequest request)
     {
-        return action.Create(request);
+        return await action.CreateAsync(request);
     }
 
     [HttpGet("id")]
-    public IActionResult GetBook(
-    [FromServices] IBookActions action,
+    public async Task<IActionResult> GetBookAsync(
+    [FromServices] IReaderBook action,
     [FromQuery] Guid id)
     {
-        return action.Get(id);
+        return await action.GetAsync(id);
     }
 
     [HttpGet]
     public IActionResult GetAll(
-    [FromServices] IBookActions action)
+    [FromServices] IReaderBook action)
     {
         return action.Get();
     }
 
     [HttpPut]
-    public IActionResult Update(
-    [FromServices] IBookActions action,
+    public async Task<IActionResult> UpdateAsync(
+    [FromServices] IUpdaterBook action,
     [FromQuery] Guid id,
     [FromBody] CreateBookRequest request)
     {
-        return action.Update(id, request);
+        return await action.UpdateAsync(id, request);
     }
 
     [HttpDelete]
-    public IActionResult Delete(
-    [FromServices] IBookActions action,
+    public async Task<IActionResult> DeleteAsync(
+    [FromServices] IDeleterBook action,
     [FromQuery] Guid id)
     {
-        return action.Delete(id);
+        return await action.DeleteAsync(id);
     }
 }

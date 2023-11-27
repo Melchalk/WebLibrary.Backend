@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Requests;
-using WebLibrary.ReaderOptions;
 
 namespace WebLibrary.Controllers;
 
@@ -9,42 +9,42 @@ namespace WebLibrary.Controllers;
 public class ReaderController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Create(
-    [FromServices] IReaderActions action,
+    public async Task<IActionResult> CreateAsync(
+    [FromServices] ICreaterReader action,
     [FromBody] CreateReaderRequest request)
     {
-        return action.Create(request);
+        return await action.CreateAsync(request);
     }
 
     [HttpGet("id")]
-    public IActionResult GetReader(
-    [FromServices] IReaderActions action,
+    public async Task<IActionResult> GetReaderAsync(
+    [FromServices] IReaderReader action,
     [FromQuery] Guid id)
     {
-        return action.Get(id);
+        return await action.GetAsync(id);
     }
 
     [HttpGet]
     public IActionResult GetAll(
-    [FromServices] IReaderActions action)
+    [FromServices] IReaderReader action)
     {
         return action.Get();
     }
 
     [HttpPut]
-    public IActionResult Update(
-    [FromServices] IReaderActions action,
+    public async Task<IActionResult> UpdateAsync(
+    [FromServices] IUpdaterReader action,
     [FromQuery] Guid id,
     [FromBody] CreateReaderRequest request)
     {
-        return action.Update(id, request);
+        return await action.UpdateAsync(id, request);
     }
 
     [HttpDelete]
-    public IActionResult Delete(
-    [FromServices] IReaderActions action,
+    public async Task<IActionResult> DeleteAsync(
+    [FromServices] IDeleterReader action,
     [FromQuery] Guid id)
     {
-        return action.Delete(id);
+        return await action.DeleteAsync(id);
     }
 }

@@ -8,15 +8,15 @@ public class ReaderRepository : IReaderRepository
 {
     private readonly OfficeDbContext _context = new();
 
-    public void Add(DbReader reader)
+    public async Task AddAsync(DbReader reader)
     {
         _context.Readers.Add(reader);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
-    public DbReader? Get(Guid readerId)
+    public async Task<DbReader?> GetAsync(Guid readerId)
     {
-        return _context.Readers.Where(u => u.Id == readerId).FirstOrDefault();
+        return await _context.Readers.FirstOrDefaultAsync(u => u.Id == readerId);
     }
 
     public DbSet<DbReader> Get()
@@ -24,24 +24,29 @@ public class ReaderRepository : IReaderRepository
         return _context.Readers;
     }
 
-    public DbReader Update(DbReader reader)
+    public async Task<DbReader?> UpdateAsync(DbReader reader)
     {
-        DbReader oldReader = Get(reader.Id);
+        DbReader? oldReader = GetAsync(reader.Id).Result;
+
+        if (oldReader is null)
+        {
+            return null;
+        }
 
         foreach (PropertyInfo property in typeof(DbReader).GetProperties())
         {
             property?.SetValue(oldReader, property.GetValue(reader));
         }
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
-        return Get(reader.Id);
+        return GetAsync(reader.Id).Result;
     }
 
-    public void Delete(DbReader reader)
+    public async Task DeleteAsync(DbReader reader)
     {
         _context.Readers.Remove(reader);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }
