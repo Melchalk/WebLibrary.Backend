@@ -6,9 +6,9 @@ namespace LibraryStructure.Consumers.Librarian;
 
 public class GetLibrariansConsumer : IConsumer<GetLibrariansRequest>
 {
-    private readonly ILibrarianLibrarian _command;
+    private readonly IReaderLibrarian _command;
 
-    public GetLibrariansConsumer(ILibrarianLibrarian command)
+    public GetLibrariansConsumer(IReaderLibrarian command)
     {
         _command = command;
     }
