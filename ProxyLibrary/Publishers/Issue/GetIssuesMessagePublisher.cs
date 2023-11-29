@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Issue;
 using ServiceModels.Responses.Issue;
 
-namespace ClientWebLibrary.Publishers.Issue;
+namespace ProxyLibrary.Publishers.Issue;
 
 public class GetIssuesMessagePublisher : IMessagePublisher<GetIssuesRequest, GetIssuesResponse>
 {

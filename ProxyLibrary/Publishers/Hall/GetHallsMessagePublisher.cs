@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
 
-namespace ClientWebLibrary.Publishers.Hall;
+namespace ProxyLibrary.Publishers.Hall;
 
 public class GetHallsMessagePublisher : IMessagePublisher<GetHallsRequest, GetHallsResponse>
 {

@@ -1,8 +1,9 @@
 ﻿using MassTransit;
+using ProxyLibrary.Publishers;
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
 
-namespace ClientWebLibrary.Publishers.Hall;
+namespace ProxyLibrary.Publishers.Hall;
 
 public class DeleteHallMessagePublisher : IMessagePublisher<DeleteHallRequest, DeleteHallResponse>
 {

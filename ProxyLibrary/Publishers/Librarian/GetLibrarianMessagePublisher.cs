@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Librarian;
 using ServiceModels.Responses.Librarian;
 
-namespace ClientWebLibrary.Publishers.Librarian;
+namespace ProxyLibrary.Publishers.Librarian;
 
 public class GetLibrarianMessagePublisher : IMessagePublisher<GetLibrarianRequest, GetLibrarianResponse>
 {
