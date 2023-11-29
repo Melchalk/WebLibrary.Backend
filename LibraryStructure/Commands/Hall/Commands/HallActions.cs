@@ -1,5 +1,6 @@
 ﻿using LibraryStructure.Validators.Hall;
 using Provider.Repositories.Hall;
+using WebLibrary.Mappers.Hall;
 
 namespace LibraryStructure.Commands.Hall.Commands;
 

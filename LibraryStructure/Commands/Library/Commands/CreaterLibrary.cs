@@ -5,6 +5,7 @@ using LibraryStructure.Validators.Library;
 using Provider.Repositories.Library;
 using ServiceModels.Requests.Library;
 using ServiceModels.Responses.Library;
+using WebLibrary.Mappers.Library;
 
 namespace LibraryStructure.Commands.Library.Commands;
 

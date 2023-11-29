@@ -5,6 +5,7 @@ using LibraryStructure.Validators.Librarian;
 using Provider.Repositories.Librarian;
 using ServiceModels.Requests.Librarian;
 using ServiceModels.Responses.Librarian;
+using WebLibrary.Mappers.Librarian;
 
 namespace LibraryStructure.Commands.Librarian.Commands;
 
