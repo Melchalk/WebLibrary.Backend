@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Library;
 using ServiceModels.Responses.Library;
 
-namespace Librariestructure.Consumers.Library;
+namespace LibraryStructure.Consumers.Library;
 
 public class GetLibrariesConsumer : IConsumer<GetLibrariesRequest>
 {
@@ -15,7 +15,7 @@ public class GetLibrariesConsumer : IConsumer<GetLibrariesRequest>
 
     public async Task Consume(ConsumeContext<GetLibrariesRequest> context)
     {
-        GetLibrariesResponse actionResult =  _command.Get();
+        GetLibrariesResponse actionResult = _command.Get();
 
         await context.RespondAsync(actionResult);
     }

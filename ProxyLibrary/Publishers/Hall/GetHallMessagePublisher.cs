@@ -1,5 +1,4 @@
 ﻿using MassTransit;
-using ProxyLibrary.Publishers;
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
 

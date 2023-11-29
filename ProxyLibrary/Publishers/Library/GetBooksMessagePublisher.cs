@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Library;
 using ServiceModels.Responses.Library;
 
-namespace ProxyLibrary.Publishers.Book;
+namespace ProxyLibrary.Publishers.Library;
 
 public class GetLibrariesMessagePublisher : IMessagePublisher<GetLibrariesRequest, GetLibrariesResponse>
 {
