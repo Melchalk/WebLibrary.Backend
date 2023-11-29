@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Responses;
+﻿namespace ServiceModels.Responses.Hall;
 
 public class GetHallResponse
 {
@@ -6,4 +6,6 @@ public class GetHallResponse
     public string Title { get; set; }
     public string Thematics { get; set; }
     public Guid LibraryId { get; set; }
+
+    public string? Error { get; set; }
 }
