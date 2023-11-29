@@ -15,4 +15,11 @@
     <ProjectReference Include="..\ServiceModels\ServiceModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Publishers\Issue\" />
+    <Folder Include="Publishers\Hall\" />
+    <Folder Include="Publishers\Library\" />
+    <Folder Include="Publishers\Librarian\" />
+  </ItemGroup>
+
 </Project>
