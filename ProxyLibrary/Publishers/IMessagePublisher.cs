@@ -1,4 +1,4 @@
-﻿namespace ClientWebLibrary.Publishers;
+﻿namespace ProxyLibrary.Publishers;
 
 public interface IMessagePublisher<T, U>
 {

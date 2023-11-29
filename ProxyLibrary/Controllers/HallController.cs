@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebLibrary.Commands.Hall.Interfaces;
-using WebLibrary.Requests;
+using ProxyLibrary.Publishers;
+using ServiceModels.Requests.Hall;
+using ServiceModels.Responses.Hall;
 
 namespace ProxyLibrary.Controllers;
 
@@ -10,41 +11,88 @@ public class HallController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] ICreaterHall action,
+    [FromServices] IMessagePublisher<CreateHallRequest, CreateHallResponse> messagePublisher,
     [FromBody] CreateHallRequest request)
     {
-        return await action.CreateAsync(request);
+        CreateHallResponse hallResponse = await messagePublisher.SendMessageAsync(request);
+
+        if (hallResponse.LibraryId is null)
+        {
+            return BadRequest(hallResponse.Errors);
+        }
+
+        return Created("Halls", new { hallResponse.LibraryId, hallResponse.No });
     }
 
     [HttpGet("id")]
     public async Task<IActionResult> GetHallAsync(
-    [FromServices] IReaderHall action,
-    [FromQuery] Guid id)
+    [FromServices] IMessagePublisher<GetHallRequest, GetHallResponse> messagePublisher,
+    [FromQuery] Guid libraryId,
+    [FromQuery] int number)
     {
-        return await action.GetAsync(id);
+        GetHallRequest getRequest = new()
+        {
+            LibraryId = libraryId,
+            No = number
+        };
+
+        GetHallResponse hallResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        if (hallResponse.Error is not null)
+        {
+            return BadRequest(hallResponse.Error);
+        }
+
+        return Ok(hallResponse);
     }
 
-    [HttpGet]
-    public IActionResult GetAll(
-    [FromServices] IReaderHall action)
+    [HttpGet()]
+    public async Task<IActionResult> GetAllAsync(
+    [FromServices] IMessagePublisher<GetHallsRequest, GetHallsResponse> messagePublisher)
     {
-        return action.Get();
+        GetHallsRequest getRequest = new();
+
+        GetHallsResponse hallResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        return Ok(hallResponse);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IUpdaterHall action,
-    [FromQuery] Guid id,
+    [FromServices] IMessagePublisher<UpdateHallRequest, UpdateHallResponse> messagePublisher,
     [FromBody] CreateHallRequest request)
     {
-        return await action.UpdateAsync(id, request);
+        UpdateHallRequest updateRequest = new() { CreateHallRequest = request };
+
+        UpdateHallResponse hallResponse = await messagePublisher.SendMessageAsync(updateRequest);
+
+        if (hallResponse.Result == false)
+        {
+            return BadRequest(hallResponse.Errors);
+        }
+
+        return Ok();
     }
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IDeleterHall action,
-    [FromQuery] Guid id)
+    [FromServices] IMessagePublisher<DeleteHallRequest, DeleteHallResponse> messagePublisher,
+    [FromQuery] Guid libraryId,
+    [FromQuery] int number)
     {
-        return await action.DeleteAsync(id);
+        DeleteHallRequest deleteRequest = new()
+        {
+            LibraryId = libraryId,
+            No = number
+        };
+
+        DeleteHallResponse hallResponse = await messagePublisher.SendMessageAsync(deleteRequest);
+
+        if (hallResponse.Error is not null)
+        {
+            return BadRequest(hallResponse.Error);
+        }
+
+        return Ok();
     }
 }
