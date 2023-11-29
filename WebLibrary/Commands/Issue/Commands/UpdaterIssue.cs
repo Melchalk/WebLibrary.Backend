@@ -5,7 +5,7 @@ using ServiceModels.Requests.Issue;
 using ServiceModels.Responses.Issue;
 using WebLibrary.Commands.Issue.Interfaces;
 using WebLibrary.Mappers.Issue;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Issue;
 
 namespace WebLibrary.Commands.Issue.Commands;
 
