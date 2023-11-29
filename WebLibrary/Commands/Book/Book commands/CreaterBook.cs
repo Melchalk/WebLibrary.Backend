@@ -1,8 +1,8 @@
 ﻿using DbModels;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories.Book;
 using ServiceModels.Requests.Book;
+using ServiceModels.Responses.Book;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
@@ -16,21 +16,25 @@ public class CreaterBook : BookActions, ICreaterBook
     {
     }
 
-    public async Task<IActionResult> CreateAsync(CreateBookRequest request)
+    public async Task<CreateBookResponse> CreateAsync(CreateBookRequest request)
     {
         ValidationResult result = _validator.Validate(request);
 
+        CreateBookResponse bookResponse = new();
+
         if (!result.IsValid)
         {
-            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            bookResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return new BadRequestObjectResult(errors);
+            return bookResponse;
         }
 
         DbBook book = _mapper.Map(request);
 
         await _bookRepository.AddAsync(book);
 
-        return new CreatedResult("Library.Books", book.Id);
+        bookResponse.Id = book.Id;
+
+        return bookResponse;
     }
 }

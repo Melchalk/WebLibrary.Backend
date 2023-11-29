@@ -7,7 +7,6 @@ namespace WebLibrary.Commands.Book.Book_commands;
 public abstract class BookActions
 {
     protected const string NOT_FOUND = "ID is not found";
-    protected const string DELETE = "The deletion was successful";
 
     protected readonly IBookRepository _bookRepository;
 

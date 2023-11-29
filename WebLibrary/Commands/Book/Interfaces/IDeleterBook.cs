@@ -1,7 +1,9 @@
-﻿using WebLibrary.Commands.Common_interfaces;
+﻿using ServiceModels.Requests.Book;
+using ServiceModels.Responses.Book;
+using WebLibrary.Commands.Common_interfaces;
 
 namespace WebLibrary.Commands.Book.Interfaces;
 
-public interface IDeleterBook : IDeleter
+public interface IDeleterBook : IDeleter<DeleteBookRequest, DeleteBookResponse>
 {
 }

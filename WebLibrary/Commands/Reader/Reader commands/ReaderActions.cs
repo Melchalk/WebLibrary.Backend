@@ -7,7 +7,6 @@ namespace WebLibrary.Commands.Reader.Reader_commands;
 public abstract class ReaderActions
 {
     protected const string NOT_FOUND = "ID is not found";
-    protected const string DELETE = "The deletion was successful";
 
     protected readonly IReaderRepository _readerRepository;
 

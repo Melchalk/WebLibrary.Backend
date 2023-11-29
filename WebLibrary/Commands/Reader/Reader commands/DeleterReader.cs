@@ -1,11 +1,8 @@
 ﻿using DbModels;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories.Reader;
-using WebLibrary.Commands.Book.Book_commands;
-using WebLibrary.Commands.Book.Interfaces;
+using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Reader.Interfaces;
-using WebLibrary.Mappers.Book;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Validators;
 
@@ -18,17 +15,25 @@ public class DeleterReader : ReaderActions, IDeleterReader
     {
     }
 
-    public async Task<IActionResult> DeleteAsync(Guid id)
+    public async Task<DeleteReaderResponse> DeleteAsync(DeleteReaderRequest request)
     {
+        DeleteReaderResponse readerResponse = new();
+
+        Guid id = request.Id;
+
         DbReader? reader = await _readerRepository.GetAsync(id);
 
         if (reader is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            readerResponse.Error = NOT_FOUND;
+
+            return readerResponse;
         }
 
         await _readerRepository.DeleteAsync(reader);
 
-        return new OkObjectResult(DELETE);
+        readerResponse.Result = true;
+
+        return readerResponse;
     }
 }

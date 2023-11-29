@@ -1,6 +1,7 @@
 ﻿using DbModels;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories.Book;
+using ServiceModels.Requests.Book;
+using ServiceModels.Responses.Book;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
@@ -14,17 +15,25 @@ public class DeleterBook : BookActions, IDeleterBook
     {
     }
 
-    public async Task<IActionResult> DeleteAsync(Guid id)
+    public async Task<DeleteBookResponse> DeleteAsync(DeleteBookRequest request)
     {
+        DeleteBookResponse bookResponse = new();
+
+        Guid id = request.Id;
+
         DbBook? book = await _bookRepository.GetAsync(id);
 
         if (book is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            bookResponse.Error = NOT_FOUND;
+
+            return bookResponse;
         }
 
         await _bookRepository.DeleteAsync(book);
 
-        return new OkObjectResult(DELETE);
+        bookResponse.Result = true;
+
+        return bookResponse;
     }
 }

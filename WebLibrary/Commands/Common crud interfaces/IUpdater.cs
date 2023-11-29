@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace WebLibrary.Commands.Common_interfaces;
 
-namespace WebLibrary.Commands.Common_interfaces;
-
-public interface IUpdater<T>
+public interface IUpdater<T, U>
 {
-    Task<IActionResult> UpdateAsync(Guid id, T request);
+    Task<U> UpdateAsync(T request);
 }

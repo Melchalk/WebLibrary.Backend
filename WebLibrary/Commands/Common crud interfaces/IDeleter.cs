@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace WebLibrary.Commands.Common_interfaces;
 
-namespace WebLibrary.Commands.Common_interfaces;
-
-public interface IDeleter
+public interface IDeleter<T, U>
 {
-    Task<IActionResult> DeleteAsync(Guid id);
+    Task<U> DeleteAsync(T request);
 }
