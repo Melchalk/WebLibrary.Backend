@@ -1,10 +1,9 @@
 ﻿using DbModels;
 using LibraryStructure.Commands.Librarian.Interfaces;
+using LibraryStructure.Validators.Librarian;
 using Provider.Repositories.Librarian;
 using ServiceModels.Requests.Librarian;
 using ServiceModels.Responses.Librarian;
-using WebLibrary.Mappers.Librarian;
-using WebLibrary.Validators.Librarian;
 
 namespace LibraryStructure.Commands.Librarian.Commands;
 

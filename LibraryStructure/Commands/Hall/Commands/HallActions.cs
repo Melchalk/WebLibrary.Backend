@@ -1,4 +1,5 @@
-﻿using Provider.Repositories.Hall;
+﻿using LibraryStructure.Validators.Hall;
+using Provider.Repositories.Hall;
 
 namespace LibraryStructure.Commands.Hall.Commands;
 

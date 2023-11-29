@@ -1,6 +1,5 @@
-﻿using Provider.Repositories.Librarian;
-using WebLibrary.Mappers.Librarian;
-using WebLibrary.Validators.Librarian;
+﻿using LibraryStructure.Validators.Librarian;
+using Provider.Repositories.Librarian;
 
 namespace LibraryStructure.Commands.Librarian.Commands;
 

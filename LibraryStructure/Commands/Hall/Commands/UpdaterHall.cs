@@ -1,11 +1,10 @@
 ﻿using DbModels;
 using FluentValidation.Results;
 using LibraryStructure.Commands.Hall.Interfaces;
+using LibraryStructure.Validators.Hall;
 using Provider.Repositories.Hall;
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
-using WebLibrary.Mappers.Hall;
-using WebLibrary.Validators.Hall;
 
 namespace LibraryStructure.Commands.Hall.Commands;
 

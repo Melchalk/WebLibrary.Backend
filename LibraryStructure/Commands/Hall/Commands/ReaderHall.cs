@@ -1,5 +1,6 @@
 ﻿using DbModels;
 using LibraryStructure.Commands.Hall.Interfaces;
+using LibraryStructure.Validators.Hall;
 using Provider.Repositories.Hall;
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
