@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Reader;
 using ServiceModels.Responses.Reader;
 
-namespace ClientWebLibrary.Publishers.Reader;
+namespace ProxyLibrary.Publishers.Reader;
 
 public class GetReadersMessagePublisher : IMessagePublisher<GetReadersRequest, GetReadersResponse>
 {

@@ -2,7 +2,7 @@
 using ServiceModels.Requests.Library;
 using ServiceModels.Responses.Library;
 
-namespace ClientWebLibrary.Publishers.Library;
+namespace ProxyLibrary.Publishers.Library;
 
 public class DeleteLibraryMessagePublisher : IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse>
 {

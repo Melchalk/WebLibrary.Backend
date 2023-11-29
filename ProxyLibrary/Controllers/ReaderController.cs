@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebLibrary.Commands.Reader.Interfaces;
-using WebLibrary.Requests;
+using ProxyLibrary.Publishers;
+using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Reader;
 
 namespace ProxyLibrary.Controllers;
 
@@ -10,41 +11,79 @@ public class ReaderController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] ICreaterReader action,
+    [FromServices] IMessagePublisher<CreateReaderRequest, CreateReaderResponse> messagePublisher,
     [FromBody] CreateReaderRequest request)
     {
-        return await action.CreateAsync(request);
+        CreateReaderResponse readerResponse = await messagePublisher.SendMessageAsync(request);
+
+        if (readerResponse.Id is null)
+        {
+            return BadRequest(readerResponse.Errors);
+        }
+
+        return Created("Readers", readerResponse.Id);
     }
 
     [HttpGet("id")]
     public async Task<IActionResult> GetReaderAsync(
-    [FromServices] IReaderReader action,
+    [FromServices] IMessagePublisher<GetReaderRequest, GetReaderResponse> messagePublisher,
     [FromQuery] Guid id)
     {
-        return await action.GetAsync(id);
+        GetReaderRequest getRequest = new() { Id = id };
+
+        GetReaderResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        if (readerResponse.Error is not null)
+        {
+            return BadRequest(readerResponse.Error);
+        }
+
+        return Ok(readerResponse);
     }
 
-    [HttpGet]
-    public IActionResult GetAll(
-    [FromServices] IReaderReader action)
+    [HttpGet()]
+    public async Task<IActionResult> GetAllAsync(
+    [FromServices] IMessagePublisher<GetReadersRequest, GetReadersResponse> messagePublisher)
     {
-        return action.Get();
+        GetReadersRequest getRequest = new();
+
+        GetReadersResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
+
+        return Ok(readerResponse);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IUpdaterReader action,
+    [FromServices] IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse> messagePublisher,
     [FromQuery] Guid id,
     [FromBody] CreateReaderRequest request)
     {
-        return await action.UpdateAsync(id, request);
+        UpdateReaderRequest updateRequest = new() { Id = id, CreateReaderRequest = request };
+
+        UpdateReaderResponse readerResponse = await messagePublisher.SendMessageAsync(updateRequest);
+
+        if (readerResponse.Result == false)
+        {
+            return BadRequest(readerResponse.Errors);
+        }
+
+        return Ok();
     }
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IDeleterReader action,
+    [FromServices] IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse> messagePublisher,
     [FromQuery] Guid id)
     {
-        return await action.DeleteAsync(id);
+        DeleteReaderRequest deleteRequest = new() { Id = id };
+
+        DeleteReaderResponse readerResponse = await messagePublisher.SendMessageAsync(deleteRequest);
+
+        if (readerResponse.Error is not null)
+        {
+            return BadRequest(readerResponse.Error);
+        }
+
+        return Ok();
     }
 }
