@@ -7,7 +7,8 @@ using WebLibrary.Commands.Reader.Commands;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Mappers.Issue;
 using WebLibrary.Mappers.Reader;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Book;
+using WebLibrary.Validators.Reader;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddTransient<IReaderReader, ReaderReader>();
 builder.Services.AddTransient<IUpdaterReader, UpdaterReader>();
 builder.Services.AddTransient<IDeleterReader, DeleterReader>();
 
-builder.Services.AddTransient<ICreateBookRequestValidator, CreateBookRequestValidator>();
+builder.Services.AddTransient<ICreateBookRequestValidator, CreateIssueRequestValidator>();
 builder.Services.AddTransient<IBookMapper, BookMapper>();
 
 builder.Services.AddTransient<ICreaterBook, CreaterBook>();

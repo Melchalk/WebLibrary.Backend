@@ -5,7 +5,7 @@ using ServiceModels.Requests.Reader;
 using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Reader;
 
 namespace WebLibrary.Commands.Reader.Commands;
 

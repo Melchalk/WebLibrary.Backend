@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using ServiceModels.Requests.Book;
 
-namespace WebLibrary.Validators;
+namespace WebLibrary.Validators.Book;
 
-public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>, ICreateBookRequestValidator
+public class CreateIssueRequestValidator : AbstractValidator<CreateBookRequest>, ICreateBookRequestValidator
 {
-    public CreateBookRequestValidator()
+    public CreateIssueRequestValidator()
     {
         RuleFor(request => request.Title)
           .NotEmpty();

@@ -1,6 +1,6 @@
 ﻿using Provider.Repositories.Reader;
 using WebLibrary.Mappers.Reader;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Reader;
 
 namespace WebLibrary.Commands.Reader.Commands;
 

@@ -1,6 +1,6 @@
 ﻿using Provider.Repositories.Book;
 using WebLibrary.Mappers.Book;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Book;
 
 namespace WebLibrary.Commands.Book.Commands;
 

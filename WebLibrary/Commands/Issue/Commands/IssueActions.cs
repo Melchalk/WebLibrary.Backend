@@ -1,6 +1,6 @@
 ﻿using Provider.Repositories.Issue;
 using WebLibrary.Mappers.Issue;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Issue;
 
 namespace WebLibrary.Commands.Issue.Commands;
 
