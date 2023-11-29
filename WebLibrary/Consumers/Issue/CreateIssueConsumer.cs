@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using ServiceModels.Requests.Issue;
 using ServiceModels.Responses.Issue;
+using WebLibrary.Commands.Issue.Interfaces;
 
 namespace WebLibrary.Consumers.Issue;
 
