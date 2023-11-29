@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Requests;
+﻿namespace ServiceModels.Requests.Issue;
 
 public class CreateIssueRequest
 {
