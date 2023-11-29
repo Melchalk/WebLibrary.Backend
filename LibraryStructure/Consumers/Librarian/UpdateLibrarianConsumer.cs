@@ -1,7 +1,6 @@
 ﻿using MassTransit;
 using ServiceModels.Requests.Librarian;
 using ServiceModels.Responses.Librarian;
-using WebLibrary.Commands.Librarian.Interfaces;
 
 namespace LibraryStructure.Consumers.Librarian;
 
