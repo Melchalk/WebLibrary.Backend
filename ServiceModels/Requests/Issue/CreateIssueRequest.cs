@@ -1,4 +1,7 @@
-﻿namespace ServiceModels.Requests.Issue;
+﻿using ServiceModels.Requests.Book;
+using ServiceModels.Requests.Reader;
+
+namespace ServiceModels.Requests.Issue;
 
 public class CreateIssueRequest
 {
