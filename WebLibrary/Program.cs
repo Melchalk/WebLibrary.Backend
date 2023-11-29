@@ -1,9 +1,9 @@
 using Provider.Repositories.Book;
 using Provider.Repositories.Reader;
-using WebLibrary.Commands.Book.Book_commands;
+using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Commands.Reader.Interfaces;
-using WebLibrary.Commands.Reader.Reader_commands;
+using WebLibrary.Commands.Reader.Commands;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Mappers.Issue;
 using WebLibrary.Mappers.Reader;

@@ -2,6 +2,6 @@
 
 namespace Provider.Repositories.Issue;
 
-internal interface IIssueRepository : IRepository<DbIssue, Guid>
+public interface IIssueRepository : IRepository<DbIssue, Guid>
 {
 }

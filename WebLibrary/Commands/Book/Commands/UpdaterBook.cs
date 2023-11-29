@@ -7,7 +7,7 @@ using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators;
 
-namespace WebLibrary.Commands.Book.Book_commands;
+namespace WebLibrary.Commands.Book.Commands;
 
 public class UpdaterBook : BookActions, IUpdaterBook
 {

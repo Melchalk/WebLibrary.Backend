@@ -2,6 +2,6 @@
 
 namespace Provider.Repositories.Library;
 
-internal interface ILibraryRepository : IRepository<DbLibrary, Guid>
+public interface ILibraryRepository : IRepository<DbLibrary, Guid>
 {
 }

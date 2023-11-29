@@ -7,7 +7,7 @@ using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Validators;
 
-namespace WebLibrary.Commands.Reader.Reader_commands;
+namespace WebLibrary.Commands.Reader.Commands;
 
 public class UpdaterReader : ReaderActions, IUpdaterReader
 {

@@ -2,7 +2,7 @@
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Validators;
 
-namespace WebLibrary.Commands.Reader.Reader_commands;
+namespace WebLibrary.Commands.Reader.Commands;
 
 public abstract class ReaderActions
 {
