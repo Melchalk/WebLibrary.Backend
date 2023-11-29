@@ -2,7 +2,7 @@
 
 namespace ServiceModels.Responses.Library;
 
-internal class GetLibrariesResponse
+public class GetLibrariesResponse
 {
     public List<GetLibraryResponse>? LibraryResponses { get; set; }
 }
