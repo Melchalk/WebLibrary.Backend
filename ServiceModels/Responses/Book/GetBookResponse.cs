@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Responses;
+﻿namespace ServiceModels.Responses.Book;
 
 public class GetBookResponse
 {
@@ -9,4 +9,6 @@ public class GetBookResponse
     public string? CityPublishing { get; set; }
     public int? HallNo { get; set; }
     public Guid? IssueId { get; set; }
+
+    public string? Error { get; set; }
 }
