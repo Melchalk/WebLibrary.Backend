@@ -22,7 +22,7 @@ builder.Services.AddTransient<IReaderReader, ReaderReader>();
 builder.Services.AddTransient<IUpdaterReader, UpdaterReader>();
 builder.Services.AddTransient<IDeleterReader, DeleterReader>();
 
-builder.Services.AddTransient<ICreateBookRequestValidator, CreateIssueRequestValidator>();
+builder.Services.AddTransient<ICreateBookRequestValidator, CreateBookRequestValidator>();
 builder.Services.AddTransient<IBookMapper, BookMapper>();
 
 builder.Services.AddTransient<ICreaterBook, CreaterBook>();
