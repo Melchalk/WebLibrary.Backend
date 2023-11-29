@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
-using ServiceModels.Requests.Book;
+using ServiceModels.Requests.Issue;
+using WebLibrary.Validators.Issue;
 
 namespace WebLibrary.Validators.Book;
 
-public class CreateIssueRequestValidator : AbstractValidator<CreateBookRequest>, ICreateBookRequestValidator
+public class CreateIssueRequestValidator : AbstractValidator<CreateIssueRequest>, ICreateIssueRequestValidator
 {
     public CreateIssueRequestValidator()
     {
