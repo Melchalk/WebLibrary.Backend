@@ -1,7 +1,7 @@
-﻿using MassTransit;
+﻿using LibraryStructure.Commands.Hall.Interfaces;
+using MassTransit;
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
-using WebLibrary.Commands.Hall.Interfaces;
 
 namespace LibraryStructure.Consumers.Hall;
 
