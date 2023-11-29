@@ -2,6 +2,6 @@
 
 namespace Provider.Repositories.Librarian;
 
-internal interface ILibrarianRepository : IRepository<DbLibrarian>
+internal interface ILibrarianRepository : IRepository<DbLibrarian, Guid>
 {
 }

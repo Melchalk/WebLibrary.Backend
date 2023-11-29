@@ -2,6 +2,6 @@
 
 namespace Provider.Repositories.Book;
 
-public interface IBookRepository : IRepository<DbBook>
+public interface IBookRepository : IRepository<DbBook, Guid>
 {
 }
