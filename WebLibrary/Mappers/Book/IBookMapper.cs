@@ -1,6 +1,6 @@
 ﻿using DbModels;
 using ServiceModels.Requests.Book;
-using WebLibrary.Responses;
+using ServiceModels.Responses.Book;
 
 namespace WebLibrary.Mappers.Book;
 

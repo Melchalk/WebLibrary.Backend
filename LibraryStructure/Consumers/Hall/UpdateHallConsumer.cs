@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using LibraryStructure.Commands.Hall.Interfaces;
+using MassTransit;
 using ServiceModels.Requests.Hall;
 using ServiceModels.Responses.Hall;
 

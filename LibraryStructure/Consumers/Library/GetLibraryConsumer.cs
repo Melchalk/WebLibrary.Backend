@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using LibraryStructure.Commands.Library.Interfaces;
+using MassTransit;
 using ServiceModels.Requests.Library;
 using ServiceModels.Responses.Library;
 
