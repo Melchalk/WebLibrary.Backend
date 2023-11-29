@@ -1,13 +1,12 @@
 ﻿using Provider.Repositories.Book;
 using WebLibrary.Mappers.Book;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Book;
 
-namespace WebLibrary.Commands.Book.Book_commands;
+namespace WebLibrary.Commands.Book.Commands;
 
 public abstract class BookActions
 {
     protected const string NOT_FOUND = "ID is not found";
-    protected const string DELETE = "The deletion was successful";
 
     protected readonly IBookRepository _bookRepository;
 

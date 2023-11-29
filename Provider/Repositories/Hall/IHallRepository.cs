@@ -2,6 +2,6 @@
 
 namespace Provider.Repositories.Hall;
 
-internal interface IHallRepository : IRepository<DbHall, (Guid, int)>
+public interface IHallRepository : IRepository<DbHall, (Guid, int)>
 {
 }

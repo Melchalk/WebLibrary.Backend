@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
-using WebLibrary.Requests;
+using ServiceModels.Requests.Book;
 
-namespace WebLibrary.Validators;
-
+namespace WebLibrary.Validators.Book;
 public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>, ICreateBookRequestValidator
 {
     public CreateBookRequestValidator()

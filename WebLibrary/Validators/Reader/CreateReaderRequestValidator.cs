@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using WebLibrary.Requests;
+using ServiceModels.Requests.Reader;
 
-namespace WebLibrary.Validators;
+namespace WebLibrary.Validators.Reader;
 
 public class CreateReaderRequestValidator : AbstractValidator<CreateReaderRequest>, ICreateReaderRequestValidator
 {

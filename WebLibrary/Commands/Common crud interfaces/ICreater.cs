@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace WebLibrary.Commands.Common_interfaces;
 
-namespace WebLibrary.Commands.Common_interfaces;
-
-public interface ICreater<T>
+public interface ICreater<T, U>
 {
-    Task<IActionResult> CreateAsync(T request);
+    Task<U> CreateAsync(T request);
 }

@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace WebLibrary.Commands.Common_interfaces;
 
-namespace WebLibrary.Commands.Common_interfaces;
-
-public interface IReader
+public interface IReader<T, U, K>
 {
-    Task<IActionResult> GetAsync(Guid id);
+    Task<U> GetAsync(T request);
 
-    IActionResult Get();
+    K Get();
 }

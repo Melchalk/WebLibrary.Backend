@@ -1,13 +1,13 @@
 ﻿using DbModels;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 using Provider.Repositories.Reader;
+using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Reader;
 using WebLibrary.Commands.Reader.Interfaces;
 using WebLibrary.Mappers.Reader;
-using WebLibrary.Requests;
-using WebLibrary.Validators;
+using WebLibrary.Validators.Reader;
 
-namespace WebLibrary.Commands.Reader.Reader_commands;
+namespace WebLibrary.Commands.Reader.Commands;
 
 public class UpdaterReader : ReaderActions, IUpdaterReader
 {
@@ -16,20 +16,30 @@ public class UpdaterReader : ReaderActions, IUpdaterReader
     {
     }
 
-    public async Task<IActionResult> UpdateAsync(Guid id, CreateReaderRequest request)
+    public async Task<UpdateReaderResponse> UpdateAsync(UpdateReaderRequest updateRequest)
     {
+        CreateReaderRequest request = updateRequest.CreateReaderRequest;
+        Guid id = updateRequest.Id;
+
+        UpdateReaderResponse readerResponse = new();
+
         if (await _readerRepository.GetAsync(id) is null)
         {
-            return new NotFoundObjectResult(NOT_FOUND);
+            readerResponse.Errors = new()
+            {
+                NOT_FOUND
+            };
+
+            return readerResponse;
         }
 
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            readerResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return new BadRequestObjectResult(errors);
+            return readerResponse;
         }
 
         DbReader reader = _mapper.Map(request);
@@ -37,6 +47,8 @@ public class UpdaterReader : ReaderActions, IUpdaterReader
 
         await _readerRepository.UpdateAsync(reader);
 
-        return new OkResult();
+        readerResponse.Result = true;
+
+        return readerResponse;
     }
 }
