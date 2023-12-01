@@ -1,15 +1,15 @@
-﻿using MassTransit;
+﻿using LibraryStructure.Commands.Librarian.Interfaces;
+using MassTransit;
 using ServiceModels.Requests.Librarian;
 using ServiceModels.Responses.Librarian;
-using WebLibrary.Commands.Librarian.Interfaces;
 
 namespace LibraryStructure.Consumers.Librarian;
 
 public class GetLibrarianConsumer : IConsumer<GetLibrarianRequest>
 {
-    private readonly ILibrarianLibrarian _command;
+    private readonly IReaderLibrarian _command;
 
-    public GetLibrarianConsumer(ILibrarianLibrarian command)
+    public GetLibrarianConsumer(IReaderLibrarian command)
     {
         _command = command;
     }

@@ -12,7 +12,7 @@ namespace WebLibrary.Commands.Issue.Commands;
 public class UpdaterIssue : IssueActions, IUpdaterIssue
 {
     public UpdaterIssue(IIssueRepository issueRepository, ICreateIssueRequestValidator validator, IIssueMapper mapper)
-    : base(issueRepository, validator, mapper)
+        : base(issueRepository, validator, mapper)
     {
     }
 

@@ -11,8 +11,8 @@ public class ReaderController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IMessagePublisher<CreateReaderRequest, CreateReaderResponse> messagePublisher,
-    [FromBody] CreateReaderRequest request)
+        [FromServices] IMessagePublisher<CreateReaderRequest, CreateReaderResponse> messagePublisher,
+        [FromBody] CreateReaderRequest request)
     {
         CreateReaderResponse readerResponse = await messagePublisher.SendMessageAsync(request);
 
@@ -26,8 +26,8 @@ public class ReaderController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetReaderAsync(
-    [FromServices] IMessagePublisher<GetReaderRequest, GetReaderResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<GetReaderRequest, GetReaderResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         GetReaderRequest getRequest = new() { Id = id };
 
@@ -43,20 +43,20 @@ public class ReaderController : ControllerBase
 
     [HttpGet()]
     public async Task<IActionResult> GetAllAsync(
-    [FromServices] IMessagePublisher<GetReadersRequest, GetReadersResponse> messagePublisher)
+        [FromServices] IMessagePublisher<GetReadersRequest, GetReadersResponse> messagePublisher)
     {
         GetReadersRequest getRequest = new();
 
         GetReadersResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(readerResponse);
+        return Ok(readerResponse.ReaderResponses);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse> messagePublisher,
-    [FromQuery] Guid id,
-    [FromBody] CreateReaderRequest request)
+        [FromServices] IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse> messagePublisher,
+        [FromQuery] Guid id,
+        [FromBody] CreateReaderRequest request)
     {
         UpdateReaderRequest updateRequest = new() { Id = id, CreateReaderRequest = request };
 
@@ -72,8 +72,8 @@ public class ReaderController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         DeleteReaderRequest deleteRequest = new() { Id = id };
 

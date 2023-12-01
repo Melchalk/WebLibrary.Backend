@@ -1,7 +1,7 @@
-﻿using MassTransit;
+﻿using LibraryStructure.Commands.Library.Interfaces;
+using MassTransit;
 using ServiceModels.Requests.Library;
 using ServiceModels.Responses.Library;
-using WebLibrary.Commands.Library.Interfaces;
 
 namespace LibraryStructure.Consumers.Library;
 

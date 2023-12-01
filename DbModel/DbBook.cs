@@ -40,6 +40,7 @@ public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
             .HasOne(u => u.Issue)
             .WithMany(o => o.Books)
             .HasForeignKey(u => u.IssueId)
-            .HasPrincipalKey(o => o.Id);
+            .HasPrincipalKey(o => o.Id)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

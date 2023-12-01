@@ -16,7 +16,10 @@ public class ReaderRepository : IReaderRepository
     }
     public async Task<DbReader?> GetAsync(Guid readerId)
     {
-        return await _context.Readers.FirstOrDefaultAsync(u => u.Id == readerId);
+        return await _context.Readers
+            .Include(u => u.Issue)
+                .ThenInclude(o => o.Books)
+            .FirstOrDefaultAsync(u => u.Id == readerId);
     }
 
     public DbSet<DbReader> Get()
@@ -26,7 +29,7 @@ public class ReaderRepository : IReaderRepository
 
     public async Task<DbReader?> UpdateAsync(DbReader reader)
     {
-        DbReader? oldReader = GetAsync(reader.Id).Result;
+        DbReader? oldReader = await GetAsync(reader.Id);
 
         if (oldReader is null)
         {
@@ -40,7 +43,7 @@ public class ReaderRepository : IReaderRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(reader.Id).Result;
+        return await GetAsync(reader.Id);
     }
 
     public async Task DeleteAsync(DbReader reader)

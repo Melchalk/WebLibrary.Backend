@@ -12,7 +12,7 @@ namespace WebLibrary.Commands.Book.Commands;
 public class UpdaterBook : BookActions, IUpdaterBook
 {
     public UpdaterBook(IBookRepository bookRepository, ICreateBookRequestValidator validator, IBookMapper mapper)
-    : base(bookRepository, validator, mapper)
+        : base(bookRepository, validator, mapper)
     {
     }
 

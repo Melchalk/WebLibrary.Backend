@@ -11,7 +11,7 @@ namespace WebLibrary.Commands.Reader.Commands;
 public class DeleterReader : ReaderActions, IDeleterReader
 {
     public DeleterReader(IReaderRepository readerRepository, ICreateReaderRequestValidator validator, IReaderMapper mapper)
-    : base(readerRepository, validator, mapper)
+        : base(readerRepository, validator, mapper)
     {
     }
 

@@ -8,16 +8,23 @@ public class IssueRepository : IIssueRepository
 {
     private readonly OfficeDbContext _context = new();
 
-    public async Task AddAsync(DbIssue issue)
+    public async Task AddAsync(DbIssue issue, List<Guid> booksId)
     {
         _context.Issues.Add(issue);
+
+        foreach (var bookId in booksId)
+        {
+            (await _context.Books.FirstAsync(u => u.Id == bookId)).IssueId = issue.Id;
+        }
 
         await _context.SaveChangesAsync();
     }
 
     public async Task<DbIssue?> GetAsync(Guid issueId)
     {
-        return await _context.Issues.FirstOrDefaultAsync(u => u.Id == issueId);
+        return await _context.Issues
+            .Include(u => u.Books)
+            .FirstOrDefaultAsync(u => u.Id == issueId);
     }
 
     public DbSet<DbIssue> Get()
@@ -27,7 +34,7 @@ public class IssueRepository : IIssueRepository
 
     public async Task<DbIssue?> UpdateAsync(DbIssue? issue)
     {
-        DbIssue? oldIssue = GetAsync(issue.Id).Result;
+        DbIssue? oldIssue = await GetAsync(issue.Id);
 
         if (oldIssue is null)
         {
@@ -41,7 +48,7 @@ public class IssueRepository : IIssueRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(issue.Id).Result;
+        return await GetAsync(issue.Id);
     }
 
     public async Task DeleteAsync(DbIssue issue)

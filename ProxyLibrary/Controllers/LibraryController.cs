@@ -11,8 +11,8 @@ public class LibraryController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IMessagePublisher<CreateLibraryRequest, CreateLibraryResponse> messagePublisher,
-    [FromBody] CreateLibraryRequest request)
+        [FromServices] IMessagePublisher<CreateLibraryRequest, CreateLibraryResponse> messagePublisher,
+        [FromBody] CreateLibraryRequest request)
     {
         CreateLibraryResponse libraryResponse = await messagePublisher.SendMessageAsync(request);
 
@@ -26,8 +26,8 @@ public class LibraryController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetLibraryAsync(
-    [FromServices] IMessagePublisher<GetLibraryRequest, GetLibraryResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<GetLibraryRequest, GetLibraryResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         GetLibraryRequest getRequest = new() { Id = id };
 
@@ -43,20 +43,20 @@ public class LibraryController : ControllerBase
 
     [HttpGet()]
     public async Task<IActionResult> GetAllAsync(
-    [FromServices] IMessagePublisher<GetLibrariesRequest, GetLibrariesResponse> messagePublisher)
+        [FromServices] IMessagePublisher<GetLibrariesRequest, GetLibrariesResponse> messagePublisher)
     {
         GetLibrariesRequest getRequest = new();
 
         GetLibrariesResponse libraryResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(libraryResponse);
+        return Ok(libraryResponse.LibraryResponses);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IMessagePublisher<UpdateLibraryRequest, UpdateLibraryResponse> messagePublisher,
-    [FromQuery] Guid id,
-    [FromBody] CreateLibraryRequest request)
+        [FromServices] IMessagePublisher<UpdateLibraryRequest, UpdateLibraryResponse> messagePublisher,
+        [FromQuery] Guid id,
+        [FromBody] CreateLibraryRequest request)
     {
         UpdateLibraryRequest updateRequest = new() { Id = id, CreateLibraryRequest = request };
 
@@ -72,8 +72,8 @@ public class LibraryController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         DeleteLibraryRequest deleteRequest = new() { Id = id };
 

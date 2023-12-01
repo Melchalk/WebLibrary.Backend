@@ -1,3 +1,4 @@
+using MassTransit;
 using ProxyLibrary.Publishers;
 using ProxyLibrary.Publishers.Book;
 using ProxyLibrary.Publishers.Hall;
@@ -26,131 +27,64 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
 //Book
-builder.Services.AddScoped<
-  IMessagePublisher<CreateBookRequest, CreateBookResponse>,
-  CreateBookMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetBookRequest, GetBookResponse>,
-  GetBookMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetBooksRequest, GetBooksResponse>,
-  GetBooksMessagePublisher>();
-
-
-builder.Services.AddScoped<
-  IMessagePublisher<UpdateBookRequest, UpdateBookResponse>,
-  UpdateBookMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<DeleteBookRequest, DeleteBookResponse>,
-  DeleteBookMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<CreateBookRequest, CreateBookResponse>, CreateBookMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetBookRequest, GetBookResponse>, GetBookMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetBooksRequest, GetBooksResponse>, GetBooksMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<UpdateBookRequest, UpdateBookResponse>, UpdateBookMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<DeleteBookRequest, DeleteBookResponse>, DeleteBookMessagePublisher>();
 
 //Reader
-builder.Services.AddScoped<
-  IMessagePublisher<CreateReaderRequest, CreateReaderResponse>,
-  CreateReaderMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetReaderRequest, GetReaderResponse>,
-  GetReaderMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetReadersRequest, GetReadersResponse>,
-  GetReadersMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse>,
-  UpdateReaderMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse>,
-  DeleteReaderMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<CreateReaderRequest, CreateReaderResponse>, CreateReaderMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetReaderRequest, GetReaderResponse>, GetReaderMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetReadersRequest, GetReadersResponse>, GetReadersMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<UpdateReaderRequest, UpdateReaderResponse>, UpdateReaderMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse>, DeleteReaderMessagePublisher>();
 
 //Issue
-builder.Services.AddScoped<
-  IMessagePublisher<CreateIssueRequest, CreateIssueResponse>,
-  CreateIssueMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetIssueRequest, GetIssueResponse>,
-  GetIssueMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetIssuesRequest, GetIssuesResponse>,
-  GetIssuesMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<UpdateIssueRequest, UpdateIssueResponse>,
-  UpdateIssueMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<DeleteIssueRequest, DeleteIssueResponse>,
-  DeleteIssueMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<CreateIssueRequest, CreateIssueResponse>, CreateIssueMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetIssueRequest, GetIssueResponse>, GetIssueMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetIssuesRequest, GetIssuesResponse>, GetIssuesMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<UpdateIssueRequest, UpdateIssueResponse>, UpdateIssueMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<DeleteIssueRequest, DeleteIssueResponse>, DeleteIssueMessagePublisher>();
 
 //Hall
-builder.Services.AddScoped<
-  IMessagePublisher<CreateHallRequest, CreateHallResponse>,
-  CreateHallMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetHallRequest, GetHallResponse>,
-  GetHallMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetHallsRequest, GetHallsResponse>,
-  GetHallsMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<UpdateHallRequest, UpdateHallResponse>,
-  UpdateHallMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<DeleteHallRequest, DeleteHallResponse>,
-  DeleteHallMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<CreateHallRequest, CreateHallResponse>, CreateHallMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetHallRequest, GetHallResponse>, GetHallMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetHallsRequest, GetHallsResponse>, GetHallsMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<UpdateHallRequest, UpdateHallResponse>, UpdateHallMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<DeleteHallRequest, DeleteHallResponse>, DeleteHallMessagePublisher>();
 
 //Library
-builder.Services.AddScoped<
-  IMessagePublisher<CreateLibraryRequest, CreateLibraryResponse>,
-  CreateLibraryMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetLibraryRequest, GetLibraryResponse>,
-  GetLibraryMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetLibrariesRequest, GetLibrariesResponse>,
-  GetLibrariesMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<UpdateLibraryRequest, UpdateLibraryResponse>,
-  UpdateLibraryMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse>,
-  DeleteLibraryMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<CreateLibraryRequest, CreateLibraryResponse>, CreateLibraryMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetLibraryRequest, GetLibraryResponse>, GetLibraryMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetLibrariesRequest, GetLibrariesResponse>, GetLibrariesMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<UpdateLibraryRequest, UpdateLibraryResponse>, UpdateLibraryMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse>, DeleteLibraryMessagePublisher>();
 
 //Librarian
 builder.Services.AddScoped<
   IMessagePublisher<CreateLibrarianRequest, CreateLibrarianResponse>,
   CreateLibrarianMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetLibrarianRequest, GetLibrarianResponse>, GetLibrarianMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<GetLibrariansRequest, GetLibrariansResponse>, GetLibrariansMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<UpdateLibrarianRequest, UpdateLibrarianResponse>, UpdateLibrarianMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<DeleteLibrarianRequest, DeleteLibrarianResponse>, DeleteLibrarianMessagePublisher>();
 
-builder.Services.AddScoped<
-  IMessagePublisher<GetLibrarianRequest, GetLibrarianResponse>,
-  GetLibrarianMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<GetLibrariansRequest, GetLibrariansResponse>,
-  GetLibrariansMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<UpdateLibrarianRequest, UpdateLibrarianResponse>,
-  UpdateLibrarianMessagePublisher>();
-
-builder.Services.AddScoped<
-  IMessagePublisher<DeleteLibrarianRequest, DeleteLibrarianResponse>,
-  DeleteLibrarianMessagePublisher>();
+try
+{
+    builder.Services.AddMassTransit(x =>
+    {
+        x.UsingRabbitMq((context, cfg) =>
+        {
+            cfg.Host("localhost");
+            cfg.ConfigureEndpoints(context);
+        });
+    });
+}
+catch (Exception)
+{
+    throw new Exception("Failed to connect to rabbitmq");
+}
 
 
 var app = builder.Build();

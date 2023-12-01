@@ -11,8 +11,8 @@ public class HallController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IMessagePublisher<CreateHallRequest, CreateHallResponse> messagePublisher,
-    [FromBody] CreateHallRequest request)
+        [FromServices] IMessagePublisher<CreateHallRequest, CreateHallResponse> messagePublisher,
+        [FromBody] CreateHallRequest request)
     {
         CreateHallResponse hallResponse = await messagePublisher.SendMessageAsync(request);
 
@@ -26,9 +26,9 @@ public class HallController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetHallAsync(
-    [FromServices] IMessagePublisher<GetHallRequest, GetHallResponse> messagePublisher,
-    [FromQuery] Guid libraryId,
-    [FromQuery] int number)
+        [FromServices] IMessagePublisher<GetHallRequest, GetHallResponse> messagePublisher,
+        [FromQuery] Guid libraryId,
+        [FromQuery] int number)
     {
         GetHallRequest getRequest = new()
         {
@@ -48,19 +48,19 @@ public class HallController : ControllerBase
 
     [HttpGet()]
     public async Task<IActionResult> GetAllAsync(
-    [FromServices] IMessagePublisher<GetHallsRequest, GetHallsResponse> messagePublisher)
+        [FromServices] IMessagePublisher<GetHallsRequest, GetHallsResponse> messagePublisher)
     {
         GetHallsRequest getRequest = new();
 
         GetHallsResponse hallResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(hallResponse);
+        return Ok(hallResponse.HallResponses);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IMessagePublisher<UpdateHallRequest, UpdateHallResponse> messagePublisher,
-    [FromBody] CreateHallRequest request)
+        [FromServices] IMessagePublisher<UpdateHallRequest, UpdateHallResponse> messagePublisher,
+        [FromBody] CreateHallRequest request)
     {
         UpdateHallRequest updateRequest = new() { CreateHallRequest = request };
 
@@ -76,9 +76,9 @@ public class HallController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IMessagePublisher<DeleteHallRequest, DeleteHallResponse> messagePublisher,
-    [FromQuery] Guid libraryId,
-    [FromQuery] int number)
+        [FromServices] IMessagePublisher<DeleteHallRequest, DeleteHallResponse> messagePublisher,
+        [FromQuery] Guid libraryId,
+        [FromQuery] int number)
     {
         DeleteHallRequest deleteRequest = new()
         {

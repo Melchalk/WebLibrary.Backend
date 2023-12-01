@@ -41,7 +41,7 @@ public class BookRepository : IBookRepository
 
     public async Task<DbBook?> UpdateAsync(DbBook? book)
     {
-        DbBook? oldBook = GetAsync(book.Id).Result;
+        DbBook? oldBook = await GetAsync(book.Id);
 
         if (oldBook is null)
         {
@@ -55,7 +55,7 @@ public class BookRepository : IBookRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(book.Id).Result;
+        return await GetAsync(book.Id);
     }
 
     public async Task DeleteAsync(DbBook book)

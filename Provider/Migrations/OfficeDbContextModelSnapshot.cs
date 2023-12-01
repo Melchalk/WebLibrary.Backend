@@ -62,10 +62,6 @@ namespace Provider.Migrations
 
             modelBuilder.Entity("DbModels.DbHall", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("LibraryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -82,9 +78,7 @@ namespace Provider.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("LibraryId");
+                    b.HasKey("LibraryId", "No");
 
                     b.ToTable("Halls", (string)null);
                 });
@@ -123,7 +117,7 @@ namespace Provider.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("LibraryId")
+                    b.Property<Guid?>("LibraryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Telephone")
@@ -199,7 +193,8 @@ namespace Provider.Migrations
                 {
                     b.HasOne("DbModels.DbIssue", "Issue")
                         .WithMany("Books")
-                        .HasForeignKey("IssueId");
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Issue");
                 });
@@ -209,7 +204,7 @@ namespace Provider.Migrations
                     b.HasOne("DbModels.DbLibrary", "Library")
                         .WithMany("Halls")
                         .HasForeignKey("LibraryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Library");
@@ -220,7 +215,7 @@ namespace Provider.Migrations
                     b.HasOne("DbModels.DbReader", "Reader")
                         .WithOne("Issue")
                         .HasForeignKey("DbModels.DbIssue", "ReaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Reader");
@@ -231,8 +226,7 @@ namespace Provider.Migrations
                     b.HasOne("DbModels.DbLibrary", "Library")
                         .WithMany("Librarians")
                         .HasForeignKey("LibraryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Library");
                 });
