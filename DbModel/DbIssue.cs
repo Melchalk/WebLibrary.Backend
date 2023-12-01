@@ -26,6 +26,7 @@ public class DbIssueConfiguration : IEntityTypeConfiguration<DbIssue>
 
         builder
           .HasOne(o => o.Reader)
-          .WithOne(u => u.Issue);
+          .WithOne(u => u.Issue)
+          .OnDelete(DeleteBehavior.ClientCascade);
     }
 }

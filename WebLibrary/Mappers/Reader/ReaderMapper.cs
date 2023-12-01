@@ -1,7 +1,7 @@
 ﻿using DbModels;
+using ServiceModels.Requests.Reader;
+using ServiceModels.Responses.Reader;
 using WebLibrary.Mappers.Issue;
-using WebLibrary.Responses;
-using WebLibrary.Requests;
 
 namespace WebLibrary.Mappers.Reader;
 
@@ -33,6 +33,7 @@ public class ReaderMapper : IReaderMapper
     {
         GetReaderResponse readerResponse = new()
         {
+            Id = reader.Id,
             Fullname = reader.Fullname,
             Telephone = reader.Telephone,
             RegistrationAddress = reader.RegistrationAddress,

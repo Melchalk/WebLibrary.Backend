@@ -1,6 +1,6 @@
 ﻿using DbModels;
-using WebLibrary.Requests;
-using WebLibrary.Responses;
+using ServiceModels.Requests.Issue;
+using ServiceModels.Responses.Issue;
 
 namespace WebLibrary.Mappers.Issue;
 

@@ -1,6 +1,6 @@
 ﻿using DbModels;
-using WebLibrary.Requests;
-using WebLibrary.Responses;
+using ServiceModels.Requests.Book;
+using ServiceModels.Responses.Book;
 
 namespace WebLibrary.Mappers.Book;
 
@@ -26,6 +26,7 @@ public class BookMapper : IBookMapper
     {
         GetBookResponse bookResponse = new()
         {
+            Id = book.Id,
             Title = book.Title,
             Author = book.Author,
             NumberPages = book.NumberPages,

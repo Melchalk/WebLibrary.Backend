@@ -60,6 +60,29 @@ namespace Provider.Migrations
                     b.ToTable("Books", (string)null);
                 });
 
+            modelBuilder.Entity("DbModels.DbHall", b =>
+                {
+                    b.Property<Guid>("LibraryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("No")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Thematics")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("LibraryId", "No");
+
+                    b.ToTable("Halls", (string)null);
+                });
+
             modelBuilder.Entity("DbModels.DbIssue", b =>
                 {
                     b.Property<Guid>("Id")
@@ -81,6 +104,58 @@ namespace Provider.Migrations
                         .IsUnique();
 
                     b.ToTable("Issues", (string)null);
+                });
+
+            modelBuilder.Entity("DbModels.DbLibrarian", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Fullname")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid?>("LibraryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LibraryId");
+
+                    b.ToTable("Librarians", (string)null);
+                });
+
+            modelBuilder.Entity("DbModels.DbLibrary", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Libraries", (string)null);
                 });
 
             modelBuilder.Entity("DbModels.DbReader", b =>
@@ -118,9 +193,21 @@ namespace Provider.Migrations
                 {
                     b.HasOne("DbModels.DbIssue", "Issue")
                         .WithMany("Books")
-                        .HasForeignKey("IssueId");
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Issue");
+                });
+
+            modelBuilder.Entity("DbModels.DbHall", b =>
+                {
+                    b.HasOne("DbModels.DbLibrary", "Library")
+                        .WithMany("Halls")
+                        .HasForeignKey("LibraryId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.Navigation("Library");
                 });
 
             modelBuilder.Entity("DbModels.DbIssue", b =>
@@ -128,15 +215,32 @@ namespace Provider.Migrations
                     b.HasOne("DbModels.DbReader", "Reader")
                         .WithOne("Issue")
                         .HasForeignKey("DbModels.DbIssue", "ReaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Reader");
                 });
 
+            modelBuilder.Entity("DbModels.DbLibrarian", b =>
+                {
+                    b.HasOne("DbModels.DbLibrary", "Library")
+                        .WithMany("Librarians")
+                        .HasForeignKey("LibraryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Library");
+                });
+
             modelBuilder.Entity("DbModels.DbIssue", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("DbModels.DbLibrary", b =>
+                {
+                    b.Navigation("Halls");
+
+                    b.Navigation("Librarians");
                 });
 
             modelBuilder.Entity("DbModels.DbReader", b =>
