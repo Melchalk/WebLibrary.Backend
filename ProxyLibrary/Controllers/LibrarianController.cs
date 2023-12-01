@@ -11,8 +11,8 @@ public class LibrarianController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IMessagePublisher<CreateLibrarianRequest, CreateLibrarianResponse> messagePublisher,
-    [FromBody] CreateLibrarianRequest request)
+        [FromServices] IMessagePublisher<CreateLibrarianRequest, CreateLibrarianResponse> messagePublisher,
+        [FromBody] CreateLibrarianRequest request)
     {
         CreateLibrarianResponse librarianResponse = await messagePublisher.SendMessageAsync(request);
 
@@ -26,8 +26,8 @@ public class LibrarianController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetLibrarianAsync(
-    [FromServices] IMessagePublisher<GetLibrarianRequest, GetLibrarianResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<GetLibrarianRequest, GetLibrarianResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         GetLibrarianRequest getRequest = new() { Id = id };
 
@@ -43,7 +43,7 @@ public class LibrarianController : ControllerBase
 
     [HttpGet()]
     public async Task<IActionResult> GetAllAsync(
-    [FromServices] IMessagePublisher<GetLibrariansRequest, GetLibrariansResponse> messagePublisher)
+        [FromServices] IMessagePublisher<GetLibrariansRequest, GetLibrariansResponse> messagePublisher)
     {
         GetLibrariansRequest getRequest = new();
 
@@ -54,9 +54,9 @@ public class LibrarianController : ControllerBase
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IMessagePublisher<UpdateLibrarianRequest, UpdateLibrarianResponse> messagePublisher,
-    [FromQuery] Guid id,
-    [FromBody] CreateLibrarianRequest request)
+        [FromServices] IMessagePublisher<UpdateLibrarianRequest, UpdateLibrarianResponse> messagePublisher,
+        [FromQuery] Guid id,
+        [FromBody] CreateLibrarianRequest request)
     {
         UpdateLibrarianRequest updateRequest = new() { Id = id, CreateLibrarianRequest = request };
 
@@ -72,8 +72,8 @@ public class LibrarianController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IMessagePublisher<DeleteLibrarianRequest, DeleteLibrarianResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<DeleteLibrarianRequest, DeleteLibrarianResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         DeleteLibrarianRequest deleteRequest = new() { Id = id };
 

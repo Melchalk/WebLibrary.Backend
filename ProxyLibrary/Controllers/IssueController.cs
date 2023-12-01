@@ -11,8 +11,8 @@ public class IssueController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IMessagePublisher<CreateIssueRequest, CreateIssueResponse> messagePublisher,
-    [FromBody] CreateIssueRequest request)
+        [FromServices] IMessagePublisher<CreateIssueRequest, CreateIssueResponse> messagePublisher,
+        [FromBody] CreateIssueRequest request)
     {
         CreateIssueResponse issueResponse = await messagePublisher.SendMessageAsync(request);
 
@@ -26,8 +26,8 @@ public class IssueController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetIssueAsync(
-    [FromServices] IMessagePublisher<GetIssueRequest, GetIssueResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<GetIssueRequest, GetIssueResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         GetIssueRequest getRequest = new() { Id = id };
 
@@ -43,7 +43,7 @@ public class IssueController : ControllerBase
 
     [HttpGet()]
     public async Task<IActionResult> GetAllAsync(
-    [FromServices] IMessagePublisher<GetIssuesRequest, GetIssuesResponse> messagePublisher)
+        [FromServices] IMessagePublisher<GetIssuesRequest, GetIssuesResponse> messagePublisher)
     {
         GetIssuesRequest getRequest = new();
 
@@ -54,9 +54,9 @@ public class IssueController : ControllerBase
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IMessagePublisher<UpdateIssueRequest, UpdateIssueResponse> messagePublisher,
-    [FromQuery] Guid id,
-    [FromBody] CreateIssueRequest request)
+        [FromServices] IMessagePublisher<UpdateIssueRequest, UpdateIssueResponse> messagePublisher,
+        [FromQuery] Guid id,
+        [FromBody] CreateIssueRequest request)
     {
         UpdateIssueRequest updateRequest = new() { Id = id, CreateIssueRequest = request };
 
@@ -72,8 +72,8 @@ public class IssueController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IMessagePublisher<DeleteIssueRequest, DeleteIssueResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<DeleteIssueRequest, DeleteIssueResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         DeleteIssueRequest deleteRequest = new() { Id = id };
 

@@ -11,8 +11,8 @@ public class BookController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync(
-    [FromServices] IMessagePublisher<CreateBookRequest, CreateBookResponse> messagePublisher,
-    [FromBody] CreateBookRequest request)
+        [FromServices] IMessagePublisher<CreateBookRequest, CreateBookResponse> messagePublisher,
+        [FromBody] CreateBookRequest request)
     {
         CreateBookResponse bookResponse = await messagePublisher.SendMessageAsync(request);
 
@@ -26,8 +26,8 @@ public class BookController : ControllerBase
 
     [HttpGet("id")]
     public async Task<IActionResult> GetBookAsync(
-    [FromServices] IMessagePublisher<GetBookRequest, GetBookResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<GetBookRequest, GetBookResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         GetBookRequest getRequest = new() { Id = id };
 
@@ -43,7 +43,7 @@ public class BookController : ControllerBase
 
     [HttpGet()]
     public async Task<IActionResult> GetAllAsync(
-    [FromServices] IMessagePublisher<GetBooksRequest, GetBooksResponse> messagePublisher)
+        [FromServices] IMessagePublisher<GetBooksRequest, GetBooksResponse> messagePublisher)
     {
         GetBooksRequest getRequest = new();
 
@@ -54,9 +54,9 @@ public class BookController : ControllerBase
 
     [HttpPut]
     public async Task<IActionResult> UpdateAsync(
-    [FromServices] IMessagePublisher<UpdateBookRequest, UpdateBookResponse> messagePublisher,
-    [FromQuery] Guid id,
-    [FromBody] CreateBookRequest request)
+        [FromServices] IMessagePublisher<UpdateBookRequest, UpdateBookResponse> messagePublisher,
+        [FromQuery] Guid id,
+        [FromBody] CreateBookRequest request)
     {
         UpdateBookRequest updateRequest = new() { Id = id, CreateBookRequest = request };
 
@@ -72,8 +72,8 @@ public class BookController : ControllerBase
 
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(
-    [FromServices] IMessagePublisher<DeleteBookRequest, DeleteBookResponse> messagePublisher,
-    [FromQuery] Guid id)
+        [FromServices] IMessagePublisher<DeleteBookRequest, DeleteBookResponse> messagePublisher,
+        [FromQuery] Guid id)
     {
         DeleteBookRequest deleteRequest = new() { Id = id };
 
