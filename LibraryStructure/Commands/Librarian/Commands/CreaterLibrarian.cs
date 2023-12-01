@@ -12,7 +12,7 @@ namespace LibraryStructure.Commands.Librarian.Commands;
 public class CreaterLibrarian : LibrarianActions, ICreaterLibrarian
 {
     public CreaterLibrarian(ILibrarianRepository LibrarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
-    : base(LibrarianRepository, validator, mapper)
+        : base(LibrarianRepository, validator, mapper)
     {
     }
 

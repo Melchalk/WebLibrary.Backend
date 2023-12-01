@@ -49,7 +49,7 @@ public class BookController : ControllerBase
 
         GetBooksResponse bookResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(bookResponse);
+        return Ok(bookResponse.BookResponses);
     }
 
     [HttpPut]

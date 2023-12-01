@@ -49,7 +49,7 @@ public class LibraryController : ControllerBase
 
         GetLibrariesResponse libraryResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(libraryResponse);
+        return Ok(libraryResponse.LibraryResponses);
     }
 
     [HttpPut]

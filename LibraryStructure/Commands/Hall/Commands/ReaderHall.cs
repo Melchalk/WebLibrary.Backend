@@ -11,7 +11,7 @@ namespace LibraryStructure.Commands.Hall.Commands;
 public class ReaderHall : HallActions, IReaderHall
 {
     public ReaderHall(IHallRepository HallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
-    : base(HallRepository, validator, mapper)
+        : base(HallRepository, validator, mapper)
     {
     }
 

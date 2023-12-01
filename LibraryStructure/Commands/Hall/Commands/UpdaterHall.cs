@@ -12,7 +12,7 @@ namespace LibraryStructure.Commands.Hall.Commands;
 public class UpdaterHall : HallActions, IUpdaterHall
 {
     public UpdaterHall(IHallRepository HallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
-    : base(HallRepository, validator, mapper)
+        : base(HallRepository, validator, mapper)
     {
     }
 

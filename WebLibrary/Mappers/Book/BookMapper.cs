@@ -26,6 +26,7 @@ public class BookMapper : IBookMapper
     {
         GetBookResponse bookResponse = new()
         {
+            Id = book.Id,
             Title = book.Title,
             Author = book.Author,
             NumberPages = book.NumberPages,

@@ -11,7 +11,7 @@ namespace WebLibrary.Commands.Issue.Commands;
 public class DeleterIssue : IssueActions, IDeleterIssue
 {
     public DeleterIssue(IIssueRepository issueRepository, ICreateIssueRequestValidator validator, IIssueMapper mapper)
-    : base(issueRepository, validator, mapper)
+        : base(issueRepository, validator, mapper)
     {
     }
 

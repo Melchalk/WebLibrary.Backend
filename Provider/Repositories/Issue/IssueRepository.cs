@@ -8,9 +8,14 @@ public class IssueRepository : IIssueRepository
 {
     private readonly OfficeDbContext _context = new();
 
-    public async Task AddAsync(DbIssue issue)
+    public async Task AddAsync(DbIssue issue, List<Guid> booksId)
     {
         _context.Issues.Add(issue);
+
+        foreach (var bookId in booksId)
+        {
+            (await _context.Books.FirstAsync(u => u.Id == bookId)).IssueId = issue.Id;
+        }
 
         await _context.SaveChangesAsync();
     }
@@ -18,8 +23,7 @@ public class IssueRepository : IIssueRepository
     public async Task<DbIssue?> GetAsync(Guid issueId)
     {
         return await _context.Issues
-            .Include(u => u.Reader)
-            //.Include(u => u.Books)
+            .Include(u => u.Books)
             .FirstOrDefaultAsync(u => u.Id == issueId);
     }
 

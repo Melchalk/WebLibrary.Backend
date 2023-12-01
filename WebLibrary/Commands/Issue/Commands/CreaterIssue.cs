@@ -31,7 +31,7 @@ public class CreaterIssue : IssueActions, ICreaterIssue
 
         DbIssue issue = _mapper.Map(request);
 
-        await _issueRepository.AddAsync(issue);
+        await _issueRepository.AddAsync(issue, request.BooksId);
 
         issueResponse.Id = issue.Id;
 

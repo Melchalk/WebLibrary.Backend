@@ -11,7 +11,7 @@ namespace LibraryStructure.Commands.Librarian.Commands;
 public class ReaderLibrarian : LibrarianActions, IReaderLibrarian
 {
     public ReaderLibrarian(ILibrarianRepository LibrarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
-    : base(LibrarianRepository, validator, mapper)
+        : base(LibrarianRepository, validator, mapper)
     {
     }
 

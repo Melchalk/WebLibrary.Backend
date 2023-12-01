@@ -4,8 +4,6 @@ namespace Provider.Repositories;
 
 public interface IRepository<T, U> where T : class
 {
-    Task AddAsync(T entity);
-
     Task<T?> GetAsync(U primaryKey);
 
     DbSet<T> Get();

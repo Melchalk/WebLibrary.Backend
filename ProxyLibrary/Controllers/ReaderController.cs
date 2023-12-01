@@ -49,7 +49,7 @@ public class ReaderController : ControllerBase
 
         GetReadersResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(readerResponse);
+        return Ok(readerResponse.ReaderResponses);
     }
 
     [HttpPut]

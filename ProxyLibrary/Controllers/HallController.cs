@@ -54,7 +54,7 @@ public class HallController : ControllerBase
 
         GetHallsResponse hallResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(hallResponse);
+        return Ok(hallResponse.HallResponses);
     }
 
     [HttpPut]

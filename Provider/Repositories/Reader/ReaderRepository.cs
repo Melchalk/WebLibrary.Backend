@@ -18,6 +18,7 @@ public class ReaderRepository : IReaderRepository
     {
         return await _context.Readers
             .Include(u => u.Issue)
+                .ThenInclude(o => o.Books)
             .FirstOrDefaultAsync(u => u.Id == readerId);
     }
 

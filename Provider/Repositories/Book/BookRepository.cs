@@ -17,9 +17,7 @@ public class BookRepository : IBookRepository
 
     public async Task<DbBook?> GetAsync(Guid bookId)
     {
-        return await _context.Books
-            .Include(u => u.Issue)
-            .FirstOrDefaultAsync(u => u.Id == bookId);
+        return await _context.Books.FirstOrDefaultAsync(u => u.Id == bookId);
     }
 
     public DbSet<DbBook> Get()

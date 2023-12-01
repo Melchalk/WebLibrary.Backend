@@ -11,7 +11,7 @@ namespace LibraryStructure.Commands.Library.Commands;
 public class DeleterLibrary : LibraryActions, IDeleterLibrary
 {
     public DeleterLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-    : base(LibraryRepository, validator, mapper)
+        : base(LibraryRepository, validator, mapper)
     {
     }
 

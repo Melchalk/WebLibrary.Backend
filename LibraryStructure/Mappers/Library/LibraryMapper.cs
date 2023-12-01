@@ -40,6 +40,7 @@ public class LibraryMapper : ILibraryMapper
 
         GetLibraryResponse libraryResponse = new()
         {
+            Id = library.Id,
             Title = library.Title,
             Address = library.Address,
             Telephone = library.Telephone,

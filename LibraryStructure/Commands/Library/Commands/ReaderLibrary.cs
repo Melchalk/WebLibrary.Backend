@@ -11,7 +11,7 @@ namespace LibraryStructure.Commands.Library.Commands;
 public class ReaderLibrary : LibraryActions, IReaderLibrary
 {
     public ReaderLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-    : base(LibraryRepository, validator, mapper)
+        : base(LibraryRepository, validator, mapper)
     {
     }
 

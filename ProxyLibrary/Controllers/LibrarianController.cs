@@ -49,7 +49,7 @@ public class LibrarianController : ControllerBase
 
         GetLibrariansResponse librarianResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(librarianResponse);
+        return Ok(librarianResponse.LibrarianResponses);
     }
 
     [HttpPut]

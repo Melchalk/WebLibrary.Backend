@@ -12,7 +12,7 @@ namespace WebLibrary.Commands.Reader.Commands;
 public class UpdaterReader : ReaderActions, IUpdaterReader
 {
     public UpdaterReader(IReaderRepository readerRepository, ICreateReaderRequestValidator validator, IReaderMapper mapper)
-    : base(readerRepository, validator, mapper)
+        : base(readerRepository, validator, mapper)
     {
     }
 

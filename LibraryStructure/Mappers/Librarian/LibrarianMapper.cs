@@ -23,6 +23,7 @@ public class LibrarianMapper : ILibrarianMapper
     {
         GetLibrarianResponse librarianResponse = new()
         {
+            Id = librarian.Id,
             Fullname = librarian.Fullname,
             Telephone = librarian.Telephone,
             LibraryId = librarian.LibraryId,

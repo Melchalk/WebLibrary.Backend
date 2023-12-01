@@ -33,6 +33,7 @@ public class ReaderMapper : IReaderMapper
     {
         GetReaderResponse readerResponse = new()
         {
+            Id = reader.Id,
             Fullname = reader.Fullname,
             Telephone = reader.Telephone,
             RegistrationAddress = reader.RegistrationAddress,

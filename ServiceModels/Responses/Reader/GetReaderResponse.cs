@@ -4,6 +4,7 @@ namespace ServiceModels.Responses.Reader;
 
 public class GetReaderResponse
 {
+    public Guid Id { get; set; }
     public string Fullname { get; set; }
     public string Telephone { get; set; }
     public string? RegistrationAddress { get; set; }

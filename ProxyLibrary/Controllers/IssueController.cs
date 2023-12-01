@@ -49,7 +49,7 @@ public class IssueController : ControllerBase
 
         GetIssuesResponse issueResponse = await messagePublisher.SendMessageAsync(getRequest);
 
-        return Ok(issueResponse);
+        return Ok(issueResponse.IssueResponses);
     }
 
     [HttpPut]

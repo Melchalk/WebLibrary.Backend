@@ -12,7 +12,7 @@ namespace LibraryStructure.Commands.Library.Commands;
 public class UpdaterLibrary : LibraryActions, IUpdaterLibrary
 {
     public UpdaterLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-    : base(LibraryRepository, validator, mapper)
+        : base(LibraryRepository, validator, mapper)
     {
     }
 

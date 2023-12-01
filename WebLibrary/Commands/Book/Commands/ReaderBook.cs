@@ -11,7 +11,7 @@ namespace WebLibrary.Commands.Book.Commands;
 public class ReaderBook : BookActions, IReaderBook
 {
     public ReaderBook(IBookRepository bookRepository, ICreateBookRequestValidator validator, IBookMapper mapper)
-    : base(bookRepository, validator, mapper)
+        : base(bookRepository, validator, mapper)
     {
     }
 

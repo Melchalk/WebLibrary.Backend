@@ -11,7 +11,7 @@ namespace WebLibrary.Commands.Issue.Commands;
 public class ReaderIssue : IssueActions, IReaderIssue
 {
     public ReaderIssue(IIssueRepository issueRepository, ICreateIssueRequestValidator validator, IIssueMapper mapper)
-    : base(issueRepository, validator, mapper)
+        : base(issueRepository, validator, mapper)
     {
     }
 
