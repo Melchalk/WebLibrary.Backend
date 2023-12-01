@@ -32,6 +32,7 @@ public class DbHallConfiguration : IEntityTypeConfiguration<DbHall>
             .HasOne(u => u.Library)
             .WithMany(o => o.Halls)
             .HasForeignKey(u => u.LibraryId)
-            .HasPrincipalKey(o => o.Id);
+            .HasPrincipalKey(o => o.Id)
+            .OnDelete(DeleteBehavior.ClientCascade);
     }
 }

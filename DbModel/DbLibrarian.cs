@@ -16,9 +16,9 @@ public class DbLibrarian
     [MaxLength(50)]
     public string Telephone { get; set; }
 
-    public Guid LibraryId { get; set; }
+    public Guid? LibraryId { get; set; }
 
-    public DbLibrary Library { get; set; }
+    public DbLibrary? Library { get; set; }
 }
 
 public class DbLibrarianConfiguration : IEntityTypeConfiguration<DbLibrarian>
@@ -33,6 +33,7 @@ public class DbLibrarianConfiguration : IEntityTypeConfiguration<DbLibrarian>
             .HasOne(u => u.Library)
             .WithMany(o => o.Librarians)
             .HasForeignKey(u => u.LibraryId)
-            .HasPrincipalKey(o => o.Id);
+            .HasPrincipalKey(o => o.Id)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }
