@@ -21,7 +21,6 @@ public class IssueMapper : IIssueMapper
             ReaderId = issueRequest.ReaderId,
             DateIssue = issueRequest.DateIssue,
             Period = issueRequest.Period,
-            Books = issueRequest.Books.Select(a => _bookMapper.Map(a)).ToList(),
         };
 
         return issue;

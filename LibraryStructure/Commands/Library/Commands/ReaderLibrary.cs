@@ -31,11 +31,12 @@ public class ReaderLibrary : LibraryActions, IReaderLibrary
     {
         DbLibrary? Library = await _LibraryRepository.GetAsync(request.Id);
 
-        GetLibraryResponse LibraryResponse = new();
-
         if (Library is null)
         {
-            LibraryResponse.Error = NOT_FOUND;
+            GetLibraryResponse LibraryResponse = new()
+            {
+                Error = NOT_FOUND
+            };
 
             return LibraryResponse;
         }

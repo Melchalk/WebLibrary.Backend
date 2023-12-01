@@ -17,7 +17,10 @@ public class IssueRepository : IIssueRepository
 
     public async Task<DbIssue?> GetAsync(Guid issueId)
     {
-        return await _context.Issues.FirstOrDefaultAsync(u => u.Id == issueId);
+        return await _context.Issues
+            .Include(u => u.Reader)
+            //.Include(u => u.Books)
+            .FirstOrDefaultAsync(u => u.Id == issueId);
     }
 
     public DbSet<DbIssue> Get()

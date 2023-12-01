@@ -9,6 +9,4 @@ public class CreateIssueRequest
     public DateTime DateIssue { get; set; }
     public int Period { get; set; }
 
-    public List<CreateBookRequest> Books { get; set; }
-    public CreateReaderRequest Reader { get; set; }
 }

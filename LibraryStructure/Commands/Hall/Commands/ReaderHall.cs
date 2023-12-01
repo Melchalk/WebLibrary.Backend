@@ -31,11 +31,12 @@ public class ReaderHall : HallActions, IReaderHall
     {
         DbHall? Hall = await _HallRepository.GetAsync((request.LibraryId, request.No));
 
-        GetHallResponse HallResponse = new();
-
         if (Hall is null)
         {
-            HallResponse.Error = NOT_FOUND;
+            GetHallResponse HallResponse = new()
+            {
+                Error = NOT_FOUND
+            };
 
             return HallResponse;
         }

@@ -17,7 +17,9 @@ public class LibrarianRepository : ILibrarianRepository
 
     public async Task<DbLibrarian?> GetAsync(Guid librarianId)
     {
-        return await _context.Librarians.FirstOrDefaultAsync(u => u.Id == librarianId);
+        return await _context.Librarians
+            .Include(u => u.Library)
+            .FirstOrDefaultAsync(u => u.Id == librarianId);
     }
 
     public DbSet<DbLibrarian> Get()

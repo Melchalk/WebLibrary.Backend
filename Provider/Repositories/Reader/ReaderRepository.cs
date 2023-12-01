@@ -16,7 +16,9 @@ public class ReaderRepository : IReaderRepository
     }
     public async Task<DbReader?> GetAsync(Guid readerId)
     {
-        return await _context.Readers.FirstOrDefaultAsync(u => u.Id == readerId);
+        return await _context.Readers
+            .Include(u => u.Issue)
+            .FirstOrDefaultAsync(u => u.Id == readerId);
     }
 
     public DbSet<DbReader> Get()

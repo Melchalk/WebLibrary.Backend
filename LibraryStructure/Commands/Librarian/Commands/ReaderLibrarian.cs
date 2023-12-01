@@ -30,11 +30,12 @@ public class ReaderLibrarian : LibrarianActions, IReaderLibrarian
     {
         DbLibrarian? Librarian = await _LibrarianRepository.GetAsync(request.Id);
 
-        GetLibrarianResponse LibrarianResponse = new();
-
         if (Librarian is null)
         {
-            LibrarianResponse.Error = NOT_FOUND;
+            GetLibrarianResponse LibrarianResponse = new()
+            {
+                Error = NOT_FOUND
+            };
 
             return LibrarianResponse;
         }

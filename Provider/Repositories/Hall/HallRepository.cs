@@ -18,6 +18,7 @@ public class HallRepository : IHallRepository
     public async Task<DbHall?> GetAsync((Guid, int) primaryKey)
     {
         return await _context.Halls
+            .Include(u => u.Library)
             .FirstOrDefaultAsync(u => u.LibraryId == primaryKey.Item1 && u.No == primaryKey.Item2);
     }
 
