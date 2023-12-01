@@ -8,6 +8,8 @@ public class CreateIssueRequestValidator : AbstractValidator<CreateIssueRequest>
 {
     public CreateIssueRequestValidator()
     {
-
+        RuleFor(request => request.Period)
+            .Must(a => a > 0)
+            .WithMessage("Period must be positive");
     }
 }
