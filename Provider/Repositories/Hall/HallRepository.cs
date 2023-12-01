@@ -28,7 +28,7 @@ public class HallRepository : IHallRepository
 
     public async Task<DbHall?> UpdateAsync(DbHall? hall)
     {
-        DbHall? oldHall = GetAsync((hall.LibraryId, hall.No)).Result;
+        DbHall? oldHall = await GetAsync((hall.LibraryId, hall.No));
 
         if (oldHall is null)
         {
@@ -42,7 +42,7 @@ public class HallRepository : IHallRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync((hall.LibraryId, hall.No)).Result;
+        return await GetAsync((hall.LibraryId, hall.No));
     }
 
     public async Task DeleteAsync(DbHall hall)

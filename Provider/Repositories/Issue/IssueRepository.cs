@@ -27,7 +27,7 @@ public class IssueRepository : IIssueRepository
 
     public async Task<DbIssue?> UpdateAsync(DbIssue? issue)
     {
-        DbIssue? oldIssue = GetAsync(issue.Id).Result;
+        DbIssue? oldIssue = await GetAsync(issue.Id);
 
         if (oldIssue is null)
         {
@@ -41,7 +41,7 @@ public class IssueRepository : IIssueRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(issue.Id).Result;
+        return await GetAsync(issue.Id);
     }
 
     public async Task DeleteAsync(DbIssue issue)

@@ -27,7 +27,7 @@ public class LibraryRepository : ILibraryRepository
 
     public async Task<DbLibrary?> UpdateAsync(DbLibrary? library)
     {
-        DbLibrary? oldLibrary = GetAsync(library.Id).Result;
+        DbLibrary? oldLibrary = await GetAsync(library.Id);
 
         if (oldLibrary is null)
         {
@@ -41,7 +41,7 @@ public class LibraryRepository : ILibraryRepository
 
         await _context.SaveChangesAsync();
 
-        return GetAsync(library.Id).Result;
+        return await GetAsync(library.Id);
     }
 
     public async Task DeleteAsync(DbLibrary library)
