@@ -58,7 +58,11 @@ public class IssueController : ControllerBase
         [FromQuery] Guid id,
         [FromBody] CreateIssueRequest request)
     {
-        UpdateIssueRequest updateRequest = new() { Id = id, CreateIssueRequest = request };
+        UpdateIssueRequest updateRequest = new()
+        {
+            Id = id,
+            CreateIssueRequest = request
+        };
 
         UpdateIssueResponse issueResponse = await messagePublisher.SendMessageAsync(updateRequest);
 

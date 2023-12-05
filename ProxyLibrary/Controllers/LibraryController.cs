@@ -58,7 +58,11 @@ public class LibraryController : ControllerBase
         [FromQuery] Guid id,
         [FromBody] CreateLibraryRequest request)
     {
-        UpdateLibraryRequest updateRequest = new() { Id = id, CreateLibraryRequest = request };
+        UpdateLibraryRequest updateRequest = new()
+        {
+            Id = id,
+            CreateLibraryRequest = request
+        };
 
         UpdateLibraryResponse libraryResponse = await messagePublisher.SendMessageAsync(updateRequest);
 

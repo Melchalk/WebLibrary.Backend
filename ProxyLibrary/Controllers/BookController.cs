@@ -58,7 +58,11 @@ public class BookController : ControllerBase
         [FromQuery] Guid id,
         [FromBody] CreateBookRequest request)
     {
-        UpdateBookRequest updateRequest = new() { Id = id, CreateBookRequest = request };
+        UpdateBookRequest updateRequest = new()
+        {
+            Id = id,
+            CreateBookRequest = request
+        };
 
         UpdateBookResponse bookResponse = await messagePublisher.SendMessageAsync(updateRequest);
 

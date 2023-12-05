@@ -58,7 +58,11 @@ public class ReaderController : ControllerBase
         [FromQuery] Guid id,
         [FromBody] CreateReaderRequest request)
     {
-        UpdateReaderRequest updateRequest = new() { Id = id, CreateReaderRequest = request };
+        UpdateReaderRequest updateRequest = new()
+        {
+            Id = id,
+            CreateReaderRequest = request
+        };
 
         UpdateReaderResponse readerResponse = await messagePublisher.SendMessageAsync(updateRequest);
 
