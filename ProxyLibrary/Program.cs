@@ -62,9 +62,7 @@ builder.Services.AddScoped<IMessagePublisher<UpdateLibraryRequest, UpdateLibrary
 builder.Services.AddScoped<IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse>, DeleteLibraryMessagePublisher>();
 
 //Librarian
-builder.Services.AddScoped<
-  IMessagePublisher<CreateLibrarianRequest, CreateLibrarianResponse>,
-  CreateLibrarianMessagePublisher>();
+builder.Services.AddScoped<IMessagePublisher<CreateLibrarianRequest, CreateLibrarianResponse>,CreateLibrarianMessagePublisher>();
 builder.Services.AddScoped<IMessagePublisher<GetLibrarianRequest, GetLibrarianResponse>, GetLibrarianMessagePublisher>();
 builder.Services.AddScoped<IMessagePublisher<GetLibrariansRequest, GetLibrariansResponse>, GetLibrariansMessagePublisher>();
 builder.Services.AddScoped<IMessagePublisher<UpdateLibrarianRequest, UpdateLibrarianResponse>, UpdateLibrarianMessagePublisher>();

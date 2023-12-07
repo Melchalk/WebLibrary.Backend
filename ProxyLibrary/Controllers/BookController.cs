@@ -29,7 +29,10 @@ public class BookController : ControllerBase
         [FromServices] IMessagePublisher<GetBookRequest, GetBookResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        GetBookRequest getRequest = new() { Id = id };
+        GetBookRequest getRequest = new()
+        {
+            Id = id
+        };
 
         GetBookResponse bookResponse = await messagePublisher.SendMessageAsync(getRequest);
 
@@ -79,7 +82,10 @@ public class BookController : ControllerBase
         [FromServices] IMessagePublisher<DeleteBookRequest, DeleteBookResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        DeleteBookRequest deleteRequest = new() { Id = id };
+        DeleteBookRequest deleteRequest = new()
+        {
+            Id = id
+        };
 
         DeleteBookResponse bookResponse = await messagePublisher.SendMessageAsync(deleteRequest);
 

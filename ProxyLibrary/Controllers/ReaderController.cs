@@ -29,7 +29,10 @@ public class ReaderController : ControllerBase
         [FromServices] IMessagePublisher<GetReaderRequest, GetReaderResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        GetReaderRequest getRequest = new() { Id = id };
+        GetReaderRequest getRequest = new()
+        {
+            Id = id
+        };
 
         GetReaderResponse readerResponse = await messagePublisher.SendMessageAsync(getRequest);
 
@@ -79,7 +82,10 @@ public class ReaderController : ControllerBase
         [FromServices] IMessagePublisher<DeleteReaderRequest, DeleteReaderResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        DeleteReaderRequest deleteRequest = new() { Id = id };
+        DeleteReaderRequest deleteRequest = new()
+        {
+            Id = id
+        };
 
         DeleteReaderResponse readerResponse = await messagePublisher.SendMessageAsync(deleteRequest);
 

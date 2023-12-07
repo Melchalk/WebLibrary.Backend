@@ -25,7 +25,6 @@ public class LibraryMapper : ILibraryMapper
             Title = libraryRequest.Title,
             Address = libraryRequest.Address,
             Telephone = libraryRequest.Telephone,
-            //подумать об этом Librarians = libraryRequest.Librarians.Select(a => _librarianMapper.Map(a)).ToList(),
         };
 
         return library;
