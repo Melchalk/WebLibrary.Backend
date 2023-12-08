@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Issue;
 
 public class CreateIssueConsumer : IConsumer<CreateIssueRequest>
 {
-    private readonly ICreaterIssue _command;
+    private readonly ICreateIssueCommand _command;
 
-    public CreateIssueConsumer(ICreaterIssue command)
+    public CreateIssueConsumer(ICreateIssueCommand command)
     {
         _command = command;
     }

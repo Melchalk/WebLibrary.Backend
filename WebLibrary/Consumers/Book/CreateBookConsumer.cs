@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Book;
 
 public class CreateBookConsumer : IConsumer<CreateBookRequest>
 {
-    private readonly ICreaterBook _command;
+    private readonly ICreateBookCommand _command;
 
-    public CreateBookConsumer(ICreaterBook command)
+    public CreateBookConsumer(ICreateBookCommand command)
     {
         _command = command;
     }

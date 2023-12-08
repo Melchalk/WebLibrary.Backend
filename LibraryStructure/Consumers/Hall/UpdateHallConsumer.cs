@@ -7,9 +7,9 @@ namespace LibraryStructure.Consumers.Hall;
 
 public class UpdateHallConsumer : IConsumer<UpdateHallRequest>
 {
-    private readonly IUpdaterHall _command;
+    private readonly IUpdateHallCommand _command;
 
-    public UpdateHallConsumer(IUpdaterHall command)
+    public UpdateHallConsumer(IUpdateHallCommand command)
     {
         _command = command;
     }

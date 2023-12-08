@@ -4,6 +4,6 @@ using WebLibrary.Commands.Common_interfaces;
 
 namespace LibraryStructure.Commands.Library.Interfaces;
 
-public interface IReaderLibrary : IReader<GetLibraryRequest, GetLibraryResponse, GetLibrariesResponse>
+public interface IReaderLibrary : IReadCommand<GetLibraryRequest, GetLibraryResponse, GetLibrariesResponse>
 {
 }

@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Issue;
 
 public class UpdateIssueConsumer : IConsumer<UpdateIssueRequest>
 {
-    private readonly IUpdaterIssue _command;
+    private readonly IUpdateIssueCommand _command;
 
-    public UpdateIssueConsumer(IUpdaterIssue command)
+    public UpdateIssueConsumer(IUpdateIssueCommand command)
     {
         _command = command;
     }

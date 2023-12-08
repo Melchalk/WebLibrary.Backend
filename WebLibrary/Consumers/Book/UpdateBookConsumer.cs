@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Book;
 
 public class UpdateBookConsumer : IConsumer<UpdateBookRequest>
 {
-    private readonly IUpdaterBook _command;
+    private readonly IUpdateBookCommand _command;
 
-    public UpdateBookConsumer(IUpdaterBook command)
+    public UpdateBookConsumer(IUpdateBookCommand command)
     {
         _command = command;
     }

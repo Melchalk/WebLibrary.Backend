@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Issue;
 
 public class GetIssueConsumer : IConsumer<GetIssueRequest>
 {
-    private readonly IReaderIssue _command;
+    private readonly IReadIssueCommand _command;
 
-    public GetIssueConsumer(IReaderIssue command)
+    public GetIssueConsumer(IReadIssueCommand command)
     {
         _command = command;
     }

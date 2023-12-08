@@ -4,6 +4,6 @@ using WebLibrary.Commands.Common_interfaces;
 
 namespace LibraryStructure.Commands.Library.Interfaces;
 
-public interface IDeleterLibrary : IDeleter<DeleteLibraryRequest, DeleteLibraryResponse>
+public interface IDeleterLibrary : IDeleteCommand<DeleteLibraryRequest, DeleteLibraryResponse>
 {
 }

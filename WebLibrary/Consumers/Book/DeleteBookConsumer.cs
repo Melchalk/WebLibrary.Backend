@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Book;
 
 public class DeleteBookConsumer : IConsumer<DeleteBookRequest>
 {
-    private readonly IDeleterBook _command;
+    private readonly IDeleteBookCommand _command;
 
-    public DeleteBookConsumer(IDeleterBook command)
+    public DeleteBookConsumer(IDeleteBookCommand command)
     {
         _command = command;
     }

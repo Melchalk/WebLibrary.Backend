@@ -4,6 +4,6 @@ using WebLibrary.Commands.Common_interfaces;
 
 namespace LibraryStructure.Commands.Library.Interfaces;
 
-public interface IUpdaterLibrary : IUpdater<UpdateLibraryRequest, UpdateLibraryResponse>
+public interface IUpdaterLibrary : IUpdateCommand<UpdateLibraryRequest, UpdateLibraryResponse>
 {
 }

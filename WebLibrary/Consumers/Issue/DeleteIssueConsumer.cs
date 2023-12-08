@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Issue;
 
 public class DeleteIssueConsumer : IConsumer<DeleteIssueRequest>
 {
-    private readonly IDeleterIssue _command;
+    private readonly IDeleteIssueCommand _command;
 
-    public DeleteIssueConsumer(IDeleterIssue command)
+    public DeleteIssueConsumer(IDeleteIssueCommand command)
     {
         _command = command;
     }

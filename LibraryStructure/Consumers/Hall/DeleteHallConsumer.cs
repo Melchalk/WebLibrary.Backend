@@ -7,9 +7,9 @@ namespace LibraryStructure.Consumers.Hall;
 
 public class DeleteHallConsumer : IConsumer<DeleteHallRequest>
 {
-    private readonly IDeleterHall _command;
+    private readonly IDeleteHallCommand _command;
 
-    public DeleteHallConsumer(IDeleterHall command)
+    public DeleteHallConsumer(IDeleteHallCommand command)
     {
         _command = command;
     }

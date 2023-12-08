@@ -31,10 +31,10 @@ builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
 builder.Services.AddTransient<ICreateHallRequestValidator, CreateHallRequestValidator>();
 builder.Services.AddTransient<IHallMapper, HallMapper>();
 
-builder.Services.AddTransient<ICreaterHall, CreaterHall>();
-builder.Services.AddTransient<IReaderHall, ReaderHall>();
-builder.Services.AddTransient<IUpdaterHall, UpdaterHall>();
-builder.Services.AddTransient<IDeleterHall, DeleterHall>();
+builder.Services.AddTransient<ICreateHallCommand, CreateHallCommand>();
+builder.Services.AddTransient<IReadHallCommand, ReadHallCommand>();
+builder.Services.AddTransient<IUpdateHallCommand, UpdateHallCommand>();
+builder.Services.AddTransient<IDeleteHallCommand, DeleteHallCommand>();
 
 builder.Services.AddTransient<ICreateLibraryRequestValidator, CreateLibraryRequestValidator>();
 builder.Services.AddTransient<ILibraryMapper, LibraryMapper>();
@@ -47,10 +47,10 @@ builder.Services.AddTransient<IDeleterLibrary, DeleterLibrary>();
 builder.Services.AddTransient<ICreateLibrarianRequestValidator, CreateLibrarianRequestValidator>();
 builder.Services.AddTransient<ILibrarianMapper, LibrarianMapper>();
 
-builder.Services.AddTransient<ICreaterLibrarian, CreaterLibrarian>();
-builder.Services.AddTransient<IReaderLibrarian, ReaderLibrarian>();
-builder.Services.AddTransient<IUpdaterLibrarian, UpdaterLibrarian>();
-builder.Services.AddTransient<IDeleterLibrarian, DeleterLibrarian>();
+builder.Services.AddTransient<ICreaterLibrarian, CreateLibrarianCommand>();
+builder.Services.AddTransient<IReaderLibrarian, ReadLibrarianCommand>();
+builder.Services.AddTransient<IUpdaterLibrarian, UpdateLibrarianCommand>();
+builder.Services.AddTransient<IDeleterLibrarian, DeleteLibrarianCommand>();
 
 try
 {

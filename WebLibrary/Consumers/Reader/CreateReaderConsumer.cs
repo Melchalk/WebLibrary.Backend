@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Reader;
 
 public class CreateReaderConsumer : IConsumer<CreateReaderRequest>
 {
-    private readonly ICreaterReader _command;
+    private readonly ICreateReaderCommand _command;
 
-    public CreateReaderConsumer(ICreaterReader command)
+    public CreateReaderConsumer(ICreateReaderCommand command)
     {
         _command = command;
     }

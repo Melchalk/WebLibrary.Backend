@@ -7,9 +7,9 @@ namespace LibraryStructure.Consumers.Hall;
 
 public class GetHallConsumer : IConsumer<GetHallRequest>
 {
-    private readonly IReaderHall _command;
+    private readonly IReadHallCommand _command;
 
-    public GetHallConsumer(IReaderHall command)
+    public GetHallConsumer(IReadHallCommand command)
     {
         _command = command;
     }
