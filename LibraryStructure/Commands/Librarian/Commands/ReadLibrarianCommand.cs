@@ -10,27 +10,27 @@ namespace LibraryStructure.Commands.Librarian.Commands;
 
 public class ReadLibrarianCommand : LibrarianActions, IReaderLibrarian
 {
-    public ReadLibrarianCommand(ILibrarianRepository LibrarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
-        : base(LibrarianRepository, validator, mapper)
+    public ReadLibrarianCommand(ILibrarianRepository librarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
+        : base(librarianRepository, validator, mapper)
     {
     }
 
     public GetLibrariansResponse Get()
     {
-        List<DbLibrarian> dbLibrarians = _LibrarianRepository.Get().ToList();
+        List<DbLibrarian> dbLibrarians = _librarianRepository.Get().ToList();
 
-        GetLibrariansResponse LibrarianResponse = new()
+        GetLibrariansResponse librarianResponse = new()
         {
             LibrarianResponses = dbLibrarians.Select(u => _mapper.Map(u)).ToList()
         };
 
-        return LibrarianResponse;
+        return librarianResponse;
     }
     public async Task<GetLibrarianResponse> GetAsync(GetLibrarianRequest request)
     {
-        DbLibrarian? Librarian = await _LibrarianRepository.GetAsync(request.Id);
+        DbLibrarian? librarian = await _librarianRepository.GetAsync(request.Id);
 
-        if (Librarian is null)
+        if (librarian is null)
         {
             GetLibrarianResponse LibrarianResponse = new()
             {
@@ -40,6 +40,6 @@ public class ReadLibrarianCommand : LibrarianActions, IReaderLibrarian
             return LibrarianResponse;
         }
 
-        return _mapper.Map(Librarian);
+        return _mapper.Map(librarian);
     }
 }

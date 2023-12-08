@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Provider.Repositories.Hall;
 
-public class HallRepository : IHallRepository
+public class hallRepository : IHallRepository
 {
     private readonly OfficeDbContext _context = new();
 

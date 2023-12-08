@@ -21,34 +21,34 @@ public class UpdateLibrarianCommand : LibrarianActions, IUpdaterLibrarian
         CreateLibrarianRequest request = updateRequest.CreateLibrarianRequest;
         Guid id = updateRequest.Id;
 
-        UpdateLibrarianResponse LibrarianResponse = new();
+        UpdateLibrarianResponse librarianResponse = new();
 
-        if (await _LibrarianRepository.GetAsync(id) is null)
+        if (await _librarianRepository.GetAsync(id) is null)
         {
-            LibrarianResponse.Errors = new()
+            librarianResponse.Errors = new()
             {
                 NOT_FOUND
             };
 
-            return LibrarianResponse;
+            return librarianResponse;
         }
 
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            LibrarianResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            librarianResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return LibrarianResponse;
+            return librarianResponse;
         }
 
         DbLibrarian Librarian = _mapper.Map(request);
         Librarian.Id = id;
 
-        await _LibrarianRepository.UpdateAsync(Librarian);
+        await _librarianRepository.UpdateAsync(Librarian);
 
-        LibrarianResponse.Result = true;
+        librarianResponse.Result = true;
 
-        return LibrarianResponse;
+        return librarianResponse;
     }
 }

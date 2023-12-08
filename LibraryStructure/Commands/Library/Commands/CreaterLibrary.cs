@@ -11,8 +11,8 @@ namespace LibraryStructure.Commands.Library.Commands;
 
 public class CreaterLibrary : LibraryActions, ICreaterLibrary
 {
-    public CreaterLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-        : base(LibraryRepository, validator, mapper)
+    public CreaterLibrary(ILibraryRepository libraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
+        : base(libraryRepository, validator, mapper)
     {
     }
 
@@ -20,21 +20,21 @@ public class CreaterLibrary : LibraryActions, ICreaterLibrary
     {
         ValidationResult result = _validator.Validate(request);
 
-        CreateLibraryResponse LibraryResponse = new();
+        CreateLibraryResponse libraryResponse = new();
 
         if (!result.IsValid)
         {
-            LibraryResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            libraryResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return LibraryResponse;
+            return libraryResponse;
         }
 
-        DbLibrary Library = _mapper.Map(request);
+        DbLibrary library = _mapper.Map(request);
 
-        await _LibraryRepository.AddAsync(Library);
+        await _libraryRepository.AddAsync(library);
 
-        LibraryResponse.Id = Library.Id;
+        libraryResponse.Id = library.Id;
 
-        return LibraryResponse;
+        return libraryResponse;
     }
 }

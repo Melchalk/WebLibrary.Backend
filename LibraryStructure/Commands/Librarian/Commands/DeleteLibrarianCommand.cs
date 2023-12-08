@@ -10,30 +10,30 @@ namespace LibraryStructure.Commands.Librarian.Commands;
 
 public class DeleteLibrarianCommand : LibrarianActions, IDeleterLibrarian
 {
-    public DeleteLibrarianCommand(ILibrarianRepository LibrarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
-        : base(LibrarianRepository, validator, mapper)
+    public DeleteLibrarianCommand(ILibrarianRepository librarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
+        : base(librarianRepository, validator, mapper)
     {
     }
 
     public async Task<DeleteLibrarianResponse> DeleteAsync(DeleteLibrarianRequest request)
     {
-        DeleteLibrarianResponse LibrarianResponse = new();
+        DeleteLibrarianResponse librarianResponse = new();
 
         Guid id = request.Id;
 
-        DbLibrarian? Librarian = await _LibrarianRepository.GetAsync(id);
+        DbLibrarian? librarian = await _librarianRepository.GetAsync(id);
 
-        if (Librarian is null)
+        if (librarian is null)
         {
-            LibrarianResponse.Error = NOT_FOUND;
+            librarianResponse.Error = NOT_FOUND;
 
-            return LibrarianResponse;
+            return librarianResponse;
         }
 
-        await _LibrarianRepository.DeleteAsync(Librarian);
+        await _librarianRepository.DeleteAsync(librarian);
 
-        LibrarianResponse.Result = true;
+        librarianResponse.Result = true;
 
-        return LibrarianResponse;
+        return librarianResponse;
     }
 }

@@ -11,8 +11,8 @@ namespace LibraryStructure.Commands.Hall.Commands;
 
 public class UpdateHallCommand : HallActions, IUpdateHallCommand
 {
-    public UpdateHallCommand(IHallRepository HallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
-        : base(HallRepository, validator, mapper)
+    public UpdateHallCommand(IHallRepository hallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
+        : base(hallRepository, validator, mapper)
     {
     }
 
@@ -23,35 +23,35 @@ public class UpdateHallCommand : HallActions, IUpdateHallCommand
         Guid libraryId = updateRequest.CreateHallRequest.LibraryId;
         int number = updateRequest.CreateHallRequest.No;
 
-        UpdateHallResponse HallResponse = new();
+        UpdateHallResponse hallResponse = new();
 
-        if (await _HallRepository.GetAsync((libraryId, number)) is null)
+        if (await _hallRepository.GetAsync((libraryId, number)) is null)
         {
-            HallResponse.Errors = new()
+            hallResponse.Errors = new()
             {
                 NOT_FOUND
             };
 
-            return HallResponse;
+            return hallResponse;
         }
 
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            HallResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            hallResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return HallResponse;
+            return hallResponse;
         }
 
-        DbHall Hall = _mapper.Map(request);
-        Hall.LibraryId = libraryId;
-        Hall.No = number;
+        DbHall hall = _mapper.Map(request);
+        hall.LibraryId = libraryId;
+        hall.No = number;
 
-        await _HallRepository.UpdateAsync(Hall);
+        await _hallRepository.UpdateAsync(hall);
 
-        HallResponse.Result = true;
+        hallResponse.Result = true;
 
-        return HallResponse;
+        return hallResponse;
     }
 }

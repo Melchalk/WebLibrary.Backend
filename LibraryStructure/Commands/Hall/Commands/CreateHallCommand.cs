@@ -11,8 +11,8 @@ namespace LibraryStructure.Commands.Hall.Commands;
 
 public class CreateHallCommand : HallActions, ICreateHallCommand
 {
-    public CreateHallCommand(IHallRepository HallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
-        : base(HallRepository, validator, mapper)
+    public CreateHallCommand(IHallRepository hallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
+        : base(hallRepository, validator, mapper)
     {
     }
 
@@ -20,22 +20,22 @@ public class CreateHallCommand : HallActions, ICreateHallCommand
     {
         ValidationResult result = _validator.Validate(request);
 
-        CreateHallResponse HallResponse = new();
+        CreateHallResponse hallResponse = new();
 
         if (!result.IsValid)
         {
-            HallResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            hallResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return HallResponse;
+            return hallResponse;
         }
 
-        DbHall Hall = _mapper.Map(request);
+        DbHall hall = _mapper.Map(request);
 
-        await _HallRepository.AddAsync(Hall);
+        await _hallRepository.AddAsync(hall);
 
-        HallResponse.LibraryId = Hall.LibraryId;
-        HallResponse.No = Hall.No;
+        hallResponse.LibraryId = hall.LibraryId;
+        hallResponse.No = hall.No;
 
-        return HallResponse;
+        return hallResponse;
     }
 }

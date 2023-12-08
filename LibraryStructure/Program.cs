@@ -24,7 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 */
 
-builder.Services.AddScoped<IHallRepository, HallRepository>();
+builder.Services.AddScoped<IHallRepository, hallRepository>();
 builder.Services.AddScoped<ILibrarianRepository, LibrarianRepository>();
 builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
 

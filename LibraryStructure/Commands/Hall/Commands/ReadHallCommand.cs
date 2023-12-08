@@ -10,37 +10,37 @@ namespace LibraryStructure.Commands.Hall.Commands;
 
 public class ReadHallCommand : HallActions, IReadHallCommand
 {
-    public ReadHallCommand(IHallRepository HallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
-        : base(HallRepository, validator, mapper)
+    public ReadHallCommand(IHallRepository hallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
+        : base(hallRepository, validator, mapper)
     {
     }
 
     public GetHallsResponse Get()
     {
-        List<DbHall> dbHalls = _HallRepository.Get().ToList();
+        List<DbHall> dbhalls = _hallRepository.Get().ToList();
 
-        GetHallsResponse HallResponse = new()
+        GetHallsResponse hallResponse = new()
         {
-            HallResponses = dbHalls.Select(u => _mapper.Map(u)).ToList()
+            HallResponses = dbhalls.Select(u => _mapper.Map(u)).ToList()
         };
 
-        return HallResponse;
+        return hallResponse;
     }
 
     public async Task<GetHallResponse> GetAsync(GetHallRequest request)
     {
-        DbHall? Hall = await _HallRepository.GetAsync((request.LibraryId, request.No));
+        DbHall? hall = await _hallRepository.GetAsync((request.LibraryId, request.No));
 
-        if (Hall is null)
+        if (hall is null)
         {
-            GetHallResponse HallResponse = new()
+            GetHallResponse hallResponse = new()
             {
                 Error = NOT_FOUND
             };
 
-            return HallResponse;
+            return hallResponse;
         }
 
-        return _mapper.Map(Hall);
+        return _mapper.Map(hall);
     }
 }

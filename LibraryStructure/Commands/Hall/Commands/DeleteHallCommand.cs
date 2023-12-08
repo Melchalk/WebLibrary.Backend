@@ -10,28 +10,28 @@ namespace LibraryStructure.Commands.Hall.Commands;
 
 public class DeleteHallCommand : HallActions, IDeleteHallCommand
 {
-    public DeleteHallCommand(IHallRepository HallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
-        : base(HallRepository, validator, mapper)
+    public DeleteHallCommand(IHallRepository hallRepository, ICreateHallRequestValidator validator, IHallMapper mapper)
+        : base(hallRepository, validator, mapper)
     {
     }
 
     public async Task<DeleteHallResponse> DeleteAsync(DeleteHallRequest request)
     {
-        DeleteHallResponse HallResponse = new();
+        DeleteHallResponse hallResponse = new();
 
-        DbHall? Hall = await _HallRepository.GetAsync((request.LibraryId, request.No));
+        DbHall? hall = await _hallRepository.GetAsync((request.LibraryId, request.No));
 
-        if (Hall is null)
+        if (hall is null)
         {
-            HallResponse.Error = NOT_FOUND;
+            hallResponse.Error = NOT_FOUND;
 
-            return HallResponse;
+            return hallResponse;
         }
 
-        await _HallRepository.DeleteAsync(Hall);
+        await _hallRepository.DeleteAsync(hall);
 
-        HallResponse.Result = true;
+        hallResponse.Result = true;
 
-        return HallResponse;
+        return hallResponse;
     }
 }

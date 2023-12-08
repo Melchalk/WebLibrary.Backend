@@ -11,8 +11,8 @@ namespace LibraryStructure.Commands.Librarian.Commands;
 
 public class CreateLibrarianCommand : LibrarianActions, ICreaterLibrarian
 {
-    public CreateLibrarianCommand(ILibrarianRepository LibrarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
-        : base(LibrarianRepository, validator, mapper)
+    public CreateLibrarianCommand(ILibrarianRepository librarianRepository, ICreateLibrarianRequestValidator validator, ILibrarianMapper mapper)
+        : base(librarianRepository, validator, mapper)
     {
     }
 
@@ -20,23 +20,23 @@ public class CreateLibrarianCommand : LibrarianActions, ICreaterLibrarian
     {
         ValidationResult result = _validator.Validate(request);
 
-        CreateLibrarianResponse LibrarianResponse = new();
+        CreateLibrarianResponse librarianResponse = new();
 
         if (!result.IsValid)
         {
             List<string> errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            LibrarianResponse.Errors = errors;
+            librarianResponse.Errors = errors;
 
-            return LibrarianResponse;
+            return librarianResponse;
         }
 
-        DbLibrarian Librarian = _mapper.Map(request);
+        DbLibrarian librarian = _mapper.Map(request);
 
-        await _LibrarianRepository.AddAsync(Librarian);
+        await _librarianRepository.AddAsync(librarian);
 
-        LibrarianResponse.Id = Librarian.Id;
+        librarianResponse.Id = librarian.Id;
 
-        return LibrarianResponse;
+        return librarianResponse;
     }
 }
