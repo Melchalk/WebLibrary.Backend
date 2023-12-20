@@ -25,9 +25,4 @@
     <ProjectReference Include="..\WebLibrary\WebLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Reader\" />
-    <Folder Include="Issue\" />
-  </ItemGroup>
-
 </Project>

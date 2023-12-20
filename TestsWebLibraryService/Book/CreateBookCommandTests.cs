@@ -57,7 +57,7 @@ public class CreateBookCommandTests
     }
 
     [Test]
-    public async Task CreateBookCommandReturnErrorsNotNullWhenRequestIsOk()
+    public async Task CreateBookCommandReturnErrorsNullWhenRequestIsOk()
     {
         var request = new CreateBookRequest
         {
@@ -73,7 +73,7 @@ public class CreateBookCommandTests
     }
 
     [Test]
-    public async Task CreateBookCommandReturnErrorsEqualsNullWhenRequestIsNotOk()
+    public async Task CreateBookCommandReturnErrorsEqualsNotNullWhenRequestIsNotOk()
     {
         CreateBookRequest request = null;
 
