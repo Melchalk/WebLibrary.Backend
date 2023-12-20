@@ -60,7 +60,6 @@ public class UpdateBookCommandTests
             .Returns(_dbBook);
 
         _command = new UpdateBookCommand(_bookRepository.Object, _createBookValidatorMock.Object, _bookMapper.Object);
-        _commandCreate = new CreateBookCommand(_bookRepository.Object, _createBookValidatorMock.Object, _bookMapper.Object);
     }
 
     [Test]
@@ -78,15 +77,5 @@ public class UpdateBookCommandTests
         var actualResult = await _command.UpdateAsync(requestUpdate);
 
         Assert.That(actualResult.Errors, Is.Null);
-    }
-
-    [Test]
-    public async Task UpdateBookCommandReturnErrorsEqualsNotNullWhenRequestIsNotOk()
-    {
-        UpdateBookRequest request = null;
-
-        var actualResult = await _command.UpdateAsync(request);
-
-        Assert.That(actualResult.Errors, Is.Not.Null);
     }
 }

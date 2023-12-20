@@ -2,12 +2,6 @@
 using Moq;
 using Provider.Repositories.Book;
 using ServiceModels.Requests.Book;
-using ServiceModels.Responses.Book;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators.Book;
