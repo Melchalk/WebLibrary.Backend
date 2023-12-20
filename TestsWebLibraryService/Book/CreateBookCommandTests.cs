@@ -7,7 +7,7 @@ using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators.Book;
 
-namespace ServerTests;
+namespace TestsWebLibraryService.Book;
 
 public class CreateBookCommandTests
 {
