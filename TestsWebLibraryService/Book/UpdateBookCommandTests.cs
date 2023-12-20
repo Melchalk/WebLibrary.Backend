@@ -49,10 +49,8 @@ public class UpdateBookCommandTests
         };
 
         _bookRepository
-            .Setup(x => x.AddAsync(It.IsAny<DbBook>()));
-
-        _bookRepository
-            .Setup(x => x.GetAsync(It.IsAny<Guid>()));
+            .Setup(x => x.GetAsync(It.IsAny<Guid>()))
+            .ReturnsAsync(_dbBook);
 
         _bookRepository
             .Setup(x => x.UpdateAsync(It.IsAny<DbBook>()));
@@ -68,19 +66,9 @@ public class UpdateBookCommandTests
     [Test]
     public async Task UpdateBookCommandReturnErrorsNullWhenRequestIsOk()
     {
-        var requestCreate = new CreateBookRequest
-        {
-            Title = "Great Expectations",
-            Author = "Charles Dickens",
-            NumberPages = 250,
-            YearPublishing = 2020
-        };
-
-        var resultCreate = await _commandCreate.CreateAsync(requestCreate);
-
         var requestUpdate = new UpdateBookRequest
         {
-            Id = (Guid)resultCreate.Id,
+            Id = Guid.NewGuid(),
             CreateBookRequest = new CreateBookRequest
             {
                 YearPublishing = 2023
