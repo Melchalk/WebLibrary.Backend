@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyLibrary", "ProxyLibrar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceModels", "ServiceModels\ServiceModels.csproj", "{931D44ED-E40C-49BA-AD3F-2F9CA926DB75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsWebLibraryService", "TestsWebLibraryService\TestsWebLibraryService.csproj", "{87271EAB-A365-4393-8266-DB7246EDB84D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{931D44ED-E40C-49BA-AD3F-2F9CA926DB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{931D44ED-E40C-49BA-AD3F-2F9CA926DB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{931D44ED-E40C-49BA-AD3F-2F9CA926DB75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87271EAB-A365-4393-8266-DB7246EDB84D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87271EAB-A365-4393-8266-DB7246EDB84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87271EAB-A365-4393-8266-DB7246EDB84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87271EAB-A365-4393-8266-DB7246EDB84D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
