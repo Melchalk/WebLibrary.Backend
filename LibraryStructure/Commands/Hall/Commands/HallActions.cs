@@ -8,17 +8,17 @@ public abstract class HallActions
 {
     protected const string NOT_FOUND = "ID is not found";
 
-    protected readonly IHallRepository _HallRepository;
+    protected readonly IHallRepository _hallRepository;
 
     protected readonly ICreateHallRequestValidator _validator;
     protected readonly IHallMapper _mapper;
 
     public HallActions(
-        IHallRepository HallRepository,
+        IHallRepository hallRepository,
         ICreateHallRequestValidator validator,
         IHallMapper mapper)
     {
-        _HallRepository = HallRepository;
+        _hallRepository = hallRepository;
         _validator = validator;
         _mapper = mapper;
     }

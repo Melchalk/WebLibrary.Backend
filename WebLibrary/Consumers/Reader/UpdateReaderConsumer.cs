@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Reader;
 
 public class UpdateReaderConsumer : IConsumer<UpdateReaderRequest>
 {
-    private readonly IUpdaterReader _command;
+    private readonly IUpdateReaderCommand _command;
 
-    public UpdateReaderConsumer(IUpdaterReader command)
+    public UpdateReaderConsumer(IUpdateReaderCommand command)
     {
         _command = command;
     }

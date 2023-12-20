@@ -10,37 +10,37 @@ namespace LibraryStructure.Commands.Library.Commands;
 
 public class ReaderLibrary : LibraryActions, IReaderLibrary
 {
-    public ReaderLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-        : base(LibraryRepository, validator, mapper)
+    public ReaderLibrary(ILibraryRepository libraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
+        : base(libraryRepository, validator, mapper)
     {
     }
 
     public GetLibrariesResponse Get()
     {
-        List<DbLibrary> dbLibrarys = _LibraryRepository.Get().ToList();
+        List<DbLibrary> dbLibrarys = _libraryRepository.Get().ToList();
 
-        GetLibrariesResponse LibraryResponse = new()
+        GetLibrariesResponse libraryResponse = new()
         {
             LibraryResponses = dbLibrarys.Select(u => _mapper.Map(u)).ToList()
         };
 
-        return LibraryResponse;
+        return libraryResponse;
     }
 
     public async Task<GetLibraryResponse> GetAsync(GetLibraryRequest request)
     {
-        DbLibrary? Library = await _LibraryRepository.GetAsync(request.Id);
+        DbLibrary? library = await _libraryRepository.GetAsync(request.Id);
 
-        if (Library is null)
+        if (library is null)
         {
-            GetLibraryResponse LibraryResponse = new()
+            GetLibraryResponse libraryResponse = new()
             {
                 Error = NOT_FOUND
             };
 
-            return LibraryResponse;
+            return libraryResponse;
         }
 
-        return _mapper.Map(Library);
+        return _mapper.Map(library);
     }
 }

@@ -26,26 +26,26 @@ builder.Services.AddScoped<IIssueRepository, IssueRepository>();
 builder.Services.AddTransient<ICreateReaderRequestValidator, CreateReaderRequestValidator>();
 builder.Services.AddTransient<IReaderMapper, ReaderMapper>();
 
-builder.Services.AddTransient<ICreaterReader, CreaterReader>();
-builder.Services.AddTransient<IReaderReader, ReaderReader>();
-builder.Services.AddTransient<IUpdaterReader, UpdaterReader>();
-builder.Services.AddTransient<IDeleterReader, DeleterReader>();
+builder.Services.AddTransient<ICreateReaderCommand, CreateReaderCommand>();
+builder.Services.AddTransient<IReadReaderCommand, ReadReaderCommand>();
+builder.Services.AddTransient<IUpdateReaderCommand, UpdateReaderCommand>();
+builder.Services.AddTransient<IDeleteReaderCommand, DeleteReaderCommand>();
 
 builder.Services.AddTransient<ICreateBookRequestValidator, CreateBookRequestValidator>();
 builder.Services.AddTransient<IBookMapper, BookMapper>();
 
-builder.Services.AddTransient<ICreaterBook, CreaterBook>();
-builder.Services.AddTransient<IReaderBook, ReaderBook>();
-builder.Services.AddTransient<IUpdaterBook, UpdaterBook>();
-builder.Services.AddTransient<IDeleterBook, DeleterBook>();
+builder.Services.AddTransient<ICreateBookCommand, CreateBookCommand>();
+builder.Services.AddTransient<IReadBookCommand, ReadBookCommand>();
+builder.Services.AddTransient<IUpdateBookCommand, UpdateBookCommand>();
+builder.Services.AddTransient<IDeleteBookCommand, DeleteBookCommand>();
 
 builder.Services.AddTransient<ICreateIssueRequestValidator, CreateIssueRequestValidator>();
 builder.Services.AddTransient<IIssueMapper, IssueMapper>();
 
-builder.Services.AddTransient<ICreaterIssue, CreaterIssue>();
-builder.Services.AddTransient<IReaderIssue, ReaderIssue>();
-builder.Services.AddTransient<IUpdaterIssue, UpdaterIssue>();
-builder.Services.AddTransient<IDeleterIssue, DeleterIssue>();
+builder.Services.AddTransient<ICreateIssueCommand, CreateIssueCommand>();
+builder.Services.AddTransient<IReadIssueCommand, ReadIssueCommand>();
+builder.Services.AddTransient<IUpdateIssueCommand, UpdateIssueCommand>();
+builder.Services.AddTransient<IDeleteIssueCommand, DeleteIssueCommand>();
 
 /*
 builder.Services.AddEndpointsApiExplorer();

@@ -29,7 +29,10 @@ public class LibraryController : ControllerBase
         [FromServices] IMessagePublisher<GetLibraryRequest, GetLibraryResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        GetLibraryRequest getRequest = new() { Id = id };
+        GetLibraryRequest getRequest = new()
+        {
+            Id = id
+        };
 
         GetLibraryResponse libraryResponse = await messagePublisher.SendMessageAsync(getRequest);
 
@@ -79,7 +82,10 @@ public class LibraryController : ControllerBase
         [FromServices] IMessagePublisher<DeleteLibraryRequest, DeleteLibraryResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        DeleteLibraryRequest deleteRequest = new() { Id = id };
+        DeleteLibraryRequest deleteRequest = new()
+        {
+            Id = id
+        };
 
         DeleteLibraryResponse libraryResponse = await messagePublisher.SendMessageAsync(deleteRequest);
 

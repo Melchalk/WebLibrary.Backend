@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Reader;
 
 public class DeleteReaderConsumer : IConsumer<DeleteReaderRequest>
 {
-    private readonly IDeleterReader _command;
+    private readonly IDeleteReaderCommand _command;
 
-    public DeleteReaderConsumer(IDeleterReader command)
+    public DeleteReaderConsumer(IDeleteReaderCommand command)
     {
         _command = command;
     }

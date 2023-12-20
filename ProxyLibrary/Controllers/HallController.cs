@@ -62,7 +62,10 @@ public class HallController : ControllerBase
         [FromServices] IMessagePublisher<UpdateHallRequest, UpdateHallResponse> messagePublisher,
         [FromBody] CreateHallRequest request)
     {
-        UpdateHallRequest updateRequest = new() { CreateHallRequest = request };
+        UpdateHallRequest updateRequest = new()
+        {
+            CreateHallRequest = request
+        };
 
         UpdateHallResponse hallResponse = await messagePublisher.SendMessageAsync(updateRequest);
 

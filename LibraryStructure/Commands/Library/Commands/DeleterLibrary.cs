@@ -10,30 +10,30 @@ namespace LibraryStructure.Commands.Library.Commands;
 
 public class DeleterLibrary : LibraryActions, IDeleterLibrary
 {
-    public DeleterLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-        : base(LibraryRepository, validator, mapper)
+    public DeleterLibrary(ILibraryRepository libraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
+        : base(libraryRepository, validator, mapper)
     {
     }
 
     public async Task<DeleteLibraryResponse> DeleteAsync(DeleteLibraryRequest request)
     {
-        DeleteLibraryResponse LibraryResponse = new();
+        DeleteLibraryResponse libraryResponse = new();
 
         Guid id = request.Id;
 
-        DbLibrary? Library = await _LibraryRepository.GetAsync(id);
+        DbLibrary? Library = await _libraryRepository.GetAsync(id);
 
         if (Library is null)
         {
-            LibraryResponse.Error = NOT_FOUND;
+            libraryResponse.Error = NOT_FOUND;
 
-            return LibraryResponse;
+            return libraryResponse;
         }
 
-        await _LibraryRepository.DeleteAsync(Library);
+        await _libraryRepository.DeleteAsync(Library);
 
-        LibraryResponse.Result = true;
+        libraryResponse.Result = true;
 
-        return LibraryResponse;
+        return libraryResponse;
     }
 }

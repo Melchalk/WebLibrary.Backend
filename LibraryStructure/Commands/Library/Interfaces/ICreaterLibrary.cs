@@ -4,6 +4,6 @@ using WebLibrary.Commands.Common_interfaces;
 
 namespace LibraryStructure.Commands.Library.Interfaces;
 
-public interface ICreaterLibrary : ICreater<CreateLibraryRequest, CreateLibraryResponse>
+public interface ICreaterLibrary : ICreateCommand<CreateLibraryRequest, CreateLibraryResponse>
 {
 }

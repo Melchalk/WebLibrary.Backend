@@ -7,9 +7,9 @@ namespace WebLibrary.Consumers.Book;
 
 public class GetBookConsumer : IConsumer<GetBookRequest>
 {
-    private readonly IReaderBook _command;
+    private readonly IReadBookCommand _command;
 
-    public GetBookConsumer(IReaderBook command)
+    public GetBookConsumer(IReadBookCommand command)
     {
         _command = command;
     }

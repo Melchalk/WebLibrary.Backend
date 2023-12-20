@@ -14,7 +14,8 @@ public class IssueRepository : IIssueRepository
 
         foreach (var bookId in booksId)
         {
-            (await _context.Books.FirstAsync(u => u.Id == bookId)).IssueId = issue.Id;
+            (await _context.Books
+                .FirstAsync(u => u.Id == bookId)).IssueId = issue.Id;
         }
 
         await _context.SaveChangesAsync();

@@ -29,7 +29,10 @@ public class IssueController : ControllerBase
         [FromServices] IMessagePublisher<GetIssueRequest, GetIssueResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        GetIssueRequest getRequest = new() { Id = id };
+        GetIssueRequest getRequest = new()
+        {
+            Id = id
+        };
 
         GetIssueResponse issueResponse = await messagePublisher.SendMessageAsync(getRequest);
 
@@ -79,7 +82,10 @@ public class IssueController : ControllerBase
         [FromServices] IMessagePublisher<DeleteIssueRequest, DeleteIssueResponse> messagePublisher,
         [FromQuery] Guid id)
     {
-        DeleteIssueRequest deleteRequest = new() { Id = id };
+        DeleteIssueRequest deleteRequest = new()
+        {
+            Id = id
+        };
 
         DeleteIssueResponse issueResponse = await messagePublisher.SendMessageAsync(deleteRequest);
 

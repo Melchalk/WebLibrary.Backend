@@ -4,6 +4,6 @@ using ServiceModels.Requests.Librarian;
 
 namespace LibraryStructure.Commands.Librarian.Interfaces;
 
-public interface ICreaterLibrarian : ICreater<CreateLibrarianRequest, CreateLibrarianResponse>
+public interface ICreaterLibrarian : ICreateCommand<CreateLibrarianRequest, CreateLibrarianResponse>
 {
 }

@@ -11,8 +11,8 @@ namespace LibraryStructure.Commands.Library.Commands;
 
 public class UpdaterLibrary : LibraryActions, IUpdaterLibrary
 {
-    public UpdaterLibrary(ILibraryRepository LibraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
-        : base(LibraryRepository, validator, mapper)
+    public UpdaterLibrary(ILibraryRepository libraryRepository, ICreateLibraryRequestValidator validator, ILibraryMapper mapper)
+        : base(libraryRepository, validator, mapper)
     {
     }
 
@@ -21,34 +21,34 @@ public class UpdaterLibrary : LibraryActions, IUpdaterLibrary
         CreateLibraryRequest request = updateRequest.CreateLibraryRequest;
         Guid id = updateRequest.Id;
 
-        UpdateLibraryResponse LibraryResponse = new();
+        UpdateLibraryResponse libraryResponse = new();
 
-        if (await _LibraryRepository.GetAsync(id) is null)
+        if (await _libraryRepository.GetAsync(id) is null)
         {
-            LibraryResponse.Errors = new()
+            libraryResponse.Errors = new()
             {
                 NOT_FOUND
             };
 
-            return LibraryResponse;
+            return libraryResponse;
         }
 
         ValidationResult result = _validator.Validate(request);
 
         if (!result.IsValid)
         {
-            LibraryResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            libraryResponse.Errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            return LibraryResponse;
+            return libraryResponse;
         }
 
-        DbLibrary Library = _mapper.Map(request);
-        Library.Id = id;
+        DbLibrary library = _mapper.Map(request);
+        library.Id = id;
 
-        await _LibraryRepository.UpdateAsync(Library);
+        await _libraryRepository.UpdateAsync(library);
 
-        LibraryResponse.Result = true;
+        libraryResponse.Result = true;
 
-        return LibraryResponse;
+        return libraryResponse;
     }
 }

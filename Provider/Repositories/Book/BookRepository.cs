@@ -25,20 +25,6 @@ public class BookRepository : IBookRepository
         return _context.Books;
     }
 
-    public async Task UpdateAsync(DbBook book, PropertyInfo property, string newValue)
-    {
-        if (int.TryParse(newValue, out var value))
-        {
-            property?.SetValue(book, value);
-        }
-        else
-        {
-            property?.SetValue(book, newValue);
-        }
-
-        await _context.SaveChangesAsync();
-    }
-
     public async Task<DbBook?> UpdateAsync(DbBook? book)
     {
         DbBook? oldBook = await GetAsync(book.Id);
