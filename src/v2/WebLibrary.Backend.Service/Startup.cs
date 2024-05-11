@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using WebLibrary.Backend.Auth.Services;
+using WebLibrary.Backend.Auth.Services.Interfaces;
 using WebLibrary.Backend.Provider;
 using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories;
@@ -51,6 +53,9 @@ internal class Startup
         services.AddScoped<ILibrarianService, LibrarianService>();
         services.AddScoped<ILibraryService, LibraryService>();
         services.AddScoped<IReaderService, ReaderService>();
+
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
