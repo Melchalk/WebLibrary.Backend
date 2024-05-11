@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibraryStructure\LibraryStructure.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Domain\WebLibraryService.Backend.Domain.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Models.Db\WebLibrary.Backend.Models.Db.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Models.DTO\WebLibrary.Backend.Models.DTO.csproj" />
