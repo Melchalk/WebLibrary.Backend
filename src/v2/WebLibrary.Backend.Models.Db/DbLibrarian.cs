@@ -25,8 +25,6 @@ public class DbLibrarianConfiguration : IEntityTypeConfiguration<DbLibrarian>
 {
     public void Configure(EntityTypeBuilder<DbLibrarian> builder)
     {
-        builder.ToTable(DbLibrarian.TableName);
-
         builder.HasKey(o => o.Id);
 
         builder

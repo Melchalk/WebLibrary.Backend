@@ -4,7 +4,7 @@ public class CreateIssueRequest
 {
     public Guid ReaderId { get; set; }
     public DateTime DateIssue { get; set; }
-    public int Period { get; set; }
+    public uint Period { get; set; }
 
-    public List<Guid> BooksId { get; set; }
+    public required List<Guid> BooksId { get; set; }
 }
