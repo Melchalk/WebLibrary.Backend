@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebLibrary.Backend.Provider\WebLibrary.Backend.Provider.csproj" />
+  </ItemGroup>
+
 </Project>

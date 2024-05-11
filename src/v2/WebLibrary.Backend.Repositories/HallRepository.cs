@@ -1,55 +1,54 @@
 ﻿using DbModels;
 using Microsoft.EntityFrameworkCore;
-using Provider;
+using StructureOfUniversity.PostgreSql.Ef.Interfaces;
 using System.Reflection;
 using WebLibrary.Backend.Provider.Repositories.Interfaces;
 
 namespace WebLibrary.Backend.Provider.Repositories;
 
-public class hallRepository : IHallRepository
+public class HallRepository : IHallRepository
 {
-    private readonly WebLibraryDbContext _context = new();
+    private readonly IDataProvider _provider;
+
+    public HallRepository(IDataProvider provider)
+    {
+        _provider = provider;
+    }
 
     public async Task AddAsync(DbHall hall)
     {
-        _context.Halls.Add(hall);
+        _provider.Halls.Add(hall);
 
-        await _context.SaveChangesAsync();
+        await _provider.SaveAsync();
     }
 
-    public async Task<DbHall?> GetAsync((Guid, int) primaryKey)
+    public async Task<DbHall?> GetAsync(Guid libraryId, uint number)
     {
-        return await _context.Halls.FirstOrDefaultAsync(u => u.LibraryId == primaryKey.Item1 && u.Number == primaryKey.Item2);
+        return await _provider.Halls
+            .FirstOrDefaultAsync(u => u.LibraryId == libraryId && u.Number == number);
     }
 
     public DbSet<DbHall> Get()
     {
-        return _context.Halls;
+        return _provider.Halls;
     }
 
-    public async Task<DbHall?> UpdateAsync(DbHall? hall)
+    public async Task UpdateAsync(DbHall hall)
     {
-        DbHall? oldHall = await GetAsync((hall.LibraryId, hall.Number));
-
-        if (oldHall is null)
-        {
-            return null;
-        }
+        DbHall? oldHall = await GetAsync(hall.LibraryId, hall.Number);
 
         foreach (PropertyInfo property in typeof(DbHall).GetProperties())
         {
             property?.SetValue(oldHall, property.GetValue(hall));
         }
 
-        await _context.SaveChangesAsync();
-
-        return await GetAsync((hall.LibraryId, hall.Number));
+        await _provider.SaveAsync();
     }
 
     public async Task DeleteAsync(DbHall hall)
     {
-        _context.Halls.Remove(hall);
+        _provider.Halls.Remove(hall);
 
-        await _context.SaveChangesAsync();
+        await _provider.SaveAsync();
     }
 }

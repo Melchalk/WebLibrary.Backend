@@ -2,7 +2,13 @@
 
 namespace WebLibrary.Backend.Provider.Repositories.Interfaces;
 
-public interface IIssueRepository : IRepository<DbIssue, Guid>
+public interface IIssueRepository
 {
-    Task AddAsync(DbIssue issue, List<Guid> booksId);
+    Task AddAsync(DbIssue entity, List<Guid> booksId);
+
+    Task<DbIssue?> GetAsync(Guid id);
+
+    Task UpdateAsync(DbIssue entity);
+
+    Task DeleteAsync(DbIssue entity);
 }

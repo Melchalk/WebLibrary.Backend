@@ -1,6 +1,6 @@
 ﻿using DbModels;
 using Microsoft.EntityFrameworkCore;
-using Provider;
+using StructureOfUniversity.PostgreSql.Ef.Interfaces;
 using System.Reflection;
 using WebLibrary.Backend.Provider.Repositories.Interfaces;
 
@@ -8,17 +8,22 @@ namespace WebLibrary.Backend.Provider.Repositories;
 
 public class ReaderRepository : IReaderRepository
 {
-    private readonly WebLibraryDbContext _context = new();
+    private readonly IDataProvider _provider;
+
+    public ReaderRepository(IDataProvider provider)
+    {
+        _provider = provider;
+    }
 
     public async Task AddAsync(DbReader reader)
     {
-        _context.Readers.Add(reader);
+        _provider.Readers.Add(reader);
 
-        await _context.SaveChangesAsync();
+        await _provider.SaveAsync();
     }
     public async Task<DbReader?> GetAsync(Guid readerId)
     {
-        return await _context.Readers
+        return await _provider.Readers
             .Include(u => u.Issue)
                 .ThenInclude(o => o.Books)
             .FirstOrDefaultAsync(u => u.Id == readerId);
@@ -26,32 +31,25 @@ public class ReaderRepository : IReaderRepository
 
     public DbSet<DbReader> Get()
     {
-        return _context.Readers;
+        return _provider.Readers;
     }
 
-    public async Task<DbReader?> UpdateAsync(DbReader reader)
+    public async Task UpdateAsync(DbReader reader)
     {
         DbReader? oldReader = await GetAsync(reader.Id);
-
-        if (oldReader is null)
-        {
-            return null;
-        }
 
         foreach (PropertyInfo property in typeof(DbReader).GetProperties())
         {
             property?.SetValue(oldReader, property.GetValue(reader));
         }
 
-        await _context.SaveChangesAsync();
-
-        return await GetAsync(reader.Id);
+        await _provider.SaveAsync();
     }
 
     public async Task DeleteAsync(DbReader reader)
     {
-        _context.Readers.Remove(reader);
+        _provider.Readers.Remove(reader);
 
-        await _context.SaveChangesAsync();
+        await _provider.SaveAsync();
     }
 }

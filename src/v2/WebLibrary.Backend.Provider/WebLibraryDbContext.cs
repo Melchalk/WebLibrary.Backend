@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DbModels;
+using System.Reflection;
 
 namespace Provider;
 
@@ -12,21 +13,22 @@ public class WebLibraryDbContext : DbContext
     public DbSet<DbLibrary> Libraries { get; set; }
     public DbSet<DbLibrarian> Librarians { get; set; }
 
-    private const string ConnectionString = @"Server=MEL\SQLEXPRESS;Database=Library;Trusted_Connection=True;Encrypt=False;";
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public WebLibraryDbContext(DbContextOptions<WebLibraryDbContext> options) : base(options)
     {
-        optionsBuilder.UseSqlServer(ConnectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new DbBookConfiguration());
-        modelBuilder.ApplyConfiguration(new DbReaderConfiguration());
-        modelBuilder.ApplyConfiguration(new DbIssueConfiguration());
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.Load("WebLibrary.Backend.Models.Db"));
+    }
 
-        modelBuilder.ApplyConfiguration(new DbHallConfiguration());
-        modelBuilder.ApplyConfiguration(new DbLibraryConfiguration());
-        modelBuilder.ApplyConfiguration(new DbLibrarianConfiguration());
+    public async Task SaveAsync()
+    {
+        await SaveChangesAsync();
+    }
+
+    public void Save()
+    {
+        SaveChanges();
     }
 }

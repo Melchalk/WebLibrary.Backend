@@ -2,7 +2,13 @@
 
 namespace WebLibrary.Backend.Provider.Repositories.Interfaces;
 
-public interface IHallRepository : IRepository<DbHall, (Guid, int)>
+public interface IHallRepository
 {
-    Task AddAsync(DbHall hall);
+    Task AddAsync(DbHall entity);
+
+    Task<DbHall?> GetAsync(Guid libraryId, uint number);
+
+    Task UpdateAsync(DbHall entity);
+
+    Task DeleteAsync(DbHall entity);
 }

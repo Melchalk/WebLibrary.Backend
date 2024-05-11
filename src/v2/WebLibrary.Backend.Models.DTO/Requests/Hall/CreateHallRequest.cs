@@ -8,7 +8,7 @@ public class CreateHallRequest
     public uint Number { get; set; }
 
     [MaxLength(50)]
-    public required string Title { get; set; }
+    public string? Title { get; set; }
 
     [MaxLength(50)]
     public required string Thematic { get; set; }

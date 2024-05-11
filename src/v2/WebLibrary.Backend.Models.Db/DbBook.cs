@@ -9,6 +9,8 @@ public class DbBook
     public const string TableName = "Books";
 
     public Guid Id { get; set; }
+    public uint? HallNo { get; set; }
+    public Guid? IssueId { get; set; }
 
     [MaxLength(50)]
     public required string Title { get; set; }
@@ -21,9 +23,6 @@ public class DbBook
 
     [MaxLength(50)]
     public string? CityPublishing { get; set; }
-
-    public uint? HallNo { get; set; }
-    public Guid? IssueId { get; set; }
 
     public DbIssue? Issue { get; set; }
 }

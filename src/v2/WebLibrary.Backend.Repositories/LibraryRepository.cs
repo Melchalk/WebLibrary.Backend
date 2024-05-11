@@ -1,6 +1,6 @@
 ﻿using DbModels;
 using Microsoft.EntityFrameworkCore;
-using Provider;
+using StructureOfUniversity.PostgreSql.Ef.Interfaces;
 using System.Reflection;
 using WebLibrary.Backend.Provider.Repositories.Interfaces;
 
@@ -8,18 +8,23 @@ namespace WebLibrary.Backend.Provider.Repositories;
 
 public class LibraryRepository : ILibraryRepository
 {
-    private readonly WebLibraryDbContext _context = new();
+    private readonly IDataProvider _provider;
+
+    public LibraryRepository(IDataProvider provider)
+    {
+        _provider = provider;
+    }
 
     public async Task AddAsync(DbLibrary library)
     {
-        _context.Libraries.Add(library);
+        _provider.Libraries.Add(library);
 
-        await _context.SaveChangesAsync();
+        await _provider.SaveAsync();
     }
 
     public async Task<DbLibrary?> GetAsync(Guid libraryId)
     {
-        return await _context.Libraries
+        return await _provider.Libraries
             .Include(u => u.Librarians)
             .Include(o => o.Halls)
             .FirstOrDefaultAsync(u => u.Id == libraryId);
@@ -27,32 +32,25 @@ public class LibraryRepository : ILibraryRepository
 
     public DbSet<DbLibrary> Get()
     {
-        return _context.Libraries;
+        return _provider.Libraries;
     }
 
-    public async Task<DbLibrary?> UpdateAsync(DbLibrary? library)
+    public async Task UpdateAsync(DbLibrary library)
     {
         DbLibrary? oldLibrary = await GetAsync(library.Id);
-
-        if (oldLibrary is null)
-        {
-            return null;
-        }
 
         foreach (PropertyInfo property in typeof(DbLibrary).GetProperties())
         {
             property?.SetValue(oldLibrary, property.GetValue(library));
         }
 
-        await _context.SaveChangesAsync();
-
-        return await GetAsync(library.Id);
+        await _provider.SaveAsync();
     }
 
     public async Task DeleteAsync(DbLibrary library)
     {
-        _context.Libraries.Remove(library);
+        _provider.Libraries.Remove(library);
 
-        await _context.SaveChangesAsync();
+        await _provider.SaveAsync();
     }
 }

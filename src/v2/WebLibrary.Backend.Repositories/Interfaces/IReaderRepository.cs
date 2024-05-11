@@ -2,7 +2,13 @@
 
 namespace WebLibrary.Backend.Provider.Repositories.Interfaces;
 
-public interface IReaderRepository : IRepository<DbReader, Guid>
+public interface IReaderRepository
 {
-    Task AddAsync(DbReader reader);
+    Task AddAsync(DbReader entity);
+
+    Task<DbReader?> GetAsync(Guid id);
+
+    Task UpdateAsync(DbReader entity);
+
+    Task DeleteAsync(DbReader entity);
 }

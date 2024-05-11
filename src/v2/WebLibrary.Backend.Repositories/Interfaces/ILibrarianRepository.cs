@@ -2,7 +2,13 @@
 
 namespace WebLibrary.Backend.Provider.Repositories.Interfaces;
 
-public interface ILibrarianRepository : IRepository<DbLibrarian, Guid>
+public interface ILibrarianRepository
 {
-    Task AddAsync(DbLibrarian librarian);
+    Task AddAsync(DbLibrarian entity);
+
+    Task<DbLibrarian?> GetAsync(Guid id);
+
+    Task UpdateAsync(DbLibrarian entity);
+
+    Task DeleteAsync(DbLibrarian entity);
 }
