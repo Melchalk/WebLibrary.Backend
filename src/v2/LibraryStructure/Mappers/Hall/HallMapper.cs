@@ -26,7 +26,7 @@ public class HallMapper : IHallMapper
             LibraryId = hall.LibraryId,
             No = hall.No,
             Title = hall.Title,
-            Thematics = hall.Thematics,
+            Thematic = hall.Thematics,
         };
 
         return hallResponse;

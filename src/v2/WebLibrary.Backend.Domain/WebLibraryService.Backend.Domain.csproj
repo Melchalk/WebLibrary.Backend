@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebLibrary.Backend.Models.DTO\WebLibrary.Backend.Models.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

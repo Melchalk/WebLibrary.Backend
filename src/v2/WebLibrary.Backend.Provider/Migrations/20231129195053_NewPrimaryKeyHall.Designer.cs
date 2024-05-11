@@ -11,7 +11,7 @@ using Provider;
 
 namespace Provider.Migrations
 {
-    [DbContext(typeof(OfficeDbContext))]
+    [DbContext(typeof(WebLibraryDbContext))]
     [Migration("20231129195053_NewPrimaryKeyHall")]
     partial class NewPrimaryKeyHall
     {

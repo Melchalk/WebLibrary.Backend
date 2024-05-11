@@ -1,7 +1,6 @@
 using MassTransit;
-using Provider.Repositories.Book;
-using Provider.Repositories.Issue;
-using Provider.Repositories.Reader;
+using WebLibrary.Backend.Provider.Repositories;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Commands.Issue.Commands;

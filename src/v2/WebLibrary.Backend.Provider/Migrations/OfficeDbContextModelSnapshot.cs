@@ -10,7 +10,7 @@ using Provider;
 
 namespace Provider.Migrations
 {
-    [DbContext(typeof(OfficeDbContext))]
+    [DbContext(typeof(WebLibraryDbContext))]
     partial class OfficeDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

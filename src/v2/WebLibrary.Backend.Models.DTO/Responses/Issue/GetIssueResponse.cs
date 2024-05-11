@@ -9,7 +9,5 @@ public class GetIssueResponse
     public DateTime DateIssue { get; set; }
     public int Period { get; set; }
 
-    public string? Error { get; set; }
-
-    public List<GetBookResponse> Books { get; set; }
+    public required List<GetBookResponse> Books { get; set; }
 }

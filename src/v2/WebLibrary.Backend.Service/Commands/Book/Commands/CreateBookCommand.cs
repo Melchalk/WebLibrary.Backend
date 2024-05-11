@@ -1,8 +1,8 @@
 ﻿using DbModels;
 using FluentValidation.Results;
-using Provider.Repositories.Book;
 using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators.Book;
@@ -15,7 +15,7 @@ public class CreateBookCommand : BookActions, ICreateBookCommand
         : base(bookRepository, validator, mapper)
     {
     }
-
+    
     public async Task<CreateBookResponse> CreateAsync(CreateBookRequest request)
     {
         ValidationResult result = _validator.Validate(request);

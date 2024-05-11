@@ -1,4 +1,4 @@
-﻿using Provider.Repositories.Issue;
+﻿using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Mappers.Issue;
 using WebLibrary.Validators.Issue;
 

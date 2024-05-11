@@ -2,9 +2,9 @@
 using FluentValidation.Results;
 using LibraryStructure.Commands.Librarian.Interfaces;
 using LibraryStructure.Validators.Librarian;
-using Provider.Repositories.Librarian;
 using ServiceModels.Requests.Librarian;
 using ServiceModels.Responses.Librarian;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Mappers.Librarian;
 
 namespace LibraryStructure.Commands.Librarian.Commands;

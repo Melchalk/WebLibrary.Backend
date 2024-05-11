@@ -1,7 +1,7 @@
 ﻿using DbModels;
-using Provider.Repositories.Issue;
 using ServiceModels.Requests.Issue;
 using ServiceModels.Responses.Issue;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Issue.Interfaces;
 using WebLibrary.Mappers.Issue;
 using WebLibrary.Validators.Issue;

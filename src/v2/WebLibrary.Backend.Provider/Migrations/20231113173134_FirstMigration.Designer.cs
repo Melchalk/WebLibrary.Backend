@@ -11,7 +11,7 @@ using Provider;
 
 namespace Provider.Migrations
 {
-    [DbContext(typeof(OfficeDbContext))]
+    [DbContext(typeof(WebLibraryDbContext))]
     [Migration("20231113173134_FirstMigration")]
     partial class FirstMigration
     {

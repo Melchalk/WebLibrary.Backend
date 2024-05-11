@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using Moq;
-using Provider.Repositories.Reader;
 using ServiceModels.Requests.Reader;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Reader.Commands;
 using WebLibrary.Mappers.Reader;
 using WebLibrary.Validators.Reader;

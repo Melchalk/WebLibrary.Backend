@@ -11,7 +11,7 @@ using Provider;
 
 namespace Provider.Migrations
 {
-    [DbContext(typeof(OfficeDbContext))]
+    [DbContext(typeof(WebLibraryDbContext))]
     [Migration("20231120141646_AddCanTakeBooks")]
     partial class AddCanTakeBooks
     {

@@ -1,7 +1,7 @@
 ﻿using DbModels;
 using Moq;
-using Provider.Repositories.Issue;
 using ServiceModels.Requests.Issue;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Issue.Commands;
 using WebLibrary.Mappers.Issue;
 using WebLibrary.Validators.Issue;

@@ -1,8 +1,8 @@
 ﻿using DbModels;
 using FluentValidation.Results;
 using Moq;
-using Provider.Repositories.Book;
 using ServiceModels.Requests.Book;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators.Book;

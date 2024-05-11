@@ -1,8 +1,8 @@
 ﻿using DbModels;
 using Moq;
-using Provider.Repositories.Book;
 using ServiceModels.Requests.Book;
 using ServiceModels.Responses.Book;
+using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Mappers.Book;
 using WebLibrary.Validators.Book;
