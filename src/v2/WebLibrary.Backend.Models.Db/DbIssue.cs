@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace DbModels;
+namespace WebLibrary.Backend.Models.Db;
 
 public class DbIssue
 {

@@ -1,5 +1,5 @@
-﻿using ServiceModels.Requests.Issue;
-using ServiceModels.Responses.Issue;
+﻿using WebLibrary.Backend.Models.DTO.Requests.Issue;
+using WebLibrary.Backend.Models.DTO.Responses.Issue;
 
 namespace WebLibraryService.Backend.Domain.Interfaces;
 

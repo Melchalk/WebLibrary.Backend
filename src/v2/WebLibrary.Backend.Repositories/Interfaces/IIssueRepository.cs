@@ -1,6 +1,6 @@
-﻿using DbModels;
+﻿using WebLibrary.Backend.Models.Db;
 
-namespace WebLibrary.Backend.Provider.Repositories.Interfaces;
+namespace WebLibrary.Backend.Repositories.Interfaces;
 
 public interface IIssueRepository
 {

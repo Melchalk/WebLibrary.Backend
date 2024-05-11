@@ -1,7 +1,7 @@
-﻿using DbModels;
-using FluentValidation.Results;
-using ServiceModels.Requests.Book;
+﻿using FluentValidation.Results;
 using ServiceModels.Responses.Book;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Models.DTO.Requests.Book;
 using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Book.Interfaces;
 using WebLibrary.Mappers.Book;

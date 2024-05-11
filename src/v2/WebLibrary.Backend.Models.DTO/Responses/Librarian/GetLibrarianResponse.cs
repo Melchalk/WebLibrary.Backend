@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Responses.Librarian;
+﻿namespace WebLibrary.Backend.Models.DTO.Responses.Librarian;
 
 public class GetLibrarianResponse
 {

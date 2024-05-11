@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace DbModels;
+namespace WebLibrary.Backend.Models.Db;
 
 public class DbHall
 {

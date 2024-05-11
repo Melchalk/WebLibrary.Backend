@@ -1,10 +1,10 @@
-﻿using DbModels;
-using Microsoft.EntityFrameworkCore;
-using StructureOfUniversity.PostgreSql.Ef.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using WebLibrary.Backend.Provider.Repositories.Interfaces;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Provider.Interfaces;
+using WebLibrary.Backend.Repositories.Interfaces;
 
-namespace WebLibrary.Backend.Provider.Repositories;
+namespace WebLibrary.Backend.Repositories;
 
 public class HallRepository : IHallRepository
 {

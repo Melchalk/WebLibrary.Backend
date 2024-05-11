@@ -1,6 +1,6 @@
-﻿using ServiceModels.Responses.Issue;
+﻿using WebLibrary.Backend.Models.DTO.Responses.Issue;
 
-namespace ServiceModels.Responses.Reader;
+namespace WebLibrary.Backend.Models.DTO.Responses.Reader;
 
 public class GetReaderResponse
 {

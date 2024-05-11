@@ -1,7 +1,7 @@
-﻿using DbModels;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Moq;
-using ServiceModels.Requests.Issue;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Models.DTO.Requests.Issue;
 using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Issue.Commands;
 using WebLibrary.Mappers.Issue;

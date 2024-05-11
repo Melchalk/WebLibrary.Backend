@@ -1,5 +1,5 @@
-﻿using ServiceModels.Requests.Hall;
-using ServiceModels.Responses.Hall;
+﻿using WebLibrary.Backend.Models.DTO.Requests.Hall;
+using WebLibrary.Backend.Models.DTO.Responses.Hall;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;

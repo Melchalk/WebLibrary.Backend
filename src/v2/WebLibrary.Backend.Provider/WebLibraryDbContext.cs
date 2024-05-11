@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DbModels;
 using System.Reflection;
+using WebLibrary.Backend.Provider.Interfaces;
+using WebLibrary.Backend.Models.Db;
 
-namespace Provider;
+namespace WebLibrary.Backend.Provider;
 
-public class WebLibraryDbContext : DbContext
+public class WebLibraryDbContext : DbContext, IDataProvider
 {
     public DbSet<DbBook> Books { get; set; }
     public DbSet<DbReader> Readers { get; set; }

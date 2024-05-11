@@ -1,5 +1,5 @@
-﻿using ServiceModels.Requests.Reader;
-using ServiceModels.Responses.Book;
+﻿using WebLibrary.Backend.Models.DTO.Requests.Reader;
+using WebLibrary.Backend.Models.DTO.Responses.Book;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;

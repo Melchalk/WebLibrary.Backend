@@ -1,6 +1,6 @@
-﻿using ServiceModels.Responses.Book;
+﻿using WebLibrary.Backend.Models.DTO.Responses.Book;
 
-namespace ServiceModels.Responses.Issue;
+namespace WebLibrary.Backend.Models.DTO.Responses.Issue;
 
 public class GetIssueResponse
 {

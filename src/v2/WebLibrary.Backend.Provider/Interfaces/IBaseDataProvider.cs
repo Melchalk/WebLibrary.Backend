@@ -1,4 +1,4 @@
-﻿namespace StructureOfUniversity.PostgreSql.Ef.Interfaces;
+﻿namespace WebLibrary.Backend.Provider.Interfaces;
 
 public interface IBaseDataProvider
 {

@@ -1,7 +1,7 @@
-﻿using ServiceModels.Requests.Librarian;
-using ServiceModels.Responses.Librarian;
+﻿using WebLibrary.Backend.Models.DTO.Requests.Librarian;
+using WebLibrary.Backend.Models.DTO.Responses.Librarian;
 
-namespace WebLibrarianService.Backend.Domain.Interfaces;
+namespace WebLibraryService.Backend.Domain.Interfaces;
 
 public interface ILibrarianService
 {

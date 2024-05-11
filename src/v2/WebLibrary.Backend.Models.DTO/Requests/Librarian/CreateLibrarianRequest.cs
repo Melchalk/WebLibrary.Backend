@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ServiceModels.Requests.Librarian;
+namespace WebLibrary.Backend.Models.DTO.Requests.Librarian;
 
 public class CreateLibrarianRequest
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ServiceModels.Requests.Hall;
+namespace WebLibrary.Backend.Models.DTO.Requests.Hall;
 
 public class CreateHallRequest
 {

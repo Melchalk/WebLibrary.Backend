@@ -1,6 +1,6 @@
-﻿namespace ServiceModels.Responses.Book;
+﻿namespace WebLibrary.Backend.Models.DTO.Responses.Book;
 
-public class GetReaderResponse
+public class GetBookResponse
 {
     public Guid Id { get; set; }
     public required string Title { get; set; }

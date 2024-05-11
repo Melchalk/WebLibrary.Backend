@@ -1,10 +1,10 @@
-﻿using DbModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Provider;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Provider;
 
-namespace StructureOfUniversity.PostgreSql.Ef.Migrations;
+namespace WebLibrary.Backend.Provider.Migrations;
 
 [DbContext(typeof(WebLibraryDbContext))]
 [Migration("20240511202617_InitialTables")]

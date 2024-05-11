@@ -1,7 +1,7 @@
-﻿using DbModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using WebLibrary.Backend.Models.Db;
 
-namespace StructureOfUniversity.PostgreSql.Ef.Interfaces;
+namespace WebLibrary.Backend.Provider.Interfaces;
 
 public interface IDataProvider : IBaseDataProvider
 {

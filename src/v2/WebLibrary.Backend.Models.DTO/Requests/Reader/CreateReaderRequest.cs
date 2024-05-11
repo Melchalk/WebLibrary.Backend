@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ServiceModels.Requests.Reader;
+namespace WebLibrary.Backend.Models.DTO.Requests.Reader;
 
 public class CreateReaderRequest
 {

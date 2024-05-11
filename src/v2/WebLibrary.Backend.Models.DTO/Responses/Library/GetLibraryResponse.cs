@@ -1,7 +1,7 @@
-﻿using ServiceModels.Responses.Hall;
-using ServiceModels.Responses.Librarian;
+﻿using WebLibrary.Backend.Models.DTO.Responses.Hall;
+using WebLibrary.Backend.Models.DTO.Responses.Librarian;
 
-namespace ServiceModels.Responses.Library;
+namespace WebLibrary.Backend.Models.DTO.Responses.Library;
 
 public class GetLibraryResponse
 {

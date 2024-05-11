@@ -1,6 +1,6 @@
-﻿using DbModels;
-using Moq;
-using ServiceModels.Requests.Book;
+﻿using Moq;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Models.DTO.Requests.Book;
 using WebLibrary.Backend.Provider.Repositories.Interfaces;
 using WebLibrary.Commands.Book.Commands;
 using WebLibrary.Mappers.Book;

@@ -1,5 +1,5 @@
-﻿using ServiceModels.Requests.Book;
-using ServiceModels.Responses.Book;
+﻿using WebLibrary.Backend.Models.DTO.Requests.Book;
+using WebLibrary.Backend.Models.DTO.Responses.Book;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;
@@ -10,12 +10,12 @@ public class BookService : IBookService
     {
         throw new NotImplementedException();
     }
-    public Task<List<GetReaderResponse>> GetAllAsync()
+    public Task<List<GetBookResponse>> GetAllAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetReaderResponse> GetAsync(Guid id)
+    public Task<GetBookResponse> GetAsync(Guid id)
     {
         throw new NotImplementedException();
     }

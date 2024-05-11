@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Responses.Hall;
+﻿namespace WebLibrary.Backend.Models.DTO.Responses.Hall;
 
 public class GetHallResponse
 {

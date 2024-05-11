@@ -1,4 +1,4 @@
-﻿namespace ServiceModels.Requests.Issue;
+﻿namespace WebLibrary.Backend.Models.DTO.Requests.Issue;
 
 public class CreateIssueRequest
 {
