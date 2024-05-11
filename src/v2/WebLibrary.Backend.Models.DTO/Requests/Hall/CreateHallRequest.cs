@@ -5,11 +5,11 @@ namespace ServiceModels.Requests.Hall;
 public class CreateHallRequest
 {
     public Guid LibraryId { get; set; }
-    public uint No { get; set; }
+    public uint Number { get; set; }
 
-    [MaxLength(50, ErrorMessage = "Title of hall is too long")]
+    [MaxLength(50)]
     public required string Title { get; set; }
 
-    [MaxLength(50, ErrorMessage = "Thematic of hall is too long")]
+    [MaxLength(50)]
     public required string Thematic { get; set; }
 }

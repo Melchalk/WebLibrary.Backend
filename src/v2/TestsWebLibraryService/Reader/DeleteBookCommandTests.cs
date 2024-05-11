@@ -27,7 +27,7 @@ internal class DeleteReaderCommandTests
         {
             Id = Guid.NewGuid(),
             Fullname = "Test",
-            Telephone = "Phone",
+            Phone = "Phone",
             RegistrationAddress = "Test",
             Age = 2020,
         };

@@ -11,25 +11,22 @@ public class DbLibrary
     public Guid Id { get; set; }
 
     [MaxLength(50)]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
     [MaxLength(50)]
-    public string Address { get; set; }
+    public required string Address { get; set; }
 
     [MaxLength(50)]
-    public string Telephone { get; set; }
+    public required string Phone { get; set; }
 
-    public IList<DbLibrarian> Librarians { get; set; } = new List<DbLibrarian>();
-    public IList<DbHall> Halls { get; set; } = new List<DbHall>();
-
+    public ICollection<DbLibrarian> Librarians { get; set; } = new HashSet<DbLibrarian>();
+    public ICollection<DbHall> Halls { get; set; } = new HashSet<DbHall>();
 }
 
 public class DbLibraryConfiguration : IEntityTypeConfiguration<DbLibrary>
 {
     public void Configure(EntityTypeBuilder<DbLibrary> builder)
     {
-        builder.ToTable(DbLibrary.TableName);
-
         builder.HasKey(o => o.Id);
     }
 }

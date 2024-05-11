@@ -4,17 +4,17 @@ namespace ServiceModels.Requests.Book;
 
 public class CreateBookRequest
 {
-    [MaxLength(50, ErrorMessage = "Title of book is too long")]
+    public int? HallNo { get; set; }
+
+    [MaxLength(50)]
     public required string Title { get; set; }
 
-    [MaxLength(50, ErrorMessage = "Author's name is too long")]
+    [MaxLength(50)]
     public string? Author { get; set; }
 
     public uint NumberPages { get; set; }
     public uint YearPublishing { get; set; }
 
-    [MaxLength(50, ErrorMessage = "Name of the publication city is too long")]
+    [MaxLength(50)]
     public string? CityPublishing { get; set; }
-
-    public int? HallNo { get; set; }
 }

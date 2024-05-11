@@ -9,19 +9,16 @@ public class DbIssue
 
     public Guid Id { get; set; }
     public Guid ReaderId { get; set; }
-    public DateTime DateIssue { get; set; }
-    public int Period { get; set; }
+    public DateTime ReturnDate { get; set; }
 
-    public IList<DbBook> Books { get; set; } = new List<DbBook>();
-    public DbReader Reader { get; set; }
+    public DbReader? Reader { get; set; }
+    public ICollection<DbBook> Books { get; set; } = new HashSet<DbBook>();
 }
 
 public class DbIssueConfiguration : IEntityTypeConfiguration<DbIssue>
 {
     public void Configure(EntityTypeBuilder<DbIssue> builder)
     {
-        builder.ToTable(DbIssue.TableName);
-
         builder.HasKey(o => o.Id);
 
         builder

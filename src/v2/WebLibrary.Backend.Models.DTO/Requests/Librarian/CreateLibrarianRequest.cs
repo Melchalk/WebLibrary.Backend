@@ -4,11 +4,11 @@ namespace ServiceModels.Requests.Librarian;
 
 public class CreateLibrarianRequest
 {
-    [MaxLength(50, ErrorMessage = "Fullname is too long")]
-    public string Fullname { get; set; }
-
-    [MaxLength(50, ErrorMessage = "Telephone is too long")]
-    public string Telephone { get; set; }
-
     public Guid? LibraryId { get; set; }
+
+    [MaxLength(50)]
+    public required string FullName { get; set; }
+
+    [MaxLength(50)]
+    public required string Phone { get; set; }
 }

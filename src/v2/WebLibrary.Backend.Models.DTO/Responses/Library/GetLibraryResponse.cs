@@ -8,8 +8,8 @@ public class GetLibraryResponse
     public Guid Id { get; set; }
     public required string Title { get; set; }
     public required string Address { get; set; }
-    public required string Telephone { get; set; }
+    public required string Phone { get; set; }
 
-    public IList<GetLibrarianResponse> Librarians { get; set; } = new List<GetLibrarianResponse>();
-    public IList<GetHallResponse> Halls { get; set; } = new List<GetHallResponse>();
+    public required IList<GetLibrarianResponse> Librarians { get; set; }
+    public required IList<GetHallResponse> Halls { get; set; }
 }

@@ -28,7 +28,7 @@ public class GetReaderCommandTests
         {
             Id = Guid.NewGuid(),
             Fullname = "Test",
-            Telephone = "Phone",
+            Phone = "Phone",
             RegistrationAddress = "Test",
             Age = 2020,
         };
@@ -37,7 +37,7 @@ public class GetReaderCommandTests
         {
             Id = Guid.NewGuid(),
             Fullname = "Test",
-            Telephone = "Phone",
+            Phone = "Phone",
             RegistrationAddress = "Test",
             Age = 2020,
         };

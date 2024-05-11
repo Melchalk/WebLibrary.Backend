@@ -4,12 +4,12 @@ namespace ServiceModels.Requests.Library;
 
 public class CreateLibraryRequest
 {
-    [MaxLength(50, ErrorMessage = "Title of library is too long")]
-    public string Title { get; set; }
+    [MaxLength(50)]
+    public required string Title { get; set; }
 
-    [MaxLength(50, ErrorMessage = "Address is too long")]
-    public string Address { get; set; }
+    [MaxLength(50)]
+    public required string Address { get; set; }
 
-    [MaxLength(50, ErrorMessage = "Telephone is too long")]
-    public string Telephone { get; set; }
+    [MaxLength(50)]
+    public required string Phone { get; set; }
 }

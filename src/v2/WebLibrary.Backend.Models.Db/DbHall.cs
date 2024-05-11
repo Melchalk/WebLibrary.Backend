@@ -9,24 +9,22 @@ public class DbHall
     public const string TableName = "Halls";
 
     public Guid LibraryId { get; set; }
-    public int No { get; set; }
+    public uint Number { get; set; }
 
     [MaxLength(50)]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
     [MaxLength(50)]
-    public string Thematics { get; set; }
+    public required string Thematic { get; set; }
 
-    public DbLibrary Library { get; set; }
+    public DbLibrary? Library { get; set; }
 }
 
 public class DbHallConfiguration : IEntityTypeConfiguration<DbHall>
 {
     public void Configure(EntityTypeBuilder<DbHall> builder)
     {
-        builder.ToTable(DbHall.TableName);
-
-        builder.HasKey(o => new { o.LibraryId, o.No });
+        builder.HasKey(o => new { o.LibraryId, o.Number });
 
         builder
             .HasOne(u => u.Library)

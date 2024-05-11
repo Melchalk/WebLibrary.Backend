@@ -8,7 +8,6 @@ public class WebLibraryDbContext : DbContext
     public DbSet<DbBook> Books { get; set; }
     public DbSet<DbReader> Readers { get; set; }
     public DbSet<DbIssue> Issues { get; set; }
-
     public DbSet<DbHall> Halls { get; set; }
     public DbSet<DbLibrary> Libraries { get; set; }
     public DbSet<DbLibrarian> Librarians { get; set; }

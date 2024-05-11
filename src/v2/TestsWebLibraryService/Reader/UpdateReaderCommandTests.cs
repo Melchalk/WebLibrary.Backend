@@ -44,7 +44,7 @@ public class UpdateReaderCommandTests
         {
             Id = Guid.NewGuid(),
             Fullname = "Test",
-            Telephone = "Phone",
+            Phone = "Phone",
             RegistrationAddress = "Test",
             Age = 2020,
         };

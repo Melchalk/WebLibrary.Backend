@@ -1,7 +1,20 @@
-﻿namespace ServiceModels.Requests.Reader;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ServiceModels.Requests.Reader;
 
 public class UpdateReaderRequest
 {
     public Guid Id { get; set; }
-    public CreateReaderRequest CreateReaderRequest { get; set; }
+
+    [MaxLength(50)]
+    public string? FullName { get; set; }
+
+    [MaxLength(50)]
+    public string? Phone { get; set; }
+
+    [MaxLength(50)]
+    public string? RegistrationAddress { get; set; }
+
+    [Range(14, 100, ErrorMessage = "The age must be over 14")]
+    public int Age { get; set; }
 }

@@ -2,8 +2,8 @@
 
 public class GetHallResponse
 {
-    public int No { get; set; }
+    public Guid LibraryId { get; set; }
+    public uint Number { get; set; }
     public required string Title { get; set; }
     public required string Thematic { get; set; }
-    public Guid LibraryId { get; set; }
 }

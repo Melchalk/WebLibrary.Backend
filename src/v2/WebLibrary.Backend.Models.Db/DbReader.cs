@@ -11,15 +11,15 @@ public class DbReader
     public Guid Id { get; set; }
 
     [MaxLength(50)]
-    public string Fullname {  get; set; }
+    public required string FullName { get; set; }
 
     [MaxLength(50)]
-    public string Telephone {  get; set; }
+    public required string Phone { get; set; }
 
     [MaxLength(50)]
     public string? RegistrationAddress { get; set; }
 
-    public int Age { get; set; }
+    public uint Age { get; set; }
     public bool CanTakeBooks { get; set; }
 
     public DbIssue? Issue { get; set; }
@@ -29,8 +29,6 @@ public class DbReaderConfiguration : IEntityTypeConfiguration<DbReader>
 {
     public void Configure(EntityTypeBuilder<DbReader> builder)
     {
-        builder.ToTable(DbReader.TableName);
-
         builder.HasKey(o => o.Id);
     }
 }

@@ -9,14 +9,13 @@ public class DbLibrarian
     public const string TableName = "Librarians";
 
     public Guid Id { get; set; }
-
-    [MaxLength(50)]
-    public string Fullname { get; set; }
-
-    [MaxLength(50)]
-    public string Telephone { get; set; }
-
     public Guid? LibraryId { get; set; }
+
+    [MaxLength(50)]
+    public required string FullName { get; set; }
+
+    [MaxLength(50)]
+    public required string Phone { get; set; }
 
     public DbLibrary? Library { get; set; }
 }

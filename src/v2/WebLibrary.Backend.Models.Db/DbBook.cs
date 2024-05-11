@@ -11,18 +11,18 @@ public class DbBook
     public Guid Id { get; set; }
 
     [MaxLength(50)]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
     [MaxLength(50)]
     public string? Author { get; set; }
 
-    public int NumberPages { get; set; }
-    public int YearPublishing { get; set; }
+    public uint NumberPages { get; set; }
+    public uint YearPublishing { get; set; }
 
     [MaxLength(50)]
     public string? CityPublishing { get; set; }
 
-    public int? HallNo { get; set; }
+    public uint? HallNo { get; set; }
     public Guid? IssueId { get; set; }
 
     public DbIssue? Issue { get; set; }
@@ -32,8 +32,6 @@ public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
 {
     public void Configure(EntityTypeBuilder<DbBook> builder)
     {
-        builder.ToTable(DbBook.TableName);
-
         builder.HasKey(o => o.Id);
 
         builder

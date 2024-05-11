@@ -45,7 +45,7 @@ public class CreateReaderCommandTests
         {
             Id = Guid.NewGuid(),
             Fullname = "Test",
-            Telephone = "Phone",
+            Phone = "Phone",
             RegistrationAddress = "Test",
             Age = 2020,
         };
@@ -63,7 +63,7 @@ public class CreateReaderCommandTests
         var request = new CreateReaderRequest
         {
             Fullname = "Charles Dickens",
-            Telephone = "Phone",
+            Phone = "Phone",
             RegistrationAddress = "Test",
             Age = 2020,
         };

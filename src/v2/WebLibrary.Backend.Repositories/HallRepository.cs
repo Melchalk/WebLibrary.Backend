@@ -19,7 +19,7 @@ public class hallRepository : IHallRepository
 
     public async Task<DbHall?> GetAsync((Guid, int) primaryKey)
     {
-        return await _context.Halls.FirstOrDefaultAsync(u => u.LibraryId == primaryKey.Item1 && u.No == primaryKey.Item2);
+        return await _context.Halls.FirstOrDefaultAsync(u => u.LibraryId == primaryKey.Item1 && u.Number == primaryKey.Item2);
     }
 
     public DbSet<DbHall> Get()
@@ -29,7 +29,7 @@ public class hallRepository : IHallRepository
 
     public async Task<DbHall?> UpdateAsync(DbHall? hall)
     {
-        DbHall? oldHall = await GetAsync((hall.LibraryId, hall.No));
+        DbHall? oldHall = await GetAsync((hall.LibraryId, hall.Number));
 
         if (oldHall is null)
         {
@@ -43,7 +43,7 @@ public class hallRepository : IHallRepository
 
         await _context.SaveChangesAsync();
 
-        return await GetAsync((hall.LibraryId, hall.No));
+        return await GetAsync((hall.LibraryId, hall.Number));
     }
 
     public async Task DeleteAsync(DbHall hall)
