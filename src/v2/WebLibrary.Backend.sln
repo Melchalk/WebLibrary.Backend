@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLibrary.Backend.Models.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibrary.Backend.Validators", "WebLibrary.Backend.Validators\WebLibrary.Backend.Validators.csproj", "{26E40E84-4755-406B-97D7-E70990DF002B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibrary.Backend.Repositories", "WebLibrary.Backend.Repositories\WebLibrary.Backend.Repositories.csproj", "{129C9195-D0EC-4DCC-BF25-B3727AD3E3EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{26E40E84-4755-406B-97D7-E70990DF002B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26E40E84-4755-406B-97D7-E70990DF002B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26E40E84-4755-406B-97D7-E70990DF002B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{129C9195-D0EC-4DCC-BF25-B3727AD3E3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{129C9195-D0EC-4DCC-BF25-B3727AD3E3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{129C9195-D0EC-4DCC-BF25-B3727AD3E3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{129C9195-D0EC-4DCC-BF25-B3727AD3E3EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
