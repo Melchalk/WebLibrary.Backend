@@ -1,21 +1,22 @@
-﻿using ServiceModels.Requests.Book;
-using ServiceModels.Responses.Book;
+﻿using ServiceModels.Requests.Library;
+using ServiceModels.Responses.Library;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;
 
-public class BookService : IBookService
+public class LibraryService : ILibraryService
 {
-    public Task<Guid> CreateAsync(CreateBookRequest request)
-    {
-        throw new NotImplementedException();
-    }
-    public Task<List<GetReaderResponse>> GetAllAsync()
+    public Task<Guid> CreateAsync(CreateLibraryRequest request)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetReaderResponse> GetAsync(Guid id)
+    public Task<List<GetLibraryResponse>> GetAllAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<GetLibraryResponse> GetAsync(Guid id)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +26,7 @@ public class BookService : IBookService
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(UpdateBookRequest request)
+    public Task UpdateAsync(UpdateLibraryRequest request)
     {
         throw new NotImplementedException();
     }

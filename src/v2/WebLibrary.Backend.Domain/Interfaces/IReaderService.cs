@@ -1,17 +1,17 @@
-﻿using ServiceModels.Requests.Book;
+﻿using ServiceModels.Requests.Reader;
 using ServiceModels.Responses.Book;
 
 namespace WebLibraryService.Backend.Domain.Interfaces;
 
-public interface IBookService
+public interface IReaderService
 {
-    Task<Guid> CreateAsync(CreateBookRequest request);
+    Task<Guid> CreateAsync(CreateReaderRequest request);
 
     Task<GetReaderResponse> GetAsync(Guid id);
 
     Task<List<GetReaderResponse>> GetAllAsync();
 
-    Task UpdateAsync(UpdateBookRequest request);
+    Task UpdateAsync(UpdateReaderRequest request);
 
     Task DeleteAsync(Guid id);
 }

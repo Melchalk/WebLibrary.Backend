@@ -27,11 +27,11 @@ public class ReadBookCommand : BookActions, IReadBookCommand
         return bookResponse;
     }
 
-    public async Task<GetBookResponse> GetAsync(GetBookRequest request)
+    public async Task<GetReaderResponse> GetAsync(GetBookRequest request)
     {
         DbBook? book = await _bookRepository.GetAsync(request.Id);
 
-        GetBookResponse bookResponse = new();
+        GetReaderResponse bookResponse = new();
 
         if (book is null)
         {

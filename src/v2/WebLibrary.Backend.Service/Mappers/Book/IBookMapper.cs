@@ -8,5 +8,5 @@ public interface IBookMapper
 {
     DbBook Map(CreateBookRequest bookRequest);
 
-    GetBookResponse Map(DbBook dbBook);
+    GetReaderResponse Map(DbBook dbBook);
 }

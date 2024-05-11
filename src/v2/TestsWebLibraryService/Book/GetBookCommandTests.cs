@@ -32,7 +32,7 @@ public class GetBookCommandTests
             YearPublishing = 1,
         };
 
-        GetBookResponse _getBookResponse = new()
+        GetReaderResponse _getBookResponse = new()
         {
             Id = Guid.NewGuid(),
             Title = "Test",

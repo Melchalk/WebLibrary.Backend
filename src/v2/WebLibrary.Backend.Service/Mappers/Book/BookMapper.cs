@@ -22,9 +22,9 @@ public class BookMapper : IBookMapper
         return book;
     }
 
-    public GetBookResponse Map(DbBook book)
+    public GetReaderResponse Map(DbBook book)
     {
-        GetBookResponse bookResponse = new()
+        GetReaderResponse bookResponse = new()
         {
             Id = book.Id,
             Title = book.Title,

@@ -1,31 +1,32 @@
-﻿using ServiceModels.Requests.Book;
-using ServiceModels.Responses.Book;
+﻿using ServiceModels.Requests.Hall;
+using ServiceModels.Responses.Hall;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;
 
-public class BookService : IBookService
+public class HallService : IHallService
 {
-    public Task<Guid> CreateAsync(CreateBookRequest request)
-    {
-        throw new NotImplementedException();
-    }
-    public Task<List<GetReaderResponse>> GetAllAsync()
+    public Task<int> CreateAsync(CreateHallRequest request)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetReaderResponse> GetAsync(Guid id)
+    public Task<List<GetHallResponse>> GetAllAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(Guid id)
+    public Task<GetHallResponse> GetAsync(int number)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(UpdateBookRequest request)
+    public Task DeleteAsync(int number)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateAsync(UpdateHallRequest request)
     {
         throw new NotImplementedException();
     }
