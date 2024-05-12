@@ -1,32 +1,60 @@
-﻿using WebLibrary.Backend.Models.DTO.Requests.Hall;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Models.DTO.Requests.Hall;
 using WebLibrary.Backend.Models.DTO.Responses.Hall;
+using WebLibrary.Backend.Models.Exceptions;
+using WebLibrary.Backend.Repositories.Interfaces;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;
 
 public class HallService : IHallService
 {
-    public Task<int> CreateAsync(CreateHallRequest request, CancellationToken token)
+    private readonly IHallRepository _repository;
+    private readonly IMapper _mapper;
+
+    public HallService(
+        IHallRepository repository,
+        IMapper mapper)
     {
-        throw new NotImplementedException();
+        _repository = repository;
+        _mapper = mapper;
     }
 
-    public Task<List<GetHallResponse>> GetAllAsync(CancellationToken token)
+    public async Task<uint> CreateAsync(CreateHallRequest request, CancellationToken token)
     {
-        throw new NotImplementedException();
+        var hall = _mapper.Map<DbHall>(request);
+
+        await _repository.AddAsync(hall, token);
+
+        return hall.Number;
     }
 
-    public Task<GetHallResponse> GetAsync(int number, CancellationToken token)
+    public async Task<List<GetHallResponse>> GetAllAsync(CancellationToken token)
     {
-        throw new NotImplementedException();
+        return await _mapper.ProjectTo<GetHallResponse>(
+            _repository.Get())
+            .ToListAsync(token);
     }
 
-    public Task DeleteAsync(int number, CancellationToken token)
+    public async Task<GetHallResponse> GetAsync(Guid libraryId, uint number, CancellationToken token)
     {
-        throw new NotImplementedException();
+        var hall = await _repository.GetAsync(libraryId, number, token)
+            ?? throw new BadRequestException($"Hall with library Id = '{libraryId}' and number = '{number}' not found.");
+
+        return _mapper.Map<GetHallResponse>(hall);
     }
 
-    public Task UpdateAsync(UpdateHallRequest request, CancellationToken token)
+    public async Task DeleteAsync(Guid libraryId, uint number, CancellationToken token)
+    {
+        var hall = await _repository.GetAsync(libraryId, number, token)
+            ?? throw new BadRequestException($"Hall with library Id = '{libraryId}' and number = '{number}' not found.");
+
+        await _repository.DeleteAsync(hall, token);
+    }
+
+    public async Task UpdateAsync(UpdateHallRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }
