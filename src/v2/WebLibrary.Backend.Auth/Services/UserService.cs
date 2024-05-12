@@ -24,10 +24,10 @@ public class UserService : IUserService
         _mapper = mapper;
     }
 
-    public async Task<DbLibrarian> RegisterUser(CreateLibrarianRequest request)
+    public async Task<DbLibrarian> RegisterUser(
+        CreateLibrarianRequest request, CancellationToken token)
     {
-        StringBuilder phone = new();
-        phone.Append(START_PHONE);
+        StringBuilder phone = new(START_PHONE);
 
         request.Phone = request.Phone.StartsWith(START_PHONE)
             ? request.Phone[START_PHONE.Length..]
@@ -44,7 +44,7 @@ public class UserService : IUserService
         var phoneChecked = phone.ToString();
 
         if (await _repository.Get()
-            .AnyAsync(x => string.Equals(x.Phone, phoneChecked)))
+            .AnyAsync(x => string.Equals(x.Phone, phoneChecked), token))
         {
             throw new ArgumentException("User with this phone already exists.");
         }
@@ -63,16 +63,13 @@ public class UserService : IUserService
         return dbUser;
     }
 
-    public async Task<DbLibrarian> GetUserByPhone(string? phone)
+    public async Task<DbLibrarian> GetUserByPhone(string phone, CancellationToken token)
     {
-        var user = phone is null
-            ? null
-            : await _repository.Get()
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Phone == phone);
+        var user = await _repository.Get()
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(u => u.Phone == phone, token)
+            ?? throw new ArgumentException($"User with phone {phone} is not found.");
 
-        return user is null
-            ? throw new ArgumentException($"User with phone {phone} is not found.")
-            : user;
+        return user;
     }
 }

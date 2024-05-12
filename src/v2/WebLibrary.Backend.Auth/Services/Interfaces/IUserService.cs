@@ -5,7 +5,7 @@ namespace WebLibrary.Backend.Auth.Services.Interfaces;
 
 public interface IUserService
 {
-    Task<DbLibrarian> RegisterUser(CreateLibrarianRequest request);
+    Task<DbLibrarian> RegisterUser(CreateLibrarianRequest request, CancellationToken token);
 
-    Task<DbLibrarian> GetUserByPhone(string? phone);
+    Task<DbLibrarian> GetUserByPhone(string phone, CancellationToken token);
 }

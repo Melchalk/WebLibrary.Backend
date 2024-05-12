@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using StructureOfUniversity.Infrastructure.Middlewares;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using WebLibrary.Backend.Auth.Helpers;
 using WebLibrary.Backend.Auth.Services;
 using WebLibrary.Backend.Auth.Services.Interfaces;
 using WebLibrary.Backend.Provider;
@@ -73,6 +76,8 @@ internal class Startup
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 
+        app.UseMiddleware<GlobalExceptionMiddleware>();
+
         UpdateDatabase(app);
 
         app.UseRouting();
@@ -87,7 +92,7 @@ internal class Startup
     }
 
     private void ConfigureJwt(IServiceCollection services)
-    {/*
+    {
         services.Configure<TokenSettings>(Configuration.GetSection("TokenSettings"));
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -103,7 +108,7 @@ internal class Startup
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = SigningSymmetricKey.GetKey()
                 };
-            });*/
+            });
     }
 
     private void UpdateDatabase(IApplicationBuilder app)

@@ -22,9 +22,9 @@ public class AuthService : IAuthService
         _tokenSettings = tokenSettings.Value;
     }
 
-    public async Task<LoginResult> LoginUser(LoginRequest request)
+    public async Task<LoginResult> LoginUser(LoginRequest request, CancellationToken token)
     {
-        var user = await _userService.GetUserByPhone(request.Phone);
+        var user = await _userService.GetUserByPhone(request.Phone, token);
 
         PasswordHelper.VerifyPasswordHash(
             request.Phone,

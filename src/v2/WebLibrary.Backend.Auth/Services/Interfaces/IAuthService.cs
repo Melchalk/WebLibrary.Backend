@@ -5,7 +5,7 @@ namespace WebLibrary.Backend.Auth.Services.Interfaces;
 
 public interface IAuthService
 {
-    Task<LoginResult> LoginUser(LoginRequest request);
+    Task<LoginResult> LoginUser(LoginRequest request, CancellationToken token);
 
     string GenerateToken(DbLibrarian user, TokenType tokenType, out DateTime tokenLifetime);
 }

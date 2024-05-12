@@ -137,6 +137,8 @@ class InitialTable : Migration
                 LibraryId = table.Column<Guid>(nullable: true),
                 FullName = table.Column<string>(nullable: true, maxLength: 50),
                 Phone = table.Column<string>(nullable: false, maxLength: 50),
+                Password = table.Column<string>(nullable: false),
+                Salt = table.Column<string>(nullable: false),
             },
             constraints: table =>
             {

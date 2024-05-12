@@ -16,6 +16,8 @@ public class DbLibrarian
 
     [MaxLength(50)]
     public required string Phone { get; set; }
+    public required string Password { get; set; }
+    public required string Salt { get; set; }
 
     public DbLibrary? Library { get; set; }
 }
