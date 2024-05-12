@@ -1,32 +1,64 @@
-﻿using WebLibrary.Backend.Models.DTO.Requests.Book;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using WebLibrary.Backend.Models.Db;
+using WebLibrary.Backend.Models.DTO.Requests.Book;
 using WebLibrary.Backend.Models.DTO.Responses.Book;
+using WebLibrary.Backend.Models.Exceptions;
+using WebLibrary.Backend.Repositories.Interfaces;
 using WebLibraryService.Backend.Domain.Interfaces;
 
 namespace WebLibraryService.Backend.Domain;
 
 public class BookService : IBookService
 {
-    public Task<Guid> CreateAsync(CreateBookRequest request)
+    private readonly IBookRepository _repository;
+    private readonly IMapper _mapper;
+
+    public BookService(
+        IBookRepository repository,
+        IMapper mapper)
     {
-        throw new NotImplementedException();
-    }
-    public Task<List<GetBookResponse>> GetAllAsync()
-    {
-        throw new NotImplementedException();
+        _repository = repository;
+        _mapper = mapper;
     }
 
-    public Task<GetBookResponse> GetAsync(Guid id)
+    public async Task<Guid> CreateAsync(CreateBookRequest request, CancellationToken token)
     {
-        throw new NotImplementedException();
+        var book = _mapper.Map<DbBook>(request);
+
+        await _repository.AddAsync(book, token);
+
+        return book.Id;
     }
 
-    public Task DeleteAsync(Guid id)
+    public async Task<List<GetBookResponse>> GetAllAsync(CancellationToken token)
     {
-        throw new NotImplementedException();
+        return await _mapper.ProjectTo<GetBookResponse>(
+            _repository.Get())
+            .ToListAsync(token);
     }
 
-    public Task UpdateAsync(UpdateBookRequest request)
+    public async Task<GetBookResponse> GetAsync(Guid id, CancellationToken token)
     {
-        throw new NotImplementedException();
+        var book = await _repository.GetAsync(id, token)
+            ?? throw new BadRequestException($"Book with id = '{id}' not found.");
+
+        return _mapper.Map<GetBookResponse>(book);
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken token)
+    {
+        var book = await _repository.GetAsync(id, token)
+            ?? throw new BadRequestException($"Book with id = '{id}' not found.");
+
+        await _repository.DeleteAsync(book, token);
+    }
+
+    public async Task UpdateAsync(UpdateBookRequest request, CancellationToken token)
+    {
+        var book = await _repository.GetAsync(request.Id, token)
+            ?? throw new BadRequestException($"Book with id = '{request.Id}' not found.");
+
+        await _repository.DeleteAsync(book, token);
     }
 }

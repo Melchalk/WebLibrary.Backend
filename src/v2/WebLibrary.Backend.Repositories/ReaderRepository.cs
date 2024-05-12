@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories.Interfaces;
@@ -15,41 +14,28 @@ public class ReaderRepository : IReaderRepository
         _provider = provider;
     }
 
-    public async Task AddAsync(DbReader reader)
+    public async Task AddAsync(DbReader reader, CancellationToken token)
     {
-        _provider.Readers.Add(reader);
+        await _provider.Readers.AddAsync(reader, token);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
-    public async Task<DbReader?> GetAsync(Guid readerId)
+    public async Task<DbReader?> GetAsync(Guid readerId, CancellationToken token)
     {
         return await _provider.Readers
             .Include(u => u.Issue)
                 .ThenInclude(o => o.Books)
-            .FirstOrDefaultAsync(u => u.Id == readerId);
+            .FirstOrDefaultAsync(u => u.Id == readerId, token);
     }
 
-    public DbSet<DbReader> Get()
-    {
-        return _provider.Readers;
-    }
-
-    public async Task UpdateAsync(DbReader reader)
-    {
-        DbReader? oldReader = await GetAsync(reader.Id);
-
-        foreach (PropertyInfo property in typeof(DbReader).GetProperties())
-        {
-            property?.SetValue(oldReader, property.GetValue(reader));
-        }
-
-        await _provider.SaveAsync();
-    }
-
-    public async Task DeleteAsync(DbReader reader)
+    public async Task DeleteAsync(DbReader reader, CancellationToken token)
     {
         _provider.Readers.Remove(reader);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
+
+    public DbSet<DbReader> Get() => _provider.Readers;
+
+    public async Task SaveAsync(CancellationToken token) => await _provider.SaveAsync(token);
 }

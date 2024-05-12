@@ -20,21 +20,26 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<DbBook, GetBookResponse>();
-        CreateMap<CreateBookRequest, DbBook>();
+        CreateMap<CreateBookRequest, DbBook>()
+            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
         CreateMap<DbReader, GetReaderResponse>();
-        CreateMap<CreateReaderRequest, DbReader>();
+        CreateMap<CreateReaderRequest, DbReader>()
+            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
         CreateMap<DbLibrary, GetLibraryResponse>();
-        CreateMap<CreateLibraryRequest, DbLibrary>();
+        CreateMap<CreateLibraryRequest, DbLibrary>()
+            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
         CreateMap<DbLibrarian, GetLibrarianResponse>();
-        CreateMap<CreateLibrarianRequest, DbLibrarian>();
+        CreateMap<CreateLibrarianRequest, DbLibrarian>()
+            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
         CreateMap<DbHall, GetHallResponse>();
         CreateMap<CreateHallRequest, DbHall>();
 
         CreateMap<DbIssue, GetIssueResponse>();
-        CreateMap<CreateIssueRequest, DbIssue>();
+        CreateMap<CreateIssueRequest, DbIssue>()
+            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
     }
 }

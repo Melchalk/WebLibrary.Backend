@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebLibrary.Backend.Models.DTO\WebLibrary.Backend.Models.DTO.csproj" />
+    <ProjectReference Include="..\WebLibrary.Backend.Models.Exceptions\WebLibrary.Backend.Models.Exceptions.csproj" />
+    <ProjectReference Include="..\WebLibrary.Backend.Repositories\WebLibrary.Backend.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

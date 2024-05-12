@@ -5,13 +5,13 @@ namespace WebLibraryService.Backend.Domain.Interfaces;
 
 public interface ILibrarianService
 {
-    Task<Guid> CreateAsync(CreateLibrarianRequest request);
+    Task<Guid> CreateAsync(CreateLibrarianRequest request, CancellationToken token);
 
-    Task<GetLibrarianResponse> GetAsync(Guid id);
+    Task<GetLibrarianResponse> GetAsync(Guid id, CancellationToken token);
 
-    Task<List<GetLibrarianResponse>> GetAllAsync();
+    Task<List<GetLibrarianResponse>> GetAllAsync(CancellationToken token);
 
-    Task UpdateAsync(UpdateLibrarianRequest request);
+    Task UpdateAsync(UpdateLibrarianRequest request, CancellationToken token);
 
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(Guid id, CancellationToken token);
 }

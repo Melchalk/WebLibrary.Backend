@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories.Interfaces;
@@ -15,40 +14,27 @@ public class BookRepository : IBookRepository
         _provider = provider;
     }
 
-    public async Task AddAsync(DbBook book)
+    public async Task AddAsync(DbBook book, CancellationToken token)
     {
-        _provider.Books.Add(book);
+        await _provider.Books.AddAsync(book, token);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
 
-    public async Task<DbBook?> GetAsync(Guid bookId)
+    public async Task<DbBook?> GetAsync(Guid bookId, CancellationToken token)
     {
         return await _provider.Books
-            .FirstOrDefaultAsync(u => u.Id == bookId);
+            .FirstOrDefaultAsync(u => u.Id == bookId, token);
     }
 
-    public DbSet<DbBook> Get()
-    {
-        return _provider.Books;
-    }
-
-    public async Task UpdateAsync(DbBook book)
-    {
-        DbBook? oldBook = await GetAsync(book.Id);
-
-        foreach (PropertyInfo property in typeof(DbBook).GetProperties())
-        {
-            property?.SetValue(oldBook, property.GetValue(book));
-        }
-
-        await _provider.SaveAsync();
-    }
-
-    public async Task DeleteAsync(DbBook book)
+    public async Task DeleteAsync(DbBook book, CancellationToken token)
     {
         _provider.Books.Remove(book);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
+
+    public DbSet<DbBook> Get() => _provider.Books;
+
+    public async Task SaveAsync(CancellationToken token) => await _provider.SaveAsync(token);
 }

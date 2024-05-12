@@ -6,27 +6,27 @@ namespace WebLibraryService.Backend.Domain;
 
 public class LibraryService : ILibraryService
 {
-    public Task<Guid> CreateAsync(CreateLibraryRequest request)
+    public Task<Guid> CreateAsync(CreateLibraryRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<GetLibraryResponse>> GetAllAsync()
+    public Task<List<GetLibraryResponse>> GetAllAsync(CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetLibraryResponse> GetAsync(Guid id)
+    public Task<GetLibraryResponse> GetAsync(Guid id, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(Guid id)
+    public Task DeleteAsync(Guid id, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(UpdateLibraryRequest request)
+    public Task UpdateAsync(UpdateLibraryRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }

@@ -6,27 +6,27 @@ namespace WebLibraryService.Backend.Domain;
 
 public class IssueService : IIssueService
 {
-    public Task<Guid> CreateAsync(CreateIssueRequest request)
+    public Task<Guid> CreateAsync(CreateIssueRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<GetIssueResponse>> GetAllAsync()
+    public Task<List<GetIssueResponse>> GetAllAsync(CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetIssueResponse> GetAsync(Guid id)
+    public Task<GetIssueResponse> GetAsync(Guid id, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(Guid id)
+    public Task DeleteAsync(Guid id, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(UpdateIssueRequest request)
+    public Task UpdateAsync(UpdateIssueRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }

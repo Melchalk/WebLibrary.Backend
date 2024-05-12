@@ -5,13 +5,13 @@ namespace WebLibraryService.Backend.Domain.Interfaces;
 
 public interface IBookService
 {
-    Task<Guid> CreateAsync(CreateBookRequest request);
+    Task<Guid> CreateAsync(CreateBookRequest request, CancellationToken token);
 
-    Task<GetBookResponse> GetAsync(Guid id);
+    Task<GetBookResponse> GetAsync(Guid id, CancellationToken token);
 
-    Task<List<GetBookResponse>> GetAllAsync();
+    Task<List<GetBookResponse>> GetAllAsync(CancellationToken token);
 
-    Task UpdateAsync(UpdateBookRequest request);
+    Task UpdateAsync(UpdateBookRequest request, CancellationToken token);
 
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(Guid id, CancellationToken token);
 }

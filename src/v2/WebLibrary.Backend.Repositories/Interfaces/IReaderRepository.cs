@@ -5,13 +5,13 @@ namespace WebLibrary.Backend.Repositories.Interfaces;
 
 public interface IReaderRepository
 {
-    Task AddAsync(DbReader entity);
+    Task AddAsync(DbReader entity, CancellationToken token);
 
-    Task<DbReader?> GetAsync(Guid id);
+    Task<DbReader?> GetAsync(Guid id, CancellationToken token);
 
     DbSet<DbReader> Get();
 
-    Task UpdateAsync(DbReader entity);
+    Task DeleteAsync(DbReader entity, CancellationToken token);
 
-    Task DeleteAsync(DbReader entity);
+    Task SaveAsync(CancellationToken token);
 }

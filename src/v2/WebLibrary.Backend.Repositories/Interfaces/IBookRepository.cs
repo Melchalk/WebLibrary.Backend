@@ -5,13 +5,13 @@ namespace WebLibrary.Backend.Repositories.Interfaces;
 
 public interface IBookRepository
 {
-    Task AddAsync(DbBook entity);
+    Task AddAsync(DbBook entity, CancellationToken token);
 
-    Task<DbBook?> GetAsync(Guid id);
+    Task<DbBook?> GetAsync(Guid id, CancellationToken token);
 
     DbSet<DbBook> Get();
 
-    Task UpdateAsync(DbBook entity);
+    Task DeleteAsync(DbBook entity, CancellationToken token);
 
-    Task DeleteAsync(DbBook entity);
+    Task SaveAsync(CancellationToken token);
 }

@@ -8,5 +8,5 @@ public class GetIssueResponse
     public Guid ReaderId { get; set; }
     public DateTime ReturnDate { get; set; }
 
-    public required List<GetReaderResponse> Books { get; set; }
+    public required List<GetBookResponse> Books { get; set; }
 }

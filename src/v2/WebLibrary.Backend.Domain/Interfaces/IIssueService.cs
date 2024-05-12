@@ -5,13 +5,13 @@ namespace WebLibraryService.Backend.Domain.Interfaces;
 
 public interface IIssueService
 {
-    Task<Guid> CreateAsync(CreateIssueRequest request);
+    Task<Guid> CreateAsync(CreateIssueRequest request, CancellationToken token);
 
-    Task<GetIssueResponse> GetAsync(Guid id);
+    Task<GetIssueResponse> GetAsync(Guid id, CancellationToken token);
 
-    Task<List<GetIssueResponse>> GetAllAsync();
+    Task<List<GetIssueResponse>> GetAllAsync(CancellationToken token);
 
-    Task UpdateAsync(UpdateIssueRequest request);
+    Task UpdateAsync(UpdateIssueRequest request, CancellationToken token);
 
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(Guid id, CancellationToken token);
 }

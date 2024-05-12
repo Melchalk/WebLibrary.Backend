@@ -2,7 +2,7 @@
 
 public interface IBaseDataProvider
 {
-    Task SaveAsync();
+    Task SaveAsync(CancellationToken token);
 
     void Save();
 }

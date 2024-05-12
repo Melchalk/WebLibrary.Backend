@@ -23,9 +23,9 @@ public class WebLibraryDbContext : DbContext, IDataProvider
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.Load("WebLibrary.Backend.Models.Db"));
     }
 
-    public async Task SaveAsync()
+    public async Task SaveAsync(CancellationToken token)
     {
-        await SaveChangesAsync();
+        await SaveChangesAsync(token);
     }
 
     public void Save()

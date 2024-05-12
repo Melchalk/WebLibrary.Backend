@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories.Interfaces;
@@ -15,42 +14,29 @@ public class LibraryRepository : ILibraryRepository
         _provider = provider;
     }
 
-    public async Task AddAsync(DbLibrary library)
+    public async Task AddAsync(DbLibrary library, CancellationToken token)
     {
-        _provider.Libraries.Add(library);
+        await _provider.Libraries.AddAsync(library, token);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
 
-    public async Task<DbLibrary?> GetAsync(Guid libraryId)
+    public async Task<DbLibrary?> GetAsync(Guid libraryId, CancellationToken token)
     {
         return await _provider.Libraries
             .Include(u => u.Librarians)
             .Include(o => o.Halls)
-            .FirstOrDefaultAsync(u => u.Id == libraryId);
+            .FirstOrDefaultAsync(u => u.Id == libraryId, token);
     }
 
-    public DbSet<DbLibrary> Get()
-    {
-        return _provider.Libraries;
-    }
-
-    public async Task UpdateAsync(DbLibrary library)
-    {
-        DbLibrary? oldLibrary = await GetAsync(library.Id);
-
-        foreach (PropertyInfo property in typeof(DbLibrary).GetProperties())
-        {
-            property?.SetValue(oldLibrary, property.GetValue(library));
-        }
-
-        await _provider.SaveAsync();
-    }
-
-    public async Task DeleteAsync(DbLibrary library)
+    public async Task DeleteAsync(DbLibrary library, CancellationToken token)
     {
         _provider.Libraries.Remove(library);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
+
+    public DbSet<DbLibrary> Get() => _provider.Libraries;
+
+    public async Task SaveAsync(CancellationToken token) => await _provider.SaveAsync(token);
 }

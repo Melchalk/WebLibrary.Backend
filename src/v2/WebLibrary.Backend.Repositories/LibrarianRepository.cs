@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories.Interfaces;
@@ -15,40 +14,27 @@ public class LibrarianRepository : ILibrarianRepository
         _provider = provider;
     }
 
-    public async Task AddAsync(DbLibrarian librarian)
+    public async Task AddAsync(DbLibrarian librarian, CancellationToken token)
     {
-        _provider.Librarians.Add(librarian);
+        await _provider.Librarians.AddAsync(librarian, token);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
 
-    public async Task<DbLibrarian?> GetAsync(Guid librarianId)
+    public async Task<DbLibrarian?> GetAsync(Guid librarianId, CancellationToken token)
     {
         return await _provider.Librarians
-            .FirstOrDefaultAsync(u => u.Id == librarianId);
+            .FirstOrDefaultAsync(u => u.Id == librarianId, token);
     }
 
-    public DbSet<DbLibrarian> Get()
-    {
-        return _provider.Librarians;
-    }
-
-    public async Task UpdateAsync(DbLibrarian librarian)
-    {
-        DbLibrarian? oldLibrarian = await GetAsync(librarian.Id);
-
-        foreach (PropertyInfo property in typeof(DbLibrarian).GetProperties())
-        {
-            property?.SetValue(oldLibrarian, property.GetValue(librarian));
-        }
-
-        await _provider.SaveAsync();
-    }
-
-    public async Task DeleteAsync(DbLibrarian librarian)
+    public async Task DeleteAsync(DbLibrarian librarian, CancellationToken token)
     {
         _provider.Librarians.Remove(librarian);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
+
+    public DbSet<DbLibrarian> Get() => _provider.Librarians;
+
+    public async Task SaveAsync(CancellationToken token) => await _provider.SaveAsync(token);
 }

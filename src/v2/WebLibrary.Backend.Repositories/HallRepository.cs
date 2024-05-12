@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories.Interfaces;
@@ -15,40 +14,27 @@ public class HallRepository : IHallRepository
         _provider = provider;
     }
 
-    public async Task AddAsync(DbHall hall)
+    public async Task AddAsync(DbHall hall, CancellationToken token)
     {
-        _provider.Halls.Add(hall);
+        await _provider.Halls.AddAsync(hall, token);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
 
-    public async Task<DbHall?> GetAsync(Guid libraryId, uint number)
+    public async Task<DbHall?> GetAsync(Guid libraryId, uint number, CancellationToken token)
     {
         return await _provider.Halls
-            .FirstOrDefaultAsync(u => u.LibraryId == libraryId && u.Number == number);
+            .FirstOrDefaultAsync(u => u.LibraryId == libraryId && u.Number == number, token);
     }
 
-    public DbSet<DbHall> Get()
-    {
-        return _provider.Halls;
-    }
-
-    public async Task UpdateAsync(DbHall hall)
-    {
-        DbHall? oldHall = await GetAsync(hall.LibraryId, hall.Number);
-
-        foreach (PropertyInfo property in typeof(DbHall).GetProperties())
-        {
-            property?.SetValue(oldHall, property.GetValue(hall));
-        }
-
-        await _provider.SaveAsync();
-    }
-
-    public async Task DeleteAsync(DbHall hall)
+    public async Task DeleteAsync(DbHall hall, CancellationToken token)
     {
         _provider.Halls.Remove(hall);
 
-        await _provider.SaveAsync();
+        await _provider.SaveAsync(token);
     }
+
+    public DbSet<DbHall> Get() => _provider.Halls;
+
+    public async Task SaveAsync(CancellationToken token) => await _provider.SaveAsync(token);
 }

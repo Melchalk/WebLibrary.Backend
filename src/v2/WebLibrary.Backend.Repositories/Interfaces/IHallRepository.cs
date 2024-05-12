@@ -5,13 +5,13 @@ namespace WebLibrary.Backend.Repositories.Interfaces;
 
 public interface IHallRepository
 {
-    Task AddAsync(DbHall entity);
+    Task AddAsync(DbHall entity, CancellationToken token);
 
-    Task<DbHall?> GetAsync(Guid libraryId, uint number);
+    Task<DbHall?> GetAsync(Guid libraryId, uint number, CancellationToken token);
 
     DbSet<DbHall> Get();
 
-    Task UpdateAsync(DbHall entity);
+    Task DeleteAsync(DbHall entity, CancellationToken token);
 
-    Task DeleteAsync(DbHall entity);
+    Task SaveAsync(CancellationToken token);
 }
