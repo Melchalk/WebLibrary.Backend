@@ -58,7 +58,7 @@ public class UserService : IUserService
         dbUser.Salt = salt;
         dbUser.Password = PasswordHelper.GetPasswordHash(dbUser.Phone, dbUser.Password, salt);
 
-        await _repository.AddAsync(dbUser);
+        await _repository.AddAsync(dbUser, token);
 
         return dbUser;
     }

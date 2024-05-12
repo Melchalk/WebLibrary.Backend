@@ -6,27 +6,27 @@ namespace WebLibraryService.Backend.Domain;
 
 public class ReaderService : IReaderService
 {
-    public Task<Guid> CreateAsync(CreateReaderRequest request)
+    public Task<Guid> CreateAsync(CreateReaderRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<GetReaderResponse>> GetAllAsync()
+    public Task<List<GetReaderResponse>> GetAllAsync(CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetReaderResponse> GetAsync(Guid id)
+    public Task<GetReaderResponse> GetAsync(Guid id, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(Guid id)
+    public Task DeleteAsync(Guid id, CancellationToken token)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(UpdateReaderRequest request)
+    public Task UpdateAsync(UpdateReaderRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }
