@@ -1,8 +1,8 @@
 ﻿using Serilog;
-using StructureOfUniversity.Models.Exceptions;
 using System.Net;
+using WebLibrary.Backend.Models.Exceptions;
 
-namespace StructureOfUniversity.Infrastructure.Middlewares;
+namespace WebLibrary.Infrastructure.Middlewares;
 
 public class GlobalExceptionMiddleware
 {
@@ -31,14 +31,11 @@ public class GlobalExceptionMiddleware
     {
         context.Response.ContentType = "application/json";
 
-        if (exception is StatusCodeException statusException)
+        context.Response.StatusCode = exception switch
         {
-            context.Response.StatusCode = (int)statusException.HttpStatus;
-        }
-        else
-        {
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        }
+            StatusCodeException statusException => (int)statusException.HttpStatus,
+            _ => (int)HttpStatusCode.InternalServerError,
+        };
 
         await context.Response.WriteAsync(exception.Message);
     }

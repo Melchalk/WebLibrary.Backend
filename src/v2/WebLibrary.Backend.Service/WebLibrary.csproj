@@ -13,6 +13,7 @@
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
@@ -21,6 +22,7 @@
     <ProjectReference Include="..\WebLibrary.Backend.Domain\WebLibraryService.Backend.Domain.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Models.Db\WebLibrary.Backend.Models.Db.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Models.DTO\WebLibrary.Backend.Models.DTO.csproj" />
+    <ProjectReference Include="..\WebLibrary.Backend.Models.Exceptions\WebLibrary.Backend.Models.Exceptions.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Provider\WebLibrary.Backend.Provider.csproj" />
     <ProjectReference Include="..\WebLibrary.Backend.Repositories\WebLibrary.Backend.Repositories.csproj" />
   </ItemGroup>

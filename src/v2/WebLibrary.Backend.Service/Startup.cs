@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using StructureOfUniversity.Infrastructure.Middlewares;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WebLibrary.Backend.Auth.Helpers;
 using WebLibrary.Backend.Auth.Services;
@@ -12,6 +11,7 @@ using WebLibrary.Backend.Provider.Interfaces;
 using WebLibrary.Backend.Repositories;
 using WebLibrary.Backend.Repositories.Interfaces;
 using WebLibrary.Infrastructure.Mapping;
+using WebLibrary.Infrastructure.Middlewares;
 using WebLibrary.Infrastructure.Swagger;
 using WebLibraryService.Backend.Domain;
 using WebLibraryService.Backend.Domain.Interfaces;
