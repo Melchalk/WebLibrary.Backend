@@ -5,7 +5,7 @@ namespace WebLibrary.Backend.Auth.Helpers;
 
 public static class PasswordHelper
 {
-    private const string INTERNAL_SALT = "WebLibrary.Backend.SALT";
+    private const string INTERNAL_SALT = "WebLibrary.SALT";
 
     public static string GetPasswordHash(string userPhone, string userPassword, string salt)
     {

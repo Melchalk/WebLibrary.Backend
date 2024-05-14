@@ -11,4 +11,5 @@ public class CreateLibrarianRequest
 
     [MaxLength(50)]
     public required string Phone { get; set; }
+    public required string Password { get; set; }
 }

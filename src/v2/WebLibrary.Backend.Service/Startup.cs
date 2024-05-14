@@ -42,7 +42,7 @@ internal class Startup
 
         services.AddControllers();
 
-        services.AddSingleton<IDataProvider, WebLibraryDbContext>();
+        services.AddScoped<IDataProvider, WebLibraryDbContext>();
 
         services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped<IHallRepository, HallRepository>();
@@ -75,7 +75,6 @@ internal class Startup
         app.UseSwaggerUI();
 
         app.UseHttpsRedirection();
-        app.UseStaticFiles();
 
         app.UseMiddleware<GlobalExceptionMiddleware>();
 
