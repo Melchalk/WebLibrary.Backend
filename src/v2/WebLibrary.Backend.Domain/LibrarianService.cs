@@ -12,13 +12,16 @@ namespace WebLibraryService.Backend.Domain;
 public class LibrarianService : ILibrarianService
 {
     private readonly ILibrarianRepository _repository;
+    private readonly ILibraryRepository _libraryRepository;
     private readonly IMapper _mapper;
 
     public LibrarianService(
         ILibrarianRepository repository,
+        ILibraryRepository libraryRepository,
         IMapper mapper)
     {
         _repository = repository;
+        _libraryRepository = libraryRepository;
         _mapper = mapper;
     }
 
@@ -54,8 +57,21 @@ public class LibrarianService : ILibrarianService
         await _repository.DeleteAsync(librarian, token);
     }
 
-    public Task UpdateAsync(UpdateLibrarianRequest request, CancellationToken token)
+    public async Task UpdateAsync(UpdateLibrarianRequest request, CancellationToken token)
     {
-        throw new NotImplementedException();
+        var librarian = await _repository.GetAsync(request.Id, token)
+            ?? throw new BadRequestException($"Librarian with id = '{request.Id}' not found.");
+
+        if (request.LibraryNumber is not null)
+        {
+            _ = await _libraryRepository.GetAsync((int)request.LibraryNumber, token)
+                ?? throw new BadRequestException($"Library with number = '{request.LibraryNumber}' not found.");
+        }
+
+        librarian.Phone = request.Phone ?? librarian.Phone;
+        librarian.FullName = request.FullName ?? librarian.FullName;
+        librarian.LibraryNumber = request.LibraryNumber ?? librarian.LibraryNumber;
+
+        await _repository.SaveAsync(token);
     }
 }
