@@ -4,7 +4,7 @@ namespace WebLibrary.Backend.Models.DTO.Requests.Hall;
 
 public class UpdateHallRequest
 {
-    public Guid LibraryId { get; set; }
+    public int LibraryNumber { get; set; }
     public uint Number { get; set; }
 
     [MaxLength(50)]

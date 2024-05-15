@@ -8,7 +8,7 @@ public class DbHall
 {
     public const string TableName = "Halls";
 
-    public Guid LibraryId { get; set; }
+    public int LibraryNumber { get; set; }
     public uint Number { get; set; }
 
     [MaxLength(50)]
@@ -24,13 +24,13 @@ public class DbHallConfiguration : IEntityTypeConfiguration<DbHall>
 {
     public void Configure(EntityTypeBuilder<DbHall> builder)
     {
-        builder.HasKey(o => new { o.LibraryId, o.Number });
+        builder.HasKey(o => new { o.LibraryNumber, o.Number });
 
         builder
             .HasOne(u => u.Library)
             .WithMany(o => o.Halls)
-            .HasForeignKey(u => u.LibraryId)
-            .HasPrincipalKey(o => o.Id)
+            .HasForeignKey(u => u.LibraryNumber)
+            .HasPrincipalKey(o => o.Number)
             .OnDelete(DeleteBehavior.ClientCascade);
     }
 }

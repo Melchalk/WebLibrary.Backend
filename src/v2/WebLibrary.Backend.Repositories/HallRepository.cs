@@ -21,10 +21,10 @@ public class HallRepository : IHallRepository
         await _provider.SaveAsync(token);
     }
 
-    public async Task<DbHall?> GetAsync(Guid libraryId, uint number, CancellationToken token)
+    public async Task<DbHall?> GetAsync(int libraryNumber, uint number, CancellationToken token)
     {
         return await _provider.Halls
-            .FirstOrDefaultAsync(u => u.LibraryId == libraryId && u.Number == number, token);
+            .FirstOrDefaultAsync(u => u.LibraryNumber == libraryNumber && u.Number == number, token);
     }
 
     public async Task DeleteAsync(DbHall hall, CancellationToken token)

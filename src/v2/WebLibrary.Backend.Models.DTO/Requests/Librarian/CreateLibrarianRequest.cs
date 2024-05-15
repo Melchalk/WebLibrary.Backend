@@ -4,7 +4,7 @@ namespace WebLibrary.Backend.Models.DTO.Requests.Librarian;
 
 public class CreateLibrarianRequest
 {
-    public Guid? LibraryId { get; set; }
+    public int? LibraryNumber { get; set; }
 
     [MaxLength(50)]
     public required string FullName { get; set; }

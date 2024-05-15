@@ -22,13 +22,13 @@ public class LibraryService : ILibraryService
         _mapper = mapper;
     }
 
-    public async Task<Guid> CreateAsync(CreateLibraryRequest request, CancellationToken token)
+    public async Task<int> CreateAsync(CreateLibraryRequest request, CancellationToken token)
     {
         var library = _mapper.Map<DbLibrary>(request);
 
         await _repository.AddAsync(library, token);
 
-        return library.Id;
+        return library.Number;
     }
 
     public async Task<List<GetLibraryResponse>> GetAllAsync(CancellationToken token)
@@ -38,18 +38,18 @@ public class LibraryService : ILibraryService
             .ToListAsync(token);
     }
 
-    public async Task<GetLibraryResponse> GetAsync(Guid id, CancellationToken token)
+    public async Task<GetLibraryResponse> GetAsync(int number, CancellationToken token)
     {
-        var library = await _repository.GetAsync(id, token)
-            ?? throw new BadRequestException($"Library with id = '{id}' not found.");
+        var library = await _repository.GetAsync(number, token)
+            ?? throw new BadRequestException($"Library with number = '{number}' not found.");
 
         return _mapper.Map<GetLibraryResponse>(library);
     }
 
-    public async Task DeleteAsync(Guid id, CancellationToken token)
+    public async Task DeleteAsync(int number, CancellationToken token)
     {
-        var library = await _repository.GetAsync(id, token)
-            ?? throw new BadRequestException($"Library with id = '{id}' not found.");
+        var library = await _repository.GetAsync(number, token)
+            ?? throw new BadRequestException($"Library with number = '{number}' not found.");
 
         await _repository.DeleteAsync(library, token);
     }

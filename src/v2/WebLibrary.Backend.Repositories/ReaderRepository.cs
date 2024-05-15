@@ -24,7 +24,7 @@ public class ReaderRepository : IReaderRepository
     {
         return await _provider.Readers
             .Include(u => u.Issue)
-                .ThenInclude(o => o.Books)
+                .ThenInclude(o => o!.Books)
             .FirstOrDefaultAsync(u => u.Id == readerId, token);
     }
 

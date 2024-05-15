@@ -38,18 +38,18 @@ public class HallService : IHallService
             .ToListAsync(token);
     }
 
-    public async Task<GetHallResponse> GetAsync(Guid libraryId, uint number, CancellationToken token)
+    public async Task<GetHallResponse> GetAsync(int libraryNumber, uint number, CancellationToken token)
     {
-        var hall = await _repository.GetAsync(libraryId, number, token)
-            ?? throw new BadRequestException($"Hall with library Id = '{libraryId}' and number = '{number}' not found.");
+        var hall = await _repository.GetAsync(libraryNumber, number, token)
+            ?? throw new BadRequestException($"Hall with library Id = '{libraryNumber}' and number = '{number}' not found.");
 
         return _mapper.Map<GetHallResponse>(hall);
     }
 
-    public async Task DeleteAsync(Guid libraryId, uint number, CancellationToken token)
+    public async Task DeleteAsync(int libraryNumber, uint number, CancellationToken token)
     {
-        var hall = await _repository.GetAsync(libraryId, number, token)
-            ?? throw new BadRequestException($"Hall with library Id = '{libraryId}' and number = '{number}' not found.");
+        var hall = await _repository.GetAsync(libraryNumber, number, token)
+            ?? throw new BadRequestException($"Hall with library Id = '{libraryNumber}' and number = '{number}' not found.");
 
         await _repository.DeleteAsync(hall, token);
     }

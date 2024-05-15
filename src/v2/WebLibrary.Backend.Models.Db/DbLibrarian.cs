@@ -9,7 +9,7 @@ public class DbLibrarian
     public const string TableName = "Librarians";
 
     public Guid Id { get; set; }
-    public Guid? LibraryId { get; set; }
+    public int? LibraryNumber { get; set; }
 
     [MaxLength(50)]
     public required string FullName { get; set; }
@@ -31,8 +31,8 @@ public class DbLibrarianConfiguration : IEntityTypeConfiguration<DbLibrarian>
         builder
             .HasOne(u => u.Library)
             .WithMany(o => o.Librarians)
-            .HasForeignKey(u => u.LibraryId)
-            .HasPrincipalKey(o => o.Id)
+            .HasForeignKey(u => u.LibraryNumber)
+            .HasPrincipalKey(o => o.Number)
             .OnDelete(DeleteBehavior.SetNull);
     }
 }

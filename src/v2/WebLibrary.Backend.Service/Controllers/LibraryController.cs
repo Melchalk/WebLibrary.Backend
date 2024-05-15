@@ -13,7 +13,7 @@ public class LibraryController(
     [FromServices] ILibraryService service) : ControllerBase
 {
     [HttpPost("create")]
-    public async Task<Guid?> CreateLibrary(
+    public async Task<int> CreateLibrary(
         [FromBody] CreateLibraryRequest request,
         CancellationToken token)
     {
@@ -21,9 +21,9 @@ public class LibraryController(
     }
 
     [HttpGet("get")]
-    public async Task<GetLibraryResponse> GetLibrary([FromQuery] Guid id, CancellationToken token)
+    public async Task<GetLibraryResponse> GetLibrary([FromQuery] int number, CancellationToken token)
     {
-        return await service.GetAsync(id, token);
+        return await service.GetAsync(number, token);
     }
 
     [HttpGet("get/all")]
@@ -42,9 +42,9 @@ public class LibraryController(
 
     [HttpDelete("delete")]
     public async Task DeleteLibrary(
-        [FromQuery] Guid id,
+        [FromQuery] int number,
         CancellationToken token)
     {
-        await service.DeleteAsync(id, token);
+        await service.DeleteAsync(number, token);
     }
 }

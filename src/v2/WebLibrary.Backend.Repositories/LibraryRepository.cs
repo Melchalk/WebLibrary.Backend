@@ -21,12 +21,12 @@ public class LibraryRepository : ILibraryRepository
         await _provider.SaveAsync(token);
     }
 
-    public async Task<DbLibrary?> GetAsync(Guid libraryId, CancellationToken token)
+    public async Task<DbLibrary?> GetAsync(int number, CancellationToken token)
     {
         return await _provider.Libraries
             .Include(u => u.Librarians)
             .Include(o => o.Halls)
-            .FirstOrDefaultAsync(u => u.Id == libraryId, token);
+            .FirstOrDefaultAsync(u => u.Number == number, token);
     }
 
     public async Task DeleteAsync(DbLibrary library, CancellationToken token)

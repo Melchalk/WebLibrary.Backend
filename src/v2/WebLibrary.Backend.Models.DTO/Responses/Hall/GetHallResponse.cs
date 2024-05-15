@@ -2,7 +2,7 @@
 
 public class GetHallResponse
 {
-    public Guid LibraryId { get; set; }
+    public int LibraryNumber { get; set; }
     public uint Number { get; set; }
     public string? Title { get; set; }
     public required string Thematic { get; set; }

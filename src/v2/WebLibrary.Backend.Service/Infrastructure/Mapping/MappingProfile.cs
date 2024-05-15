@@ -28,8 +28,7 @@ public class MappingProfile : Profile
             .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
         CreateMap<DbLibrary, GetLibraryResponse>();
-        CreateMap<CreateLibraryRequest, DbLibrary>()
-            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
+        CreateMap<CreateLibraryRequest, DbLibrary>();
 
         CreateMap<DbLibrarian, GetLibrarianResponse>();
         CreateMap<CreateLibrarianRequest, DbLibrarian>()

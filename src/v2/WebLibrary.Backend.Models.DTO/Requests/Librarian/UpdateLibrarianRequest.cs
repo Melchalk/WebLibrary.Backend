@@ -5,7 +5,7 @@ namespace WebLibrary.Backend.Models.DTO.Requests.Librarian;
 public class UpdateLibrarianRequest
 {
     public Guid Id { get; set; }
-    public Guid? LibraryId { get; set; }
+    public int? LibraryNumber { get; set; }
 
     [MaxLength(50, ErrorMessage = "FullName is too long")]
     public string? FullName { get; set; }

@@ -7,7 +7,7 @@ public interface IHallRepository
 {
     Task AddAsync(DbHall entity, CancellationToken token);
 
-    Task<DbHall?> GetAsync(Guid libraryId, uint number, CancellationToken token);
+    Task<DbHall?> GetAsync(int libraryNumber, uint number, CancellationToken token);
 
     DbSet<DbHall> Get();
 

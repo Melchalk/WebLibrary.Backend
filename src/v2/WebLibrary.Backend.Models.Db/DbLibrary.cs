@@ -8,7 +8,7 @@ public class DbLibrary
 {
     public const string TableName = "Libraries";
 
-    public Guid Id { get; set; }
+    public int Number { get; set; }
 
     [MaxLength(50)]
     public required string Title { get; set; }
@@ -27,6 +27,6 @@ public class DbLibraryConfiguration : IEntityTypeConfiguration<DbLibrary>
 {
     public void Configure(EntityTypeBuilder<DbLibrary> builder)
     {
-        builder.HasKey(o => o.Id);
+        builder.HasKey(o => o.Number);
     }
 }

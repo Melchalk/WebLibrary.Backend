@@ -7,7 +7,7 @@ public interface ILibraryRepository
 {
     Task AddAsync(DbLibrary entity, CancellationToken token);
 
-    Task<DbLibrary?> GetAsync(Guid id, CancellationToken token);
+    Task<DbLibrary?> GetAsync(int number, CancellationToken token);
 
     DbSet<DbLibrary> Get();
 

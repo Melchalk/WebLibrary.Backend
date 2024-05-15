@@ -4,7 +4,7 @@ namespace WebLibrary.Backend.Models.DTO.Requests.Library;
 
 public class UpdateLibraryRequest
 {
-    public Guid Id { get; set; }
+    public int Number { get; set; }
 
     [MaxLength(50)]
     public string? Title { get; set; }

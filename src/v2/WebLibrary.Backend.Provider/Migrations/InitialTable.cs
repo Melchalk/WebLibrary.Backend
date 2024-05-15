@@ -12,6 +12,13 @@ class InitialTable : Migration
 {
     protected override void Up(MigrationBuilder migrationBuilder)
     {
+        #region Sequence
+
+        var sequenceLibrary = "generate_library_number_seq";
+        migrationBuilder.Sql($"CREATE SEQUENCE {sequenceLibrary} START WITH 1 INCREMENT BY 1;");
+
+        #endregion
+
         #region Reader
 
         migrationBuilder.CreateTable(
@@ -90,14 +97,14 @@ class InitialTable : Migration
             name: DbLibrary.TableName,
             columns: table => new
             {
-                Id = table.Column<Guid>(nullable: false),
+                Number = table.Column<int>(nullable: false, defaultValueSql: $"nextval('{sequenceLibrary}')"),
                 Title = table.Column<string>(nullable: false, maxLength: 50),
                 Address = table.Column<string>(nullable: false, maxLength: 50),
                 Phone = table.Column<string>(nullable: false, maxLength: 50),
             },
             constraints: table =>
             {
-                table.PrimaryKey("PK_Library", x => x.Id);
+                table.PrimaryKey("PK_Library", x => x.Number);
             }
         );
 
@@ -109,18 +116,18 @@ class InitialTable : Migration
             name: DbHall.TableName,
             columns: table => new
             {
-                LibraryId = table.Column<Guid>(nullable: false),
+                LibraryNumber = table.Column<int>(nullable: false),
                 Number = table.Column<uint>(nullable: false),
                 Title = table.Column<string>(nullable: true, maxLength: 50),
                 Thematic = table.Column<string>(nullable: false, maxLength: 50),
             },
             constraints: table =>
             {
-                table.PrimaryKey("PK_Hall", x => new { x.LibraryId, x.Number });
+                table.PrimaryKey("PK_Hall", x => new { x.LibraryNumber, x.Number });
 
                 table.ForeignKey(
                     "FK_Hall_Library",
-                    x => x.LibraryId,
+                    x => x.LibraryNumber,
                     DbLibrary.TableName);
             }
         );
@@ -134,7 +141,7 @@ class InitialTable : Migration
             columns: table => new
             {
                 Id = table.Column<Guid>(nullable: false),
-                LibraryId = table.Column<Guid>(nullable: true),
+                LibraryNumber = table.Column<int>(nullable: true),
                 FullName = table.Column<string>(nullable: true, maxLength: 50),
                 Phone = table.Column<string>(nullable: false, maxLength: 50),
                 Password = table.Column<string>(nullable: false),
@@ -146,7 +153,7 @@ class InitialTable : Migration
 
                 table.ForeignKey(
                     "FK_Librarian_Library",
-                    x => x.LibraryId,
+                    x => x.LibraryNumber,
                     DbLibrary.TableName);
             }
         );

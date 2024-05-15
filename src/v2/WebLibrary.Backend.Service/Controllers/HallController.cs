@@ -22,11 +22,11 @@ public class HallController(
 
     [HttpGet("get")]
     public async Task<GetHallResponse> GetHall(
-        [FromQuery] Guid libraryId,
+        [FromQuery] int libraryNumber,
         [FromQuery] uint number,
         CancellationToken token)
     {
-        return await service.GetAsync(libraryId, number, token);
+        return await service.GetAsync(libraryNumber, number, token);
     }
 
     [HttpGet("get/all")]
@@ -45,10 +45,10 @@ public class HallController(
 
     [HttpDelete("delete")]
     public async Task DeleteHall(
-        [FromQuery] Guid libraryId,
+        [FromQuery] int libraryNumber,
         [FromQuery] uint number,
         CancellationToken token)
     {
-        await service.DeleteAsync(libraryId, number, token);
+        await service.DeleteAsync(libraryNumber, number, token);
     }
 }
