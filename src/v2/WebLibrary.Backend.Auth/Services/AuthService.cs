@@ -44,6 +44,7 @@ public class AuthService : IAuthService
         List<Claim> claims =
         [
             new Claim(ClaimTypes.MobilePhone, user.Phone),
+            new Claim("TokenType", tokenType.ToString())
         ];
 
         tokenLifetime = DateTime.UtcNow.Add(
@@ -61,5 +62,22 @@ public class AuthService : IAuthService
                 SigningSymmetricKey.SigningAlgorithm));
 
         return new JwtSecurityTokenHandler().WriteToken(jwt);
+    }
+
+    public ClaimsPrincipal ValidateToken(string token)
+    {
+        var validationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = _tokenSettings.TokenIssuer,
+            ValidateAudience = true,
+            ValidAudience = _tokenSettings.TokenAudience,
+            ValidateLifetime = true,
+            IssuerSigningKey = SigningSymmetricKey.GetKey(),
+            ValidateIssuerSigningKey = true
+        };
+
+        return new JwtSecurityTokenHandler()
+            .ValidateToken(token, validationParameters, out _);
     }
 }

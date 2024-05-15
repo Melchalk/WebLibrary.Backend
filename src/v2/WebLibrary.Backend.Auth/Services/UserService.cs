@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using WebLibrary.Backend.Auth.Helpers;
 using WebLibrary.Backend.Auth.Services.Interfaces;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Models.DTO.Requests.Librarian;
+using WebLibrary.Backend.Models.DTO.Responses.Librarian;
 using WebLibrary.Backend.Repositories.Interfaces;
 
 namespace WebLibrary.Backend.Auth.Services;
@@ -13,13 +15,17 @@ public class UserService : IUserService
 {
     private const string START_PHONE = "+7";
 
+    private readonly IHttpContextAccessor _httpContext;
+
     private readonly ILibrarianRepository _repository;
     private readonly IMapper _mapper;
 
     public UserService(
+        IHttpContextAccessor httpContext,
         ILibrarianRepository repository,
         IMapper mapper)
     {
+        _httpContext = httpContext;
         _repository = repository;
         _mapper = mapper;
     }
@@ -71,5 +77,29 @@ public class UserService : IUserService
             ?? throw new ArgumentException($"User with phone {phone} is not found.");
 
         return user;
+    }
+
+    public async Task<GetLibrarianResponse> GetCurrentUser(CancellationToken token)
+    {
+        var phone = _httpContext.GetUserPhone();
+
+        var user = await _repository.Get()
+            .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Phone == phone, token)
+        ?? throw new ArgumentException($"User with phone {phone} is not found.");
+
+        return _mapper.Map<GetLibrarianResponse>(user);
+    }
+
+    public async Task DeleteCurrentUser(CancellationToken token)
+    {
+        var phone = _httpContext.GetUserPhone();
+
+        var user = await _repository.Get()
+            .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Phone == phone, token)
+        ?? throw new ArgumentException($"User with phone {phone} is not found.");
+
+        await _repository.DeleteAsync(user, token);
     }
 }

@@ -54,7 +54,7 @@ public class HallService : IHallService
         await _repository.DeleteAsync(hall, token);
     }
 
-    public async Task UpdateAsync(UpdateHallRequest request, CancellationToken token)
+    public Task UpdateAsync(UpdateHallRequest request, CancellationToken token)
     {
         throw new NotImplementedException();
     }

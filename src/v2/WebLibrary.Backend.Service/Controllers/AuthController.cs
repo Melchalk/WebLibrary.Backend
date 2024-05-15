@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebLibrary.Backend.Auth.Models;
 using WebLibrary.Backend.Auth.Services.Interfaces;
 using WebLibrary.Backend.Models.DTO.Requests.Librarian;
+using WebLibrary.Backend.Models.DTO.Responses.Librarian;
 
 namespace WebLibrary.Controllers;
 
@@ -32,5 +34,19 @@ public class AuthController(
             AccessToken = authService.GenerateToken(user, TokenType.Access, out DateTime accessTokenLifetime),
             RefreshToken = authService.GenerateToken(user, TokenType.Refresh, out DateTime refreshTokenLifetime)
         };
+    }
+
+    [Authorize]
+    [HttpGet("get/current")]
+    public async Task<GetLibrarianResponse> GetCurrentUser(CancellationToken token)
+    {
+        return await userService.GetCurrentUser(token);
+    }
+
+    [Authorize]
+    [HttpDelete("delete/current")]
+    public async Task DeleteCurrentUser(CancellationToken token)
+    {
+        await userService.DeleteCurrentUser(token);
     }
 }

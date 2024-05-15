@@ -30,6 +30,17 @@ internal class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services
+            .AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+
         services.AddDbContext<WebLibraryDbContext>(options =>
         {
             options.UseNpgsql(Configuration.GetConnectionString("SQLConnectionString"));
@@ -42,6 +53,45 @@ internal class Startup
 
         services.AddControllers();
 
+        ConfigureDI(services);
+
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+
+        services.AddHttpContextAccessor();
+
+        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+        ConfigureJwt(services);
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseCors("CorsPolicy");
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        app.UseHttpsRedirection();
+
+        app.UseMiddleware<GlobalExceptionMiddleware>();
+
+        UpdateDatabase(app);
+
+        app.UseRouting();
+
+        app.UseMiddleware<TokenMiddleware>();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+    }
+
+    private void ConfigureDI(IServiceCollection services)
+    {
         services.AddScoped<IDataProvider, WebLibraryDbContext>();
 
         services.AddScoped<IBookRepository, BookRepository>();
@@ -60,35 +110,6 @@ internal class Startup
 
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
-
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-
-        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-
-        ConfigureJwt(services);
-    }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-
-        app.UseHttpsRedirection();
-
-        app.UseMiddleware<GlobalExceptionMiddleware>();
-
-        UpdateDatabase(app);
-
-        app.UseRouting();
-
-        app.UseAuthentication();
-        app.UseAuthorization();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
     }
 
     private void ConfigureJwt(IServiceCollection services)
