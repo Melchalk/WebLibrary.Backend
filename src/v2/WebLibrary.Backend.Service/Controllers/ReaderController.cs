@@ -8,7 +8,7 @@ namespace WebLibrary.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/Reader")]
+[Route("api/reader")]
 public class ReaderController(
     [FromServices] IReaderService service) : ControllerBase
 {

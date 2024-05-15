@@ -8,7 +8,7 @@ namespace WebLibrary.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/Library")]
+[Route("api/library")]
 public class LibraryController(
     [FromServices] ILibraryService service) : ControllerBase
 {
