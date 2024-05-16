@@ -20,6 +20,7 @@ public class DbLibrary
     public required string Phone { get; set; }
 
     public ICollection<DbLibrarian> Librarians { get; set; } = new HashSet<DbLibrarian>();
+    public ICollection<DbBook> Books { get; set; } = new HashSet<DbBook>();
     public ICollection<DbHall> Halls { get; set; } = new HashSet<DbHall>();
 }
 

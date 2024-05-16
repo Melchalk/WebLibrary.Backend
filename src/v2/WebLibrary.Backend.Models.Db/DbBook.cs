@@ -9,6 +9,7 @@ public class DbBook
     public const string TableName = "Books";
 
     public Guid Id { get; set; }
+    public int LibraryNumber { get; set; }
     public uint? HallNo { get; set; }
     public Guid? IssueId { get; set; }
 
@@ -25,6 +26,7 @@ public class DbBook
     public string? CityPublishing { get; set; }
 
     public DbIssue? Issue { get; set; }
+    public DbLibrary? Library { get; set; }
 }
 
 public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
@@ -39,5 +41,10 @@ public class DbBookConfiguration : IEntityTypeConfiguration<DbBook>
             .HasForeignKey(u => u.IssueId)
             .HasPrincipalKey(o => o.Id)
             .OnDelete(DeleteBehavior.SetNull);
+
+        builder
+            .HasOne(b => b.Library)
+            .WithMany(l => l.Books)
+            .HasForeignKey(b => b.LibraryNumber);
     }
 }

@@ -31,10 +31,10 @@ public class BookService : IBookService
         return book.Id;
     }
 
-    public async Task<List<GetBookResponse>> GetAllAsync(CancellationToken token)
+    public async Task<List<GetBookResponse>> GetAllAsync(int libraryNumber, CancellationToken token)
     {
         return await _mapper.ProjectTo<GetBookResponse>(
-            _repository.Get())
+            _repository.Get().Where(b => b.LibraryNumber == libraryNumber))
             .ToListAsync(token);
     }
 

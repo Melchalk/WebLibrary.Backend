@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using WebLibrary.Backend.Models.Db;
-using WebLibrary.Backend.Provider;
 
 namespace WebLibrary.Backend.Provider.Migrations;
 
@@ -63,6 +62,25 @@ class InitialTable : Migration
 
         #endregion
 
+        #region Library
+
+        migrationBuilder.CreateTable(
+            name: DbLibrary.TableName,
+            columns: table => new
+            {
+                Number = table.Column<int>(nullable: false, defaultValueSql: $"nextval('{sequenceLibrary}')"),
+                Title = table.Column<string>(nullable: false, maxLength: 50),
+                Address = table.Column<string>(nullable: false, maxLength: 50),
+                Phone = table.Column<string>(nullable: false, maxLength: 50),
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_Library", x => x.Number);
+            }
+        );
+
+        #endregion
+
         #region Book
 
         migrationBuilder.CreateTable(
@@ -70,6 +88,7 @@ class InitialTable : Migration
             columns: table => new
             {
                 Id = table.Column<Guid>(nullable: false),
+                LibraryNumber = table.Column<int>(nullable: true),
                 Title = table.Column<string>(nullable: false, maxLength: 50),
                 Author = table.Column<string>(nullable: true, maxLength: 50),
                 NumberPages = table.Column<uint>(nullable: false),
@@ -86,25 +105,11 @@ class InitialTable : Migration
                     "FK_Book_Issue",
                     x => x.IssueId,
                     DbIssue.TableName);
-            }
-        );
 
-        #endregion
-
-        #region Library
-
-        migrationBuilder.CreateTable(
-            name: DbLibrary.TableName,
-            columns: table => new
-            {
-                Number = table.Column<int>(nullable: false, defaultValueSql: $"nextval('{sequenceLibrary}')"),
-                Title = table.Column<string>(nullable: false, maxLength: 50),
-                Address = table.Column<string>(nullable: false, maxLength: 50),
-                Phone = table.Column<string>(nullable: false, maxLength: 50),
-            },
-            constraints: table =>
-            {
-                table.PrimaryKey("PK_Library", x => x.Number);
+                table.ForeignKey(
+                    "FK_Book_Library",
+                    x => x.LibraryNumber,
+                    DbLibrary.TableName);
             }
         );
 
@@ -165,8 +170,8 @@ class InitialTable : Migration
     {
         migrationBuilder.DropTable(DbLibrarian.TableName);
         migrationBuilder.DropTable(DbHall.TableName);
-        migrationBuilder.DropTable(DbLibrary.TableName);
         migrationBuilder.DropTable(DbBook.TableName);
+        migrationBuilder.DropTable(DbLibrary.TableName);
         migrationBuilder.DropTable(DbIssue.TableName);
         migrationBuilder.DropTable(DbReader.TableName);
     }

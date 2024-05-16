@@ -27,9 +27,9 @@ public class BookController(
     }
 
     [HttpGet("get/all")]
-    public async Task<List<GetBookResponse>> GetBooks(CancellationToken token)
+    public async Task<List<GetBookResponse>> GetBooks([FromQuery] int libraryNumber, CancellationToken token)
     {
-        return await service.GetAllAsync(token);
+        return await service.GetAllAsync(libraryNumber, token);
     }
 
     [HttpPut("update")]

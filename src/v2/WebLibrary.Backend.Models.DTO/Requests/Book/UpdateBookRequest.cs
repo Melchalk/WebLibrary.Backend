@@ -5,6 +5,7 @@ namespace WebLibrary.Backend.Models.DTO.Requests.Book;
 public class UpdateBookRequest
 {
     public Guid Id { get; set; }
+    public int? LibraryNumber { get; set; }
     public int? HallNo { get; set; }
 
     [MaxLength(50)]
