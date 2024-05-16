@@ -58,6 +58,13 @@ public class BookService : IBookService
     {
         var book = await _repository.GetAsync(request.Id, token)
             ?? throw new BadRequestException($"Book with id = '{request.Id}' not found.");
-        //todo
+
+        book.Title = request.Title ?? book.Title;
+        book.Author = request.Author ?? book.Author;
+        book.NumberPages = request.NumberPages ?? book.NumberPages;
+        book.YearPublishing = request.YearPublishing ?? book.YearPublishing;
+        book.CityPublishing = request.CityPublishing ?? book.CityPublishing;
+
+        await _repository.SaveAsync(token);
     }
 }
