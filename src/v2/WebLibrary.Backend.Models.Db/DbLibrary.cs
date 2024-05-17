@@ -18,6 +18,8 @@ public class DbLibrary
 
     [MaxLength(50)]
     public required string Phone { get; set; }
+    [MaxLength(50)]
+    public required string OwnerPhone { get; set; }
 
     public ICollection<DbLibrarian> Librarians { get; set; } = new HashSet<DbLibrarian>();
     public ICollection<DbBook> Books { get; set; } = new HashSet<DbBook>();

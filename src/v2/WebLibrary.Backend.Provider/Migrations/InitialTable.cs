@@ -72,6 +72,7 @@ class InitialTable : Migration
                 Title = table.Column<string>(nullable: false, maxLength: 50),
                 Address = table.Column<string>(nullable: false, maxLength: 50),
                 Phone = table.Column<string>(nullable: false, maxLength: 50),
+                OwnerPhone = table.Column<string>(nullable: false, maxLength: 50),
             },
             constraints: table =>
             {

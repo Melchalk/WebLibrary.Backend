@@ -27,7 +27,10 @@ public class MappingProfile : Profile
         CreateMap<CreateReaderRequest, DbReader>()
             .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
-        CreateMap<DbLibrary, GetLibraryResponse>();
+        CreateMap<DbLibrary, GetLibraryResponse>()
+            .ForMember(response => response.LibrariansCount, opt => opt.MapFrom(db => db.Librarians.Count))
+            .ForMember(response => response.BooksCount, opt => opt.MapFrom(db => db.Books.Count))
+            .ForMember(response => response.IssuesCount, opt => opt.MapFrom(db => db.Books.Count(b => b.IssueId != null)));
         CreateMap<CreateLibraryRequest, DbLibrary>();
 
         CreateMap<DbLibrarian, GetLibrarianResponse>();

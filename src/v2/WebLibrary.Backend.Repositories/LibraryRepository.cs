@@ -24,9 +24,10 @@ public class LibraryRepository : ILibraryRepository
     public async Task<DbLibrary?> GetAsync(int number, CancellationToken token)
     {
         return await _provider.Libraries
-            .Include(u => u.Librarians)
-            .Include(o => o.Halls)
-            .FirstOrDefaultAsync(u => u.Number == number, token);
+            .Include(l => l.Librarians)
+            .Include(l => l.Halls)
+            .Include(l => l.Books)
+            .FirstOrDefaultAsync(l => l.Number == number, token);
     }
 
     public async Task DeleteAsync(DbLibrary library, CancellationToken token)

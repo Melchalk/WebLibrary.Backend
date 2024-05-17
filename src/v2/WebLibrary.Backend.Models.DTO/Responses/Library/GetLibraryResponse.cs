@@ -10,6 +10,14 @@ public class GetLibraryResponse
     public required string Address { get; set; }
     public required string Phone { get; set; }
 
+    public int LibrariansCount { get; set; }
+    public int BooksCount { get; set; }
+    public int IssuesCount { get; set; }
+    public required string OwnerPhone { get; set; }
+    public required string OwnerName{ get; set; }
+
+    public required GetLibrarianResponse Owner { get; set; }
+
     public IList<GetLibrarianResponse>? Librarians { get; set; }
     public IList<GetHallResponse>? Halls { get; set; }
 }

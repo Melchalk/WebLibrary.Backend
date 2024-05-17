@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLibrary.Backend.Reposito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLibrary.Backend.Auth", "WebLibrary.Backend.Auth\WebLibrary.Backend.Auth.csproj", "{66A97964-EEB6-4F21-A440-F913A0357E23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibrary.Backend.Models.Exceptions", "WebLibrary.Backend.Models.Exceptions\WebLibrary.Backend.Models.Exceptions.csproj", "{8BF46292-4CDF-4975-8935-91A390B93C29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLibrary.Backend.Models.Exceptions", "WebLibrary.Backend.Models.Exceptions\WebLibrary.Backend.Models.Exceptions.csproj", "{8BF46292-4CDF-4975-8935-91A390B93C29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLibrary.Backend.Extensions", "WebLibrary.Backend.Extensions\WebLibrary.Backend.Extensions.csproj", "{0179524D-190B-49CB-BA2F-950E763B02DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{8BF46292-4CDF-4975-8935-91A390B93C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BF46292-4CDF-4975-8935-91A390B93C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BF46292-4CDF-4975-8935-91A390B93C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0179524D-190B-49CB-BA2F-950E763B02DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0179524D-190B-49CB-BA2F-950E763B02DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0179524D-190B-49CB-BA2F-950E763B02DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0179524D-190B-49CB-BA2F-950E763B02DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

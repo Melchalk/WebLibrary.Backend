@@ -8,6 +8,7 @@ using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Models.DTO.Requests.Librarian;
 using WebLibrary.Backend.Models.DTO.Responses.Librarian;
 using WebLibrary.Backend.Repositories.Interfaces;
+using WebLibrary.Backend.Extensions;
 
 namespace WebLibrary.Backend.Auth.Services;
 
