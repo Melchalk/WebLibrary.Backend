@@ -11,6 +11,8 @@ public interface IIssueService
 
     Task<List<GetIssueResponse>> GetAllAsync(CancellationToken token);
 
+    Task<List<GetIssueResponse>> GetByLibraryNumberAsync(int libraryNumber, CancellationToken token);
+
     Task UpdateAsync(UpdateIssueRequest request, CancellationToken token);
 
     Task DeleteAsync(Guid id, CancellationToken token);

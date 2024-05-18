@@ -41,7 +41,8 @@ public class MappingProfile : Profile
         CreateMap<DbHall, GetHallResponse>();
         CreateMap<CreateHallRequest, DbHall>();
 
-        CreateMap<DbIssue, GetIssueResponse>();
+        CreateMap<DbIssue, GetIssueResponse>()
+            .ForMember(response => response.ReturnDate, opt => opt.MapFrom(db => db.Books.Select(b => b.Id)));
         CreateMap<CreateIssueRequest, DbIssue>()
             .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
     }

@@ -32,6 +32,12 @@ public class IssueController(
         return await service.GetAllAsync(token);
     }
 
+    [HttpGet("get/library")]
+    public async Task<List<GetIssueResponse>> GetIssuesInLibrary([FromQuery] int libraryNumber, CancellationToken token)
+    {
+        return await service.GetByLibraryNumberAsync(libraryNumber, token);
+    }
+
     [HttpPut("update")]
     public async Task UpdateIssue(
         [FromBody] UpdateIssueRequest request,
