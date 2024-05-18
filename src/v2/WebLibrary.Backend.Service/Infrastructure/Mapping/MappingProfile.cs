@@ -23,7 +23,8 @@ public class MappingProfile : Profile
         CreateMap<CreateBookRequest, DbBook>()
             .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 
-        CreateMap<DbReader, GetReaderResponse>();
+        CreateMap<DbReader, GetReaderResponse>()
+            .ForMember(response => response.IssueId, opt => opt.MapFrom<Guid?>(db => db.Issue != null ? db.Issue!.Id : null));
         CreateMap<CreateReaderRequest, DbReader>()
             .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
 

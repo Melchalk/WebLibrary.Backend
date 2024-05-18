@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using Microsoft.EntityFrameworkCore;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Models.DTO.Requests.Reader;
@@ -54,8 +55,18 @@ public class ReaderService : IReaderService
         await _repository.DeleteAsync(reader, token);
     }
 
-    public Task UpdateAsync(UpdateReaderRequest request, CancellationToken token)
+    public async Task UpdateAsync(UpdateReaderRequest request, CancellationToken token)
     {
-        throw new NotImplementedException();
+        var reader = await _repository.GetAsync(request.Id, token)
+            ?? throw new BadRequestException($"Reader with id = '{request.Id}' not found.");
+
+        reader.FullName = request.FullName ?? reader.FullName;
+        reader.Phone = request.Phone ?? reader.Phone;
+        reader.RegistrationAddress = request.RegistrationAddress ?? reader.RegistrationAddress;
+        reader.Age = request.Age ?? reader.Age;
+
+        reader.CanTakeBooks = reader.Age >= 18 && reader.RegistrationAddress != null;
+
+        await _repository.SaveAsync(token);
     }
 }

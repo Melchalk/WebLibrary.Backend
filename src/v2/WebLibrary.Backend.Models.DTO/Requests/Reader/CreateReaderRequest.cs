@@ -14,6 +14,6 @@ public class CreateReaderRequest
     public string? RegistrationAddress { get; set; }
 
     [Range(14, 100, ErrorMessage = "The age must be over 14")]
-    public int Age { get; set; }
+    public uint Age { get; set; }
     public bool CanTakeBooks { get => Age >= 18 && RegistrationAddress != null; }
 }

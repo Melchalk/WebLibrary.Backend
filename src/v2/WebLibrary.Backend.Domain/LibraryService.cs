@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using WebLibrary.Backend.Extensions;
 using WebLibrary.Backend.Models.Db;
 using WebLibrary.Backend.Models.DTO.Requests.Library;
 using WebLibrary.Backend.Models.DTO.Responses.Library;
 using WebLibrary.Backend.Models.Exceptions;
 using WebLibrary.Backend.Repositories.Interfaces;
 using WebLibraryService.Backend.Domain.Interfaces;
-using WebLibrary.Backend.Extensions;
-using System.Numerics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebLibraryService.Backend.Domain;
 
@@ -63,8 +61,9 @@ public class LibraryService : ILibraryService
             ?? throw new BadRequestException($"Library with number = '{number}' not found.");
 
         var response = _mapper.Map<GetLibraryResponse>(library);
-        response.OwnerName = library.Librarians
-            .First(l => l.Phone == library.OwnerPhone).FullName;
+        response.OwnerName = (await _librarianRepository.Get()
+            .FirstAsync(l => l.Phone == library.OwnerPhone))
+            .FullName;
 
         return response;
     }

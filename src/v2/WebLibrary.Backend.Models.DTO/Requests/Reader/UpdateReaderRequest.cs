@@ -16,5 +16,5 @@ public class UpdateReaderRequest
     public string? RegistrationAddress { get; set; }
 
     [Range(14, 100, ErrorMessage = "The age must be over 14")]
-    public int Age { get; set; }
+    public uint? Age { get; set; }
 }
