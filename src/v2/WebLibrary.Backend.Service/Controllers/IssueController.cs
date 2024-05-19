@@ -29,12 +29,14 @@ public class IssueController(
     [HttpGet("get/all")]
     public async Task<List<GetIssueResponse>> GetIssues(CancellationToken token)
     {
+        var s = await service.GetAllAsync(token);
         return await service.GetAllAsync(token);
     }
 
     [HttpGet("get/library")]
     public async Task<List<GetIssueResponse>> GetIssuesInLibrary([FromQuery] int libraryNumber, CancellationToken token)
     {
+        var s = await service.GetByLibraryNumberAsync(libraryNumber, token);
         return await service.GetByLibraryNumberAsync(libraryNumber, token);
     }
 

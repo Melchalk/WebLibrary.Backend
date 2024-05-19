@@ -32,6 +32,14 @@ public class BookController(
         return await service.GetAllAsync(libraryNumber, token);
     }
 
+
+    [HttpGet("get/free")]
+    public async Task<List<GetBookResponse>> GetFreeBooks([FromQuery] int libraryNumber, CancellationToken token)
+    {
+        return await service.GetFreeAsync(libraryNumber, token);
+    }
+
+
     [HttpPut("update")]
     public async Task UpdateBook(
         [FromBody] UpdateBookRequest request,

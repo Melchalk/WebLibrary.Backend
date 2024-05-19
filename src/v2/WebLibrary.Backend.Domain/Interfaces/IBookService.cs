@@ -11,6 +11,8 @@ public interface IBookService
 
     Task<List<GetBookResponse>> GetAllAsync(int libraryNumber, CancellationToken token);
 
+    Task<List<GetBookResponse>> GetFreeAsync(int libraryNumber, CancellationToken token);
+
     Task UpdateAsync(UpdateBookRequest request, CancellationToken token);
 
     Task DeleteAsync(Guid id, CancellationToken token);

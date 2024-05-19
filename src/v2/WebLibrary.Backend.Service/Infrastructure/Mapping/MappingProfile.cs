@@ -42,8 +42,9 @@ public class MappingProfile : Profile
         CreateMap<CreateHallRequest, DbHall>();
 
         CreateMap<DbIssue, GetIssueResponse>()
-            .ForMember(response => response.ReturnDate, opt => opt.MapFrom(db => db.Books.Select(b => b.Id)));
+            .ForMember(response => response.BooksId, opt => opt.MapFrom(db => db.Books.Select(b => b.Id)));
         CreateMap<CreateIssueRequest, DbIssue>()
-            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
+            .ForMember(db => db.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
+            .ForMember(db => db.ReturnDate, opt => opt.MapFrom(request => DateTime.UtcNow.AddDays(request.Period)));
     }
 }

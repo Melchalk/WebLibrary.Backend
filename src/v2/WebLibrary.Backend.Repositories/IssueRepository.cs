@@ -20,14 +20,15 @@ public class IssueRepository : IIssueRepository
         CancellationToken token)
     {
         await _provider.Issues.AddAsync(issue, token);
+        await _provider.SaveAsync(token);
 
         foreach (var bookId in booksId)
         {
             (await _provider.Books
                 .FirstAsync(u => u.Id == bookId, token)).IssueId = issue.Id;
-        }
 
-        await _provider.SaveAsync(token);
+            await _provider.SaveAsync(token);
+        }
     }
 
     public async Task<DbIssue?> GetAsync(Guid issueId, CancellationToken token)

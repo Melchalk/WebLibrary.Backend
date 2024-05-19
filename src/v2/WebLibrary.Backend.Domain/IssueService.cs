@@ -40,6 +40,11 @@ public class IssueService : IIssueService
 
     public async Task<List<GetIssueResponse>> GetByLibraryNumberAsync(int libraryNumber, CancellationToken token)
     {
+        var l = await _mapper.ProjectTo<GetIssueResponse>(
+            _repository.Get()
+            .Where(i => i.Books.First().LibraryNumber == libraryNumber))
+            .ToListAsync(token);
+
         return await _mapper.ProjectTo<GetIssueResponse>(
             _repository.Get()
             .Where(i => i.Books.First().LibraryNumber == libraryNumber))

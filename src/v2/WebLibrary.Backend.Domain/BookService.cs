@@ -38,6 +38,14 @@ public class BookService : IBookService
             .ToListAsync(token);
     }
 
+    public async Task<List<GetBookResponse>> GetFreeAsync(int libraryNumber, CancellationToken token)
+    {
+        return await _mapper.ProjectTo<GetBookResponse>(
+            _repository.Get()
+            .Where(b => b.LibraryNumber == libraryNumber && b.IssueId == null))
+            .ToListAsync(token);
+    }
+
     public async Task<GetBookResponse> GetAsync(Guid id, CancellationToken token)
     {
         var book = await _repository.GetAsync(id, token)
