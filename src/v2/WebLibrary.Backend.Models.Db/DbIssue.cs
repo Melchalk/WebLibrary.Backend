@@ -24,6 +24,8 @@ public class DbIssueConfiguration : IEntityTypeConfiguration<DbIssue>
         builder
           .HasOne(o => o.Reader)
           .WithOne(u => u.Issue)
+          .HasForeignKey<DbIssue>(i => i.ReaderId)
+          .HasPrincipalKey<DbReader>(r => r.Id)
           .OnDelete(DeleteBehavior.ClientCascade);
     }
 }

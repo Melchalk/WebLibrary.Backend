@@ -12,19 +12,31 @@ namespace WebLibraryService.Backend.Domain;
 public class IssueService : IIssueService
 {
     private readonly IIssueRepository _repository;
+    private readonly IReaderRepository _readerRepository;
+
     private readonly IMapper _mapper;
 
     public IssueService(
         IIssueRepository repository,
+        IReaderRepository readerRepository,
         IMapper mapper)
     {
         _repository = repository;
+        _readerRepository = readerRepository;
         _mapper = mapper;
     }
 
     public async Task<Guid> CreateAsync(CreateIssueRequest request, CancellationToken token)
     {
         var issue = _mapper.Map<DbIssue>(request);
+
+        var reader = await _readerRepository.GetAsync(request.ReaderId, token)
+            ?? throw new BadRequestException($"Reader with id = '{request.ReaderId}' not found");
+
+        if (reader.Issue is not null)
+        {
+            throw new BadRequestException($"Reader with id = '{request.ReaderId}' already has issue");
+        }
 
         await _repository.AddAsync(issue, request.BooksId, token);
 
