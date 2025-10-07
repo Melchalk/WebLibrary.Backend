@@ -34,6 +34,11 @@ public class UserService : IUserService
     public async Task<DbLibrarian> RegisterUser(
         CreateLibrarianRequest request, CancellationToken token)
     {
+        if (request.FullName.Length == 0 || request.Phone.Length == 0 || request.Password.Length == 0)
+        {
+            throw new ArgumentException("Field must be not empty");
+        }
+
         StringBuilder phone = new(START_PHONE);
 
         request.Phone = request.Phone.StartsWith(START_PHONE)
